@@ -1,1 +1,63 @@
-aW1wb3J0IHsgdXNlU3RhdGUgfSBmcm9tICdyZWFjdCcKaW1wb3J0IHsgc2IgfSBmcm9tICcuLi9zdXBhYmFzZScKaW1wb3J0IHsgZ2VyYXJDb2RpZ29Pcmdhbml6YWNhbywgdHJhZHV6aXJFcnJvQXV0aCB9IGZyb20gJy4uL3V0aWxzL2F1dGgnCmltcG9ydCB7IHVzZUFwcCB9IGZyb20gJy4uL2NvbnRleHQvQXBwQ29udGV4dCcKCmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIE9yZ0NyaWFyU2NyZWVuKCkgewogIGNvbnN0IHsgbmF2aWdhdGUsIHNldE1lbWJyb0F0dWFsLCBzZXRPcmdhbml6YWNhb0F0dWFsIH0gPSB1c2VBcHAoKQogIGNvbnN0IFtub21lLCBzZXROb21lXSA9IHVzZVN0YXRlKCcnKQogIGNvbnN0IFtlcnJvLCBzZXRFcnJvXSA9IHVzZVN0YXRlKCcnKQogIGNvbnN0IFtsb2FkaW5nLCBzZXRMb2FkaW5nXSA9IHVzZVN0YXRlKGZhbHNlKQoKICBjb25zdCBjcmlhciA9IGFzeW5jICgpID0+IHsKICAgIHNldEVycm8oJycpCiAgICBpZiAoIW5vbWUudHJpbSgpKSB7IHNldEVycm8oJ0RpeiBvIG5vbWUgZGEgb3JnYW5pemHDp8Ojby4nKTsgcmV0dXJuIH0KICAgIHNldExvYWRpbmcodHJ1ZSkKICAgIHRyeSB7CiAgICAgIGNvbnN0IHsgZGF0YTogeyB1c2VyIH0gfSA9IGF3YWl0IHNiLmF1dGguZ2V0VXNlcigpCiAgICAgIGNvbnN0IGNvZGlnbyA9IGdlcmFyQ29kaWdvT3JnYW5pemFjYW8obm9tZS50cmltKCkpCgogICAgICBjb25zdCB7IGRhdGE6IG9yZywgZXJyb3I6IG9yZ0VyciB9ID0gYXdhaXQgc2IuZnJvbSgnb3JnYW5pemFjb2VzJykKICAgICAgICAuaW5zZXJ0KHsgbm9tZTogbm9tZS50cmltKCksIGNvZGlnbywgY3JpYWRvX3BvcjogdXNlci5pZCB9KS5zZWxlY3QoKS5zaW5nbGUoKQogICAgICBpZiAob3JnRXJyKSB0aHJvdyBvcmdFcnIKCiAgICAgIGNvbnN0IG5vbWVVdGlsaXphZG9yID0gdXNlci51c2VyX21ldGFkYXRhPy5ub21lIHx8IHVzZXIuZW1haWwKICAgICAgY29uc3QgeyBkYXRhOiBtZW1icm8sIGVycm9yOiBtZW1FcnIgfSA9IGF3YWl0IHNiLmZyb20oJ21lbWJyb3MnKQogICAgICAgIC5pbnNlcnQoeyB1c2VyX2lkOiB1c2VyLmlkLCBvcmdhbml6YWNhb19pZDogb3JnLmlkLCBub21lOiBub21lVXRpbGl6YWRvciwgcm9sZTogJ2FkbWluJywgc3RhdHVzOiAnYXByb3ZhZG8nIH0pCiAgICAgICAgLnNlbGVjdCgpLnNpbmdsZSgpCiAgICAgIGlmIChtZW1FcnIpIHRocm93IG1lbUVycgoKICAgICAgc2V0TWVtYnJvQXR1YWwobWVtYnJvKQogICAgICBzZXRPcmdhbml6YWNhb0F0dWFsKG9yZykKICAgICAgbmF2aWdhdGUoJ29yZy1jb2RpZ28nKQogICAgfSBjYXRjaCAoZXJyKSB7CiAgICAgIHNldEVycm8odHJhZHV6aXJFcnJvQXV0aChlcnIubWVzc2FnZSkpCiAgICB9IGZpbmFsbHkgewogICAgICBzZXRMb2FkaW5nKGZhbHNlKQogICAgfQogIH0KCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJzY3JlZW4iPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iaGVhZGVyIj4KICAgICAgICA8YnV0dG9uIGNsYXNzTmFtZT0iYnRuLWJhY2siIG9uQ2xpY2s9eygpID0+IG5hdmlnYXRlKCdvcmctZXNjb2xoYScpfT7igLk8L2J1dHRvbj4KICAgICAgICA8c3BhbiBjbGFzc05hbWU9ImhlYWRlci10aXRsZSI+Q3JpYXIgT3JnYW5pemHDp8Ojbzwvc3Bhbj4KICAgICAgPC9kaXY+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJjb250ZW50Ij4KICAgICAgICB7ZXJybyAmJiA8ZGl2IGNsYXNzTmFtZT0iYXV0aC1lcnJvciI+e2Vycm99PC9kaXY+fQogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJjYW1wbyI+CiAgICAgICAgICA8bGFiZWw+Tm9tZSBkYSBvcmdhbml6YcOnw6NvPC9sYWJlbD4KICAgICAgICAgIDxpbnB1dAogICAgICAgICAgICB0eXBlPSJ0ZXh0IiB2YWx1ZT17bm9tZX0KICAgICAgICAgICAgb25DaGFuZ2U9e2UgPT4gc2V0Tm9tZShlLnRhcmdldC52YWx1ZSl9CiAgICAgICAgICAgIG9uS2V5RG93bj17ZSA9PiBlLmtleSA9PT0gJ0VudGVyJyAmJiBjcmlhcigpfQogICAgICAgICAgICBwbGFjZWhvbGRlcj0iRXg6IElncmVqYSBBbGlhbsOnYSBWaXplbGEiCiAgICAgICAgICAvPgogICAgICAgIDwvZGl2PgogICAgICAgIDxidXR0b24gY2xhc3NOYW1lPSJidG4tcHJpbWFyeSBidG4tYWNjZW50IiBvbkNsaWNrPXtjcmlhcn0gZGlzYWJsZWQ9e2xvYWRpbmd9PgogICAgICAgICAge2xvYWRpbmcgPyAnQSBjcmlhci4uLicgOiAnQ3JpYXIgT3JnYW5pemHDp8Ojbyd9CiAgICAgICAgPC9idXR0b24+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKQp9Cg==
+import { useState } from 'react'
+import { sb } from '../supabase'
+import { gerarCodigoOrganizacao, traduzirErroAuth } from '../utils/auth'
+import { useApp } from '../context/AppContext'
+
+export default function OrgCriarScreen() {
+  const { navigate, setMembroAtual, setOrganizacaoAtual } = useApp()
+  const [nome, setNome] = useState('')
+  const [erro, setErro] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const criar = async () => {
+    setErro('')
+    if (!nome.trim()) { setErro('Diz o nome da organização.'); return }
+    setLoading(true)
+    try {
+      const { data: { user } } = await sb.auth.getUser()
+      const codigo = gerarCodigoOrganizacao(nome.trim())
+
+      const { data: org, error: orgErr } = await sb.from('organizacoes')
+        .insert({ nome: nome.trim(), codigo, criado_por: user.id }).select().single()
+      if (orgErr) throw orgErr
+
+      const nomeUtilizador = user.user_metadata?.nome || user.email
+      const { data: membro, error: memErr } = await sb.from('membros')
+        .insert({ user_id: user.id, organizacao_id: org.id, nome: nomeUtilizador, role: 'admin', status: 'aprovado' })
+        .select().single()
+      if (memErr) throw memErr
+
+      setMembroAtual(membro)
+      setOrganizacaoAtual(org)
+      navigate('org-codigo')
+    } catch (err) {
+      setErro(traduzirErroAuth(err.message))
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div className="screen">
+      <div className="header">
+        <button className="btn-back" onClick={() => navigate('org-escolha')}>‹</button>
+        <span className="header-title">Criar Organização</span>
+      </div>
+      <div className="content">
+        {erro && <div className="auth-error">{erro}</div>}
+        <div className="campo">
+          <label>Nome da organização</label>
+          <input
+            type="text" value={nome}
+            onChange={e => setNome(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && criar()}
+            placeholder="Ex: Igreja Aliança Vizela"
+          />
+        </div>
+        <button className="btn-primary btn-accent" onClick={criar} disabled={loading}>
+          {loading ? 'A criar...' : 'Criar Organização'}
+        </button>
+      </div>
+    </div>
+  )
+}

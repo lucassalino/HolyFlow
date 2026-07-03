@@ -1,1 +1,36 @@
-aW1wb3J0IHsgc2IgfSBmcm9tICcuLi9zdXBhYmFzZScKaW1wb3J0IHsgdXNlQXBwIH0gZnJvbSAnLi4vY29udGV4dC9BcHBDb250ZXh0JwoKZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gUGVuZGVudGVTY3JlZW4oKSB7CiAgY29uc3QgeyBtZW1icm9BdHVhbCwgc2V0TWVtYnJvQXR1YWwsIG9yZ2FuaXphY2FvQXR1YWwsIGxvZ291dCwgZW50cmFyTmFBcHAgfSA9IHVzZUFwcCgpCgogIGNvbnN0IHZlcmlmaWNhciA9IGFzeW5jICgpID0+IHsKICAgIGlmICghbWVtYnJvQXR1YWwpIHJldHVybgogICAgY29uc3QgeyBkYXRhLCBlcnJvciB9ID0gYXdhaXQgc2IuZnJvbSgnbWVtYnJvcycpLnNlbGVjdCgnKicpLmVxKCdpZCcsIG1lbWJyb0F0dWFsLmlkKS5zaW5nbGUoKQogICAgaWYgKGVycm9yKSByZXR1cm4KICAgIGNvbnN0IGF0dWFsaXphZG8gPSB7IC4uLm1lbWJyb0F0dWFsLCBzdGF0dXM6IGRhdGEuc3RhdHVzLCByb2xlOiBkYXRhLnJvbGUgfQogICAgc2V0TWVtYnJvQXR1YWwoYXR1YWxpemFkbykKICAgIGlmIChkYXRhLnN0YXR1cyA9PT0gJ2Fwcm92YWRvJykgewogICAgICBhd2FpdCBlbnRyYXJOYUFwcChhdHVhbGl6YWRvLCBvcmdhbml6YWNhb0F0dWFsKQogICAgfSBlbHNlIHsKICAgICAgYWxlcnQoJ0FpbmRhIHNlbSByZXNwb3N0YSDigJQgcGVkZSBhbyBhZG1pbmlzdHJhZG9yIHBhcmEgdGUgYXByb3Zhci4nKQogICAgfQogIH0KCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJzY3JlZW4iPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iaGVhZGVyIj4KICAgICAgICA8c3BhbiBjbGFzc05hbWU9ImhlYWRlci10aXRsZSI+QWd1YXJkYW5kbyBBcHJvdmHDp8Ojbzwvc3Bhbj4KICAgICAgICA8YnV0dG9uIGNsYXNzTmFtZT0iYnRuLWljb24iIG9uQ2xpY2s9e2xvZ291dH0+4o6LPC9idXR0b24+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzTmFtZT0iY29udGVudCI+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9InBlbmRlbnRlLWJveCI+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaWNvbiI+4o+zPC9kaXY+CiAgICAgICAgICA8aDI+TyB0ZXUgcGVkaWRvIGZvaSBlbnZpYWRvPC9oMj4KICAgICAgICAgIDxwPlVtIGFkbWluaXN0cmFkb3IgZGEgb3JnYW5pemHDp8OjbyBwcmVjaXNhIGRlIGFwcm92YXIgbyB0ZXUgYWNlc3NvIGFudGVzIGRlIHBvZGVyZXMgdmVyIG9zIHJvdGVpcm9zLiBWb2x0YSBhIGFicmlyIGEgYXBwIG1haXMgdGFyZGUuPC9wPgogICAgICAgIDwvZGl2PgogICAgICAgIDxidXR0b24gY2xhc3NOYW1lPSJidG4tcHJpbWFyeSIgb25DbGljaz17dmVyaWZpY2FyfT7wn5SEIFZlcmlmaWNhciBub3ZhbWVudGU8L2J1dHRvbj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICApCn0K
+import { sb } from '../supabase'
+import { useApp } from '../context/AppContext'
+
+export default function PendenteScreen() {
+  const { membroAtual, setMembroAtual, organizacaoAtual, logout, entrarNaApp } = useApp()
+
+  const verificar = async () => {
+    if (!membroAtual) return
+    const { data, error } = await sb.from('membros').select('*').eq('id', membroAtual.id).single()
+    if (error) return
+    const atualizado = { ...membroAtual, status: data.status, role: data.role }
+    setMembroAtual(atualizado)
+    if (data.status === 'aprovado') {
+      await entrarNaApp(atualizado, organizacaoAtual)
+    } else {
+      alert('Ainda sem resposta — pede ao administrador para te aprovar.')
+    }
+  }
+
+  return (
+    <div className="screen">
+      <div className="header">
+        <span className="header-title">Aguardando Aprovação</span>
+        <button className="btn-icon" onClick={logout}>⎋</button>
+      </div>
+      <div className="content">
+        <div className="pendente-box">
+          <div className="icon">⏳</div>
+          <h2>O teu pedido foi enviado</h2>
+          <p>Um administrador da organização precisa de aprovar o teu acesso antes de poderes ver os roteiros. Volta a abrir a app mais tarde.</p>
+        </div>
+        <button className="btn-primary" onClick={verificar}>🔄 Verificar novamente</button>
+      </div>
+    </div>
+  )
+}

@@ -1,1 +1,121 @@
-aW1wb3J0IHsgY3JlYXRlQ29udGV4dCwgdXNlQ29udGV4dCwgdXNlU3RhdGUsIHVzZUNhbGxiYWNrIH0gZnJvbSAncmVhY3QnCmltcG9ydCB7IHNiIH0gZnJvbSAnLi4vc3VwYWJhc2UnCgpjb25zdCBBcHBDb250ZXh0ID0gY3JlYXRlQ29udGV4dChudWxsKQoKZXhwb3J0IGZ1bmN0aW9uIEFwcFByb3ZpZGVyKHsgY2hpbGRyZW4gfSkgewogIGNvbnN0IFtzY3JlZW4sIHNldFNjcmVlbl0gPSB1c2VTdGF0ZSgnbG9hZGluZycpCiAgY29uc3QgW3Nlc3Nhb0F0dWFsLCBzZXRTZXNzYW9BdHVhbF0gPSB1c2VTdGF0ZShudWxsKQogIGNvbnN0IFttZW1icm9BdHVhbCwgc2V0TWVtYnJvQXR1YWxdID0gdXNlU3RhdGUobnVsbCkKICBjb25zdCBbb3JnYW5pemFjYW9BdHVhbCwgc2V0T3JnYW5pemFjYW9BdHVhbF0gPSB1c2VTdGF0ZShudWxsKQoKICAvLyBSb3RlaXJvcwogIGNvbnN0IFtyb3RlaXJvcywgc2V0Um90ZWlyb3NdID0gdXNlU3RhdGUoW10pCgogIC8vIEVzdGFkbyBkbyBlZGl0b3IgKHBhcnRpbGhhZG8gZW50cmUgRWRpdG9yU2NyZWVuIGUgTW9tZW50b1NjcmVlbikKICBjb25zdCBbZWRpdGFuZG9JZHgsIHNldEVkaXRhbmRvSWR4XSA9IHVzZVN0YXRlKG51bGwpCiAgY29uc3QgW21vbWVudG9zLCBzZXRNb21lbnRvc10gPSB1c2VTdGF0ZShbXSkKICBjb25zdCBbbW9tZW50b0VkaXRhbmRvSWR4LCBzZXRNb21lbnRvRWRpdGFuZG9JZHhdID0gdXNlU3RhdGUobnVsbCkKICBjb25zdCBbZWRpdG9yTm9tZSwgc2V0RWRpdG9yTm9tZV0gPSB1c2VTdGF0ZSgnJykKICBjb25zdCBbZWRpdG9yRGF0YSwgc2V0RWRpdG9yRGF0YV0gPSB1c2VTdGF0ZSgnJykKICBjb25zdCBbZWRpdG9yVGVtYSwgc2V0RWRpdG9yVGVtYV0gPSB1c2VTdGF0ZSgnJykKICBjb25zdCBbZWRpdG9yVmVyc2ljdWxvLCBzZXRFZGl0b3JWZXJzaWN1bG9dID0gdXNlU3RhdGUoJycpCgogIGNvbnN0IG5hdmlnYXRlID0gdXNlQ2FsbGJhY2soKHMpID0+IHNldFNjcmVlbihzKSwgW10pCgogIGNvbnN0IGxvZ291dCA9IHVzZUNhbGxiYWNrKGFzeW5jICgpID0+IHsKICAgIGF3YWl0IHNiLmF1dGguc2lnbk91dCgpCiAgICBzZXRTZXNzYW9BdHVhbChudWxsKQogICAgc2V0TWVtYnJvQXR1YWwobnVsbCkKICAgIHNldE9yZ2FuaXphY2FvQXR1YWwobnVsbCkKICAgIHNldFJvdGVpcm9zKFtdKQogICAgbmF2aWdhdGUoJ2F1dGgnKQogIH0sIFtuYXZpZ2F0ZV0pCgogIGNvbnN0IGNhcnJlZ2FyUm90ZWlyb3NEYU51dmVtID0gdXNlQ2FsbGJhY2soYXN5bmMgKG9yZ0lkKSA9PiB7CiAgICBjb25zdCB7IGRhdGEsIGVycm9yIH0gPSBhd2FpdCBzYi5mcm9tKCdyb3RlaXJvcycpCiAgICAgIC5zZWxlY3QoJyonKS5lcSgnb3JnYW5pemFjYW9faWQnLCBvcmdJZCkub3JkZXIoJ2NyZWF0ZWRfYXQnLCB7IGFzY2VuZGluZzogZmFsc2UgfSkKICAgIGlmIChlcnJvcikgeyBjb25zb2xlLmVycm9yKGVycm9yKTsgcmV0dXJuIFtdIH0KICAgIHJldHVybiAoZGF0YSB8fCBbXSkubWFwKHIgPT4gKHsKICAgICAgaWQ6IHIuaWQsIG5vbWU6IHIubm9tZSwgZGF0YTogci5kYXRhLAogICAgICB0ZW1hOiByLnRlbWEgfHwgJycsIHZlcnNpY3Vsbzogci52ZXJzaWN1bG8gfHwgJycsCiAgICAgIG1vbWVudG9zOiByLm1vbWVudG9zIHx8IFtdLAogICAgfSkpCiAgfSwgW10pCgogIGNvbnN0IGVudHJhck5hQXBwID0gdXNlQ2FsbGJhY2soYXN5bmMgKG1lbWJybywgb3JnKSA9PiB7CiAgICBjb25zdCBsaXN0YSA9IGF3YWl0IGNhcnJlZ2FyUm90ZWlyb3NEYU51dmVtKG9yZy5pZCkKICAgIHNldFJvdGVpcm9zKGxpc3RhKQogICAgbmF2aWdhdGUoJ2xpc3RhJykKICB9LCBbY2FycmVnYXJSb3RlaXJvc0RhTnV2ZW0sIG5hdmlnYXRlXSkKCiAgY29uc3QgZGVwb2lzRG9Mb2dpbiA9IHVzZUNhbGxiYWNrKGFzeW5jICgpID0+IHsKICAgIGNvbnN0IHsgZGF0YTogeyB1c2VyIH0gfSA9IGF3YWl0IHNiLmF1dGguZ2V0VXNlcigpCiAgICBpZiAoIXVzZXIpIHsgbmF2aWdhdGUoJ2F1dGgnKTsgcmV0dXJuIH0KCiAgICBjb25zdCB7IGRhdGE6IG1lbWJyb3MsIGVycm9yIH0gPSBhd2FpdCBzYgogICAgICAuZnJvbSgnbWVtYnJvcycpCiAgICAgIC5zZWxlY3QoJyosIG9yZ2FuaXphY29lcyhpZCwgbm9tZSwgY29kaWdvKScpCiAgICAgIC5lcSgndXNlcl9pZCcsIHVzZXIuaWQpCiAgICAgIC5vcmRlcignY3JlYXRlZF9hdCcsIHsgYXNjZW5kaW5nOiBmYWxzZSB9KQogICAgICAubGltaXQoMSkKCiAgICBpZiAoZXJyb3IpIHsgY29uc29sZS5lcnJvcihlcnJvcik7IG5hdmlnYXRlKCdvcmctZXNjb2xoYScpOyByZXR1cm4gfQoKICAgIGlmICghbWVtYnJvcyB8fCAhbWVtYnJvcy5sZW5ndGgpIHsgbmF2aWdhdGUoJ29yZy1lc2NvbGhhJyk7IHJldHVybiB9CgogICAgY29uc3QgbWVtYnJvID0gbWVtYnJvc1swXQogICAgY29uc3Qgb3JnID0gbWVtYnJvc1swXS5vcmdhbml6YWNvZXMKICAgIHNldE1lbWJyb0F0dWFsKG1lbWJybykKICAgIHNldE9yZ2FuaXphY2FvQXR1YWwob3JnKQoKICAgIGlmIChtZW1icm8uc3RhdHVzID09PSAncGVuZGVudGUnKSBuYXZpZ2F0ZSgncGVuZGVudGUnKQogICAgZWxzZSBpZiAobWVtYnJvLnN0YXR1cyA9PT0gJ3JlamVpdGFkbycpIG5hdmlnYXRlKCdvcmctZXNjb2xoYScpCiAgICBlbHNlIGF3YWl0IGVudHJhck5hQXBwKG1lbWJybywgb3JnKQogIH0sIFtuYXZpZ2F0ZSwgZW50cmFyTmFBcHBdKQoKICBjb25zdCBhYnJpck5vdm9Sb3RlaXJvID0gdXNlQ2FsbGJhY2soKCkgPT4gewogICAgc2V0RWRpdGFuZG9JZHgobnVsbCkKICAgIHNldEVkaXRvck5vbWUoJycpCiAgICBzZXRFZGl0b3JEYXRhKG5ldyBEYXRlKCkudG9JU09TdHJpbmcoKS5zcGxpdCgnVCcpWzBdKQogICAgc2V0RWRpdG9yVGVtYSgnJykKICAgIHNldEVkaXRvclZlcnNpY3VsbygnJykKICAgIHNldE1vbWVudG9zKFtdKQogICAgbmF2aWdhdGUoJ2VkaXRvcicpCiAgfSwgW25hdmlnYXRlXSkKCiAgY29uc3QgYWJyaXJSb3RlaXJvID0gdXNlQ2FsbGJhY2soKGksIGxpc3RhKSA9PiB7CiAgICBjb25zdCByID0gbGlzdGFbaV0KICAgIHNldEVkaXRhbmRvSWR4KGkpCiAgICBzZXRFZGl0b3JOb21lKHIubm9tZSkKICAgIHNldEVkaXRvckRhdGEoci5kYXRhIHx8ICcnKQogICAgc2V0RWRpdG9yVGVtYShyLnRlbWEgfHwgJycpCiAgICBzZXRFZGl0b3JWZXJzaWN1bG8oci52ZXJzaWN1bG8gfHwgJycpCiAgICBzZXRNb21lbnRvcyhKU09OLnBhcnNlKEpTT04uc3RyaW5naWZ5KHIubW9tZW50b3MpKSkKICAgIG5hdmlnYXRlKCdlZGl0b3InKQogIH0sIFtuYXZpZ2F0ZV0pCgogIHJldHVybiAoCiAgICA8QXBwQ29udGV4dC5Qcm92aWRlciB2YWx1ZT17ewogICAgICBzY3JlZW4sIG5hdmlnYXRlLAogICAgICBzZXNzYW9BdHVhbCwgc2V0U2Vzc2FvQXR1YWwsCiAgICAgIG1lbWJyb0F0dWFsLCBzZXRNZW1icm9BdHVhbCwKICAgICAgb3JnYW5pemFjYW9BdHVhbCwgc2V0T3JnYW5pemFjYW9BdHVhbCwKICAgICAgcm90ZWlyb3MsIHNldFJvdGVpcm9zLAogICAgICBlZGl0YW5kb0lkeCwgc2V0RWRpdGFuZG9JZHgsCiAgICAgIG1vbWVudG9zLCBzZXRNb21lbnRvcywKICAgICAgbW9tZW50b0VkaXRhbmRvSWR4LCBzZXRNb21lbnRvRWRpdGFuZG9JZHgsCiAgICAgIGVkaXRvck5vbWUsIHNldEVkaXRvck5vbWUsCiAgICAgIGVkaXRvckRhdGEsIHNldEVkaXRvckRhdGEsCiAgICAgIGVkaXRvclRlbWEsIHNldEVkaXRvclRlbWEsCiAgICAgIGVkaXRvclZlcnNpY3Vsbywgc2V0RWRpdG9yVmVyc2ljdWxvLAogICAgICBsb2dvdXQsIGRlcG9pc0RvTG9naW4sIGVudHJhck5hQXBwLAogICAgICBjYXJyZWdhclJvdGVpcm9zRGFOdXZlbSwKICAgICAgYWJyaXJOb3ZvUm90ZWlybywgYWJyaXJSb3RlaXJvLAogICAgfX0+CiAgICAgIHtjaGlsZHJlbn0KICAgIDwvQXBwQ29udGV4dC5Qcm92aWRlcj4KICApCn0KCmV4cG9ydCBjb25zdCB1c2VBcHAgPSAoKSA9PiB1c2VDb250ZXh0KEFwcENvbnRleHQpCg==
+import { createContext, useContext, useState, useCallback } from 'react'
+import { sb } from '../supabase'
+
+const AppContext = createContext(null)
+
+export function AppProvider({ children }) {
+  const [screen, setScreen] = useState('loading')
+  const [sessaoAtual, setSessaoAtual] = useState(null)
+  const [membroAtual, setMembroAtual] = useState(null)
+  const [organizacaoAtual, setOrganizacaoAtual] = useState(null)
+
+  // Roteiros
+  const [roteiros, setRoteiros] = useState([])
+
+  // Estado do editor (partilhado entre EditorScreen e MomentoScreen)
+  const [editandoIdx, setEditandoIdx] = useState(null)
+  const [momentos, setMomentos] = useState([])
+  const [momentoEditandoIdx, setMomentoEditandoIdx] = useState(null)
+  const [editorNome, setEditorNome] = useState('')
+  const [editorData, setEditorData] = useState('')
+  const [editorTema, setEditorTema] = useState('')
+  const [editorVersiculo, setEditorVersiculo] = useState('')
+
+  const navigate = useCallback((s) => setScreen(s), [])
+
+  const logout = useCallback(async () => {
+    await sb.auth.signOut()
+    setSessaoAtual(null)
+    setMembroAtual(null)
+    setOrganizacaoAtual(null)
+    setRoteiros([])
+    navigate('auth')
+  }, [navigate])
+
+  const carregarRoteirosDaNuvem = useCallback(async (orgId) => {
+    const { data, error } = await sb.from('roteiros')
+      .select('*').eq('organizacao_id', orgId).order('created_at', { ascending: false })
+    if (error) { console.error(error); return [] }
+    return (data || []).map(r => ({
+      id: r.id, nome: r.nome, data: r.data,
+      tema: r.tema || '', versiculo: r.versiculo || '',
+      momentos: r.momentos || [],
+    }))
+  }, [])
+
+  const entrarNaApp = useCallback(async (membro, org) => {
+    const lista = await carregarRoteirosDaNuvem(org.id)
+    setRoteiros(lista)
+    navigate('lista')
+  }, [carregarRoteirosDaNuvem, navigate])
+
+  const depoisDoLogin = useCallback(async () => {
+    const { data: { user } } = await sb.auth.getUser()
+    if (!user) { navigate('auth'); return }
+
+    const { data: membros, error } = await sb
+      .from('membros')
+      .select('*, organizacoes(id, nome, codigo)')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(1)
+
+    if (error) { console.error(error); navigate('org-escolha'); return }
+
+    if (!membros || !membros.length) { navigate('org-escolha'); return }
+
+    const membro = membros[0]
+    const org = membros[0].organizacoes
+    setMembroAtual(membro)
+    setOrganizacaoAtual(org)
+
+    if (membro.status === 'pendente') navigate('pendente')
+    else if (membro.status === 'rejeitado') navigate('org-escolha')
+    else await entrarNaApp(membro, org)
+  }, [navigate, entrarNaApp])
+
+  const abrirNovoRoteiro = useCallback(() => {
+    setEditandoIdx(null)
+    setEditorNome('')
+    setEditorData(new Date().toISOString().split('T')[0])
+    setEditorTema('')
+    setEditorVersiculo('')
+    setMomentos([])
+    navigate('editor')
+  }, [navigate])
+
+  const abrirRoteiro = useCallback((i, lista) => {
+    const r = lista[i]
+    setEditandoIdx(i)
+    setEditorNome(r.nome)
+    setEditorData(r.data || '')
+    setEditorTema(r.tema || '')
+    setEditorVersiculo(r.versiculo || '')
+    setMomentos(JSON.parse(JSON.stringify(r.momentos)))
+    navigate('editor')
+  }, [navigate])
+
+  return (
+    <AppContext.Provider value={{
+      screen, navigate,
+      sessaoAtual, setSessaoAtual,
+      membroAtual, setMembroAtual,
+      organizacaoAtual, setOrganizacaoAtual,
+      roteiros, setRoteiros,
+      editandoIdx, setEditandoIdx,
+      momentos, setMomentos,
+      momentoEditandoIdx, setMomentoEditandoIdx,
+      editorNome, setEditorNome,
+      editorData, setEditorData,
+      editorTema, setEditorTema,
+      editorVersiculo, setEditorVersiculo,
+      logout, depoisDoLogin, entrarNaApp,
+      carregarRoteirosDaNuvem,
+      abrirNovoRoteiro, abrirRoteiro,
+    }}>
+      {children}
+    </AppContext.Provider>
+  )
+}
+
+export const useApp = () => useContext(AppContext)

@@ -1,1 +1,66 @@
-aW1wb3J0IHsgdXNlRWZmZWN0IH0gZnJvbSAncmVhY3QnCmltcG9ydCB7IHNiIH0gZnJvbSAnLi9zdXBhYmFzZScKaW1wb3J0IHsgQXBwUHJvdmlkZXIsIHVzZUFwcCB9IGZyb20gJy4vY29udGV4dC9BcHBDb250ZXh0JwppbXBvcnQgQXV0aFNjcmVlbiBmcm9tICcuL3NjcmVlbnMvQXV0aFNjcmVlbicKaW1wb3J0IE9yZ0VzY29saGFTY3JlZW4gZnJvbSAnLi9zY3JlZW5zL09yZ0VzY29saGFTY3JlZW4nCmltcG9ydCBPcmdDcmlhclNjcmVlbiBmcm9tICcuL3NjcmVlbnMvT3JnQ3JpYXJTY3JlZW4nCmltcG9ydCBPcmdFbnRyYXJTY3JlZW4gZnJvbSAnLi9zY3JlZW5zL09yZ0VudHJhclNjcmVlbicKaW1wb3J0IE9yZ0NvZGlnb1NjcmVlbiBmcm9tICcuL3NjcmVlbnMvT3JnQ29kaWdvU2NyZWVuJwppbXBvcnQgUGVuZGVudGVTY3JlZW4gZnJvbSAnLi9zY3JlZW5zL1BlbmRlbnRlU2NyZWVuJwppbXBvcnQgTGlzdGFTY3JlZW4gZnJvbSAnLi9zY3JlZW5zL0xpc3RhU2NyZWVuJwppbXBvcnQgRWRpdG9yU2NyZWVuIGZyb20gJy4vc2NyZWVucy9FZGl0b3JTY3JlZW4nCmltcG9ydCBNb21lbnRvU2NyZWVuIGZyb20gJy4vc2NyZWVucy9Nb21lbnRvU2NyZWVuJwppbXBvcnQgUHJldmlld1NjcmVlbiBmcm9tICcuL3NjcmVlbnMvUHJldmlld1NjcmVlbicKaW1wb3J0IE1lbWJyb3NTY3JlZW4gZnJvbSAnLi9zY3JlZW5zL01lbWJyb3NTY3JlZW4nCgpjb25zdCBTQ1JFRU5TID0gewogIGF1dGg6IEF1dGhTY3JlZW4sCiAgJ29yZy1lc2NvbGhhJzogT3JnRXNjb2xoYVNjcmVlbiwKICAnb3JnLWNyaWFyJzogT3JnQ3JpYXJTY3JlZW4sCiAgJ29yZy1lbnRyYXInOiBPcmdFbnRyYXJTY3JlZW4sCiAgJ29yZy1jb2RpZ28nOiBPcmdDb2RpZ29TY3JlZW4sCiAgcGVuZGVudGU6IFBlbmRlbnRlU2NyZWVuLAogIGxpc3RhOiBMaXN0YVNjcmVlbiwKICBlZGl0b3I6IEVkaXRvclNjcmVlbiwKICBtb21lbnRvOiBNb21lbnRvU2NyZWVuLAogIHByZXZpZXc6IFByZXZpZXdTY3JlZW4sCiAgbWVtYnJvczogTWVtYnJvc1NjcmVlbiwKfQoKZnVuY3Rpb24gQXBwSW5uZXIoKSB7CiAgY29uc3QgeyBzY3JlZW4sIG5hdmlnYXRlLCBzZXRTZXNzYW9BdHVhbCwgZGVwb2lzRG9Mb2dpbiB9ID0gdXNlQXBwKCkKCiAgdXNlRWZmZWN0KCgpID0+IHsKICAgIHNiLmF1dGguZ2V0U2Vzc2lvbigpLnRoZW4oKHsgZGF0YTogeyBzZXNzaW9uIH0gfSkgPT4gewogICAgICBpZiAoc2Vzc2lvbikgewogICAgICAgIHNldFNlc3Nhb0F0dWFsKHNlc3Npb24pCiAgICAgICAgZGVwb2lzRG9Mb2dpbigpCiAgICAgIH0gZWxzZSB7CiAgICAgICAgbmF2aWdhdGUoJ2F1dGgnKQogICAgICB9CiAgICB9KQogIH0sIFtdKQoKICBpZiAoc2NyZWVuID09PSAnbG9hZGluZycpIHsKICAgIHJldHVybiAoCiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhcHAiIHN0eWxlPXt7IGRpc3BsYXk6ICdmbGV4JywgYWxpZ25JdGVtczogJ2NlbnRlcicsIGp1c3RpZnlDb250ZW50OiAnY2VudGVyJyB9fT4KICAgICAgICA8c3BhbiBzdHlsZT17eyBjb2xvcjogJ3ZhcigtLXRleHQzKScsIGZvbnRTaXplOiAnMTRweCcgfX0+QSBjYXJyZWdhci4uLjwvc3Bhbj4KICAgICAgPC9kaXY+CiAgICApCiAgfQoKICBjb25zdCBTY3JlZW4gPSBTQ1JFRU5TW3NjcmVlbl0KICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9ImFwcCI+CiAgICAgIHtTY3JlZW4gPyA8U2NyZWVuIGtleT17c2NyZWVufSAvPiA6IG51bGx9CiAgICA8L2Rpdj4KICApCn0KCmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIEFwcCgpIHsKICByZXR1cm4gKAogICAgPEFwcFByb3ZpZGVyPgogICAgICA8QXBwSW5uZXIgLz4KICAgIDwvQXBwUHJvdmlkZXI+CiAgKQp9Cg==
+import { useEffect } from 'react'
+import { sb } from './supabase'
+import { AppProvider, useApp } from './context/AppContext'
+import AuthScreen from './screens/AuthScreen'
+import OrgEscolhaScreen from './screens/OrgEscolhaScreen'
+import OrgCriarScreen from './screens/OrgCriarScreen'
+import OrgEntrarScreen from './screens/OrgEntrarScreen'
+import OrgCodigoScreen from './screens/OrgCodigoScreen'
+import PendenteScreen from './screens/PendenteScreen'
+import ListaScreen from './screens/ListaScreen'
+import EditorScreen from './screens/EditorScreen'
+import MomentoScreen from './screens/MomentoScreen'
+import PreviewScreen from './screens/PreviewScreen'
+import MembrosScreen from './screens/MembrosScreen'
+
+const SCREENS = {
+  auth: AuthScreen,
+  'org-escolha': OrgEscolhaScreen,
+  'org-criar': OrgCriarScreen,
+  'org-entrar': OrgEntrarScreen,
+  'org-codigo': OrgCodigoScreen,
+  pendente: PendenteScreen,
+  lista: ListaScreen,
+  editor: EditorScreen,
+  momento: MomentoScreen,
+  preview: PreviewScreen,
+  membros: MembrosScreen,
+}
+
+function AppInner() {
+  const { screen, navigate, setSessaoAtual, depoisDoLogin } = useApp()
+
+  useEffect(() => {
+    sb.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        setSessaoAtual(session)
+        depoisDoLogin()
+      } else {
+        navigate('auth')
+      }
+    })
+  }, [])
+
+  if (screen === 'loading') {
+    return (
+      <div className="app" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <span style={{ color: 'var(--text3)', fontSize: '14px' }}>A carregar...</span>
+      </div>
+    )
+  }
+
+  const Screen = SCREENS[screen]
+  return (
+    <div className="app">
+      {Screen ? <Screen key={screen} /> : null}
+    </div>
+  )
+}
+
+export default function App() {
+  return (
+    <AppProvider>
+      <AppInner />
+    </AppProvider>
+  )
+}

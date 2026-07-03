@@ -1,1 +1,83 @@
-aW1wb3J0IHsgdXNlU3RhdGUgfSBmcm9tICdyZWFjdCcKaW1wb3J0IHsgc2IgfSBmcm9tICcuLi9zdXBhYmFzZScKaW1wb3J0IHsgdHJhZHV6aXJFcnJvQXV0aCB9IGZyb20gJy4uL3V0aWxzL2F1dGgnCmltcG9ydCB7IHVzZUFwcCB9IGZyb20gJy4uL2NvbnRleHQvQXBwQ29udGV4dCcKCmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIEF1dGhTY3JlZW4oKSB7CiAgY29uc3QgeyBzZXRTZXNzYW9BdHVhbCwgZGVwb2lzRG9Mb2dpbiB9ID0gdXNlQXBwKCkKICBjb25zdCBbbW9kbywgc2V0TW9kb10gPSB1c2VTdGF0ZSgnbG9naW4nKQogIGNvbnN0IFtlbWFpbCwgc2V0RW1haWxdID0gdXNlU3RhdGUoJycpCiAgY29uc3QgW3Bhc3N3b3JkLCBzZXRQYXNzd29yZF0gPSB1c2VTdGF0ZSgnJykKICBjb25zdCBbbm9tZSwgc2V0Tm9tZV0gPSB1c2VTdGF0ZSgnJykKICBjb25zdCBbZXJybywgc2V0RXJyb10gPSB1c2VTdGF0ZSgnJykKICBjb25zdCBbbG9hZGluZywgc2V0TG9hZGluZ10gPSB1c2VTdGF0ZShmYWxzZSkKCiAgY29uc3QgbXVkYXJNb2RvID0gKG0pID0+IHsgc2V0TW9kbyhtKTsgc2V0RXJybygnJykgfQoKICBjb25zdCBzdWJtZXRlciA9IGFzeW5jICgpID0+IHsKICAgIHNldEVycm8oJycpCiAgICBpZiAoIWVtYWlsIHx8ICFwYXNzd29yZCkgeyBzZXRFcnJvKCdQcmVlbmNoZSBlbWFpbCBlIHBhc3N3b3JkLicpOyByZXR1cm4gfQogICAgaWYgKG1vZG8gPT09ICdyZWdpc3RvJyAmJiAhbm9tZSkgeyBzZXRFcnJvKCdEaXotbm9zIG8gdGV1IG5vbWUuJyk7IHJldHVybiB9CiAgICBzZXRMb2FkaW5nKHRydWUpCiAgICB0cnkgewogICAgICBpZiAobW9kbyA9PT0gJ3JlZ2lzdG8nKSB7CiAgICAgICAgY29uc3QgeyBkYXRhLCBlcnJvciB9ID0gYXdhaXQgc2IuYXV0aC5zaWduVXAoeyBlbWFpbCwgcGFzc3dvcmQsIG9wdGlvbnM6IHsgZGF0YTogeyBub21lIH0gfSB9KQogICAgICAgIGlmIChlcnJvcikgdGhyb3cgZXJyb3IKICAgICAgICBzZXRTZXNzYW9BdHVhbChkYXRhLnNlc3Npb24gfHwgKGF3YWl0IHNiLmF1dGguZ2V0U2Vzc2lvbigpKS5kYXRhLnNlc3Npb24pCiAgICAgIH0gZWxzZSB7CiAgICAgICAgY29uc3QgeyBkYXRhLCBlcnJvciB9ID0gYXdhaXQgc2IuYXV0aC5zaWduSW5XaXRoUGFzc3dvcmQoeyBlbWFpbCwgcGFzc3dvcmQgfSkKICAgICAgICBpZiAoZXJyb3IpIHRocm93IGVycm9yCiAgICAgICAgc2V0U2Vzc2FvQXR1YWwoZGF0YS5zZXNzaW9uKQogICAgICB9CiAgICAgIGF3YWl0IGRlcG9pc0RvTG9naW4oKQogICAgfSBjYXRjaCAoZXJyKSB7CiAgICAgIHNldEVycm8odHJhZHV6aXJFcnJvQXV0aChlcnIubWVzc2FnZSkpCiAgICB9IGZpbmFsbHkgewogICAgICBzZXRMb2FkaW5nKGZhbHNlKQogICAgfQogIH0KCiAgY29uc3Qgb25LZXkgPSAoZSkgPT4geyBpZiAoZS5rZXkgPT09ICdFbnRlcicpIHN1Ym1ldGVyKCkgfQoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InNjcmVlbiI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJhdXRoLXdyYXAiPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJhdXRoLWxvZ28iPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImVtb2ppIj7wn5OLPC9kaXY+CiAgICAgICAgICA8aDE+Um90ZWlybyBkbyBDdWx0bzwvaDE+CiAgICAgICAgICA8cD5DcmlhIGUgcGFydGlsaGEgcm90ZWlyb3MgY29tIGEgdHVhIGVxdWlwYTwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iYXV0aC10YWJzIj4KICAgICAgICAgIDxidXR0b24gY2xhc3NOYW1lPXtgYXV0aC10YWIke21vZG8gPT09ICdsb2dpbicgPyAnIGFjdGl2ZScgOiAnJ31gfSBvbkNsaWNrPXsoKSA9PiBtdWRhck1vZG8oJ2xvZ2luJyl9PkVudHJhcjwvYnV0dG9uPgogICAgICAgICAgPGJ1dHRvbiBjbGFzc05hbWU9e2BhdXRoLXRhYiR7bW9kbyA9PT0gJ3JlZ2lzdG8nID8gJyBhY3RpdmUnIDogJyd9YH0gb25DbGljaz17KCkgPT4gbXVkYXJNb2RvKCdyZWdpc3RvJyl9PkNyaWFyIENvbnRhPC9idXR0b24+CiAgICAgICAgPC9kaXY+CiAgICAgICAge2Vycm8gJiYgPGRpdiBjbGFzc05hbWU9ImF1dGgtZXJyb3IiPntlcnJvfTwvZGl2Pn0KICAgICAgICB7bW9kbyA9PT0gJ3JlZ2lzdG8nICYmICgKICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJjYW1wbyI+CiAgICAgICAgICAgIDxsYWJlbD5PIHRldSBub21lPC9sYWJlbD4KICAgICAgICAgICAgPGlucHV0IHR5cGU9InRleHQiIHZhbHVlPXtub21lfSBvbkNoYW5nZT17ZSA9PiBzZXROb21lKGUudGFyZ2V0LnZhbHVlKX0gb25LZXlEb3duPXtvbktleX0gYXV0b0NvbXBsZXRlPSJuYW1lIiAvPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgKX0KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iY2FtcG8iPgogICAgICAgICAgPGxhYmVsPkVtYWlsPC9sYWJlbD4KICAgICAgICAgIDxpbnB1dCB0eXBlPSJlbWFpbCIgdmFsdWU9e2VtYWlsfSBvbkNoYW5nZT17ZSA9PiBzZXRFbWFpbChlLnRhcmdldC52YWx1ZSl9IG9uS2V5RG93bj17b25LZXl9IGF1dG9Db21wbGV0ZT0iZW1haWwiIC8+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImNhbXBvIj4KICAgICAgICAgIDxsYWJlbD5QYXNzd29yZDwvbGFiZWw+CiAgICAgICAgICA8aW5wdXQgdHlwZT0icGFzc3dvcmQiIHZhbHVlPXtwYXNzd29yZH0gb25DaGFuZ2U9e2UgPT4gc2V0UGFzc3dvcmQoZS50YXJnZXQudmFsdWUpfSBvbktleURvd249e29uS2V5fSBhdXRvQ29tcGxldGU9ImN1cnJlbnQtcGFzc3dvcmQiIC8+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGJ1dHRvbiBjbGFzc05hbWU9ImJ0bi1wcmltYXJ5IGJ0bi1hY2NlbnQiIG9uQ2xpY2s9e3N1Ym1ldGVyfSBkaXNhYmxlZD17bG9hZGluZ30+CiAgICAgICAgICB7bG9hZGluZyA/ICdBIHByb2Nlc3Nhci4uLicgOiBtb2RvID09PSAncmVnaXN0bycgPyAnQ3JpYXIgQ29udGEnIDogJ0VudHJhcid9CiAgICAgICAgPC9idXR0b24+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImF1dGgtbGluayI+CiAgICAgICAgICB7bW9kbyA9PT0gJ2xvZ2luJwogICAgICAgICAgICA/IDw+PC8+CiAgICAgICAgICAgIDogbnVsbH0KICAgICAgICAgIHttb2RvID09PSAnbG9naW4nCiAgICAgICAgICAgID8gPD5BaW5kYSBuw6NvIHRlbnMgY29udGE/IDxzcGFuIG9uQ2xpY2s9eygpID0+IG11ZGFyTW9kbygncmVnaXN0bycpfT5DcmlhciBjb250YTwvc3Bhbj48Lz4KICAgICAgICAgICAgOiA8PkrDoSB0ZW5zIGNvbnRhPyA8c3BhbiBvbkNsaWNrPXsoKSA9PiBtdWRhck1vZG8oJ2xvZ2luJyl9PkVudHJhcjwvc3Bhbj48Lz59CiAgICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKQp9Cg==
+import { useState } from 'react'
+import { sb } from '../supabase'
+import { traduzirErroAuth } from '../utils/auth'
+import { useApp } from '../context/AppContext'
+
+export default function AuthScreen() {
+  const { setSessaoAtual, depoisDoLogin } = useApp()
+  const [modo, setModo] = useState('login')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [nome, setNome] = useState('')
+  const [erro, setErro] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const mudarModo = (m) => { setModo(m); setErro('') }
+
+  const submeter = async () => {
+    setErro('')
+    if (!email || !password) { setErro('Preenche email e password.'); return }
+    if (modo === 'registo' && !nome) { setErro('Diz-nos o teu nome.'); return }
+    setLoading(true)
+    try {
+      if (modo === 'registo') {
+        const { data, error } = await sb.auth.signUp({ email, password, options: { data: { nome } } })
+        if (error) throw error
+        setSessaoAtual(data.session || (await sb.auth.getSession()).data.session)
+      } else {
+        const { data, error } = await sb.auth.signInWithPassword({ email, password })
+        if (error) throw error
+        setSessaoAtual(data.session)
+      }
+      await depoisDoLogin()
+    } catch (err) {
+      setErro(traduzirErroAuth(err.message))
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const onKey = (e) => { if (e.key === 'Enter') submeter() }
+
+  return (
+    <div className="screen">
+      <div className="auth-wrap">
+        <div className="auth-logo">
+          <div className="emoji">📋</div>
+          <h1>Roteiro do Culto</h1>
+          <p>Cria e partilha roteiros com a tua equipa</p>
+        </div>
+        <div className="auth-tabs">
+          <button className={`auth-tab${modo === 'login' ? ' active' : ''}`} onClick={() => mudarModo('login')}>Entrar</button>
+          <button className={`auth-tab${modo === 'registo' ? ' active' : ''}`} onClick={() => mudarModo('registo')}>Criar Conta</button>
+        </div>
+        {erro && <div className="auth-error">{erro}</div>}
+        {modo === 'registo' && (
+          <div className="campo">
+            <label>O teu nome</label>
+            <input type="text" value={nome} onChange={e => setNome(e.target.value)} onKeyDown={onKey} autoComplete="name" />
+          </div>
+        )}
+        <div className="campo">
+          <label>Email</label>
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} onKeyDown={onKey} autoComplete="email" />
+        </div>
+        <div className="campo">
+          <label>Password</label>
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={onKey} autoComplete="current-password" />
+        </div>
+        <button className="btn-primary btn-accent" onClick={submeter} disabled={loading}>
+          {loading ? 'A processar...' : modo === 'registo' ? 'Criar Conta' : 'Entrar'}
+        </button>
+        <div className="auth-link">
+          {modo === 'login'
+            ? <></>
+            : null}
+          {modo === 'login'
+            ? <>Ainda não tens conta? <span onClick={() => mudarModo('registo')}>Criar conta</span></>
+            : <>Já tens conta? <span onClick={() => mudarModo('login')}>Entrar</span></>}
+        </div>
+      </div>
+    </div>
+  )
+}

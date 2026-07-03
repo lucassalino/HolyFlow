@@ -1,1 +1,14 @@
-ewogICJuYW1lIjogIlJvdGVpcm8gZG8gQ3VsdG8iLAogICJzaG9ydF9uYW1lIjogIlJvdGVpcm8gQ3VsdG8iLAogICJkZXNjcmlwdGlvbiI6ICJDcmlhIGUgZ2VyZSByb3RlaXJvcyBkZSBjdWx0b3MgZSBldmVudG9zIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNmZmZmZmYiLAogICJ0aGVtZV9jb2xvciI6ICIjMWExYTFhIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJpY29ucyI6IFsKICAgIHsgInNyYyI6ICJpY29uLTE5Mi5wbmciLCAic2l6ZXMiOiAiMTkyeDE5MiIsICJ0eXBlIjogImltYWdlL3BuZyIgfSwKICAgIHsgInNyYyI6ICJpY29uLTUxMi5wbmciLCAic2l6ZXMiOiAiNTEyeDUxMiIsICJ0eXBlIjogImltYWdlL3BuZyIgfQogIF0KfQo=
+{
+  "name": "Roteiro do Culto",
+  "short_name": "Roteiro Culto",
+  "description": "Cria e gere roteiros de cultos e eventos",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a1a1a",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

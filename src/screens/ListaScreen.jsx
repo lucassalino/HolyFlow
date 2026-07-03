@@ -1,1 +1,65 @@
-aW1wb3J0IHsgc2IgfSBmcm9tICcuLi9zdXBhYmFzZScKaW1wb3J0IHsgdXNlQXBwIH0gZnJvbSAnLi4vY29udGV4dC9BcHBDb250ZXh0JwppbXBvcnQgeyBmb3JtYXRhckRhdGEgfSBmcm9tICcuLi91dGlscy9mb3JtYXRhckRhdGEnCgpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBMaXN0YVNjcmVlbigpIHsKICBjb25zdCB7CiAgICBtZW1icm9BdHVhbCwgb3JnYW5pemFjYW9BdHVhbCwKICAgIHJvdGVpcm9zLCBzZXRSb3RlaXJvcywKICAgIG5hdmlnYXRlLCBsb2dvdXQsCiAgICBjYXJyZWdhclJvdGVpcm9zRGFOdXZlbSwgYWJyaXJOb3ZvUm90ZWlybywgYWJyaXJSb3RlaXJvLAogIH0gPSB1c2VBcHAoKQoKICBjb25zdCBlaEFkbWluID0gbWVtYnJvQXR1YWw/LnJvbGUgPT09ICdhZG1pbicKCiAgY29uc3QgYXBhZ2FyUm90ZWlybyA9IGFzeW5jIChlLCBpKSA9PiB7CiAgICBlLnN0b3BQcm9wYWdhdGlvbigpCiAgICBpZiAoIWNvbmZpcm0oJ0FwYWdhciBlc3RlIHJvdGVpcm8/JykpIHJldHVybgogICAgY29uc3QgeyBlcnJvciB9ID0gYXdhaXQgc2IuZnJvbSgncm90ZWlyb3MnKS5kZWxldGUoKS5lcSgnaWQnLCByb3RlaXJvc1tpXS5pZCkKICAgIGlmIChlcnJvcikgeyBhbGVydCgnRXJybyBhbyBhcGFnYXI6ICcgKyBlcnJvci5tZXNzYWdlKTsgcmV0dXJuIH0KICAgIGNvbnN0IGxpc3RhID0gYXdhaXQgY2FycmVnYXJSb3RlaXJvc0RhTnV2ZW0ob3JnYW5pemFjYW9BdHVhbC5pZCkKICAgIHNldFJvdGVpcm9zKGxpc3RhKQogIH0KCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJzY3JlZW4iPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iaGVhZGVyIj4KICAgICAgICA8c3BhbiBzdHlsZT17eyBmb250U2l6ZTogJzIycHgnIH19PvCfk4s8L3NwYW4+CiAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJoZWFkZXItdGl0bGUiPlJvdGVpcm8gZG8gQ3VsdG88L3NwYW4+CiAgICAgICAge2VoQWRtaW4gJiYgPGJ1dHRvbiBjbGFzc05hbWU9ImJ0bi1pY29uIiBvbkNsaWNrPXsoKSA9PiBuYXZpZ2F0ZSgnbWVtYnJvcycpfT7wn5GlPC9idXR0b24+fQogICAgICAgIHtlaEFkbWluICYmIDxidXR0b24gY2xhc3NOYW1lPSJidG4taWNvbiIgb25DbGljaz17YWJyaXJOb3ZvUm90ZWlyb30+77yLPC9idXR0b24+fQogICAgICAgIDxidXR0b24gY2xhc3NOYW1lPSJidG4taWNvbiIgb25DbGljaz17bG9nb3V0fT7ijos8L2J1dHRvbj4KICAgICAgPC9kaXY+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJjb250ZW50Ij4KICAgICAgICB7cm90ZWlyb3MubGVuZ3RoID09PSAwID8gKAogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImVtcHR5LXN0YXRlIj4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9Imljb24iPvCfk4s8L2Rpdj4KICAgICAgICAgICAgPHA+TmVuaHVtIHJvdGVpcm8gYWluZGEuPGJyIC8+e2VoQWRtaW4gPyAnQ3JpYSBvIHByaW1laXJvIScgOiAnQWd1YXJkYSBvIGFkbWluIGNyaWFyIHVtLid9PC9wPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgKSA6ICgKICAgICAgICAgIHJvdGVpcm9zLm1hcCgociwgaSkgPT4gKAogICAgICAgICAgICA8ZGl2IGtleT17ci5pZH0gY2xhc3NOYW1lPSJjYXJkIiBvbkNsaWNrPXsoKSA9PiBhYnJpclJvdGVpcm8oaSwgcm90ZWlyb3MpfT4KICAgICAgICAgICAgICA8ZGl2IHN0eWxlPXt7IGRpc3BsYXk6ICdmbGV4JywgYWxpZ25JdGVtczogJ2NlbnRlcicsIGdhcDogJzEwcHgnIH19PgogICAgICAgICAgICAgICAgPHNwYW4gc3R5bGU9e3sgZm9udFNpemU6ICcyMHB4JyB9fT7wn5OEPC9zcGFuPgogICAgICAgICAgICAgICAgPGRpdiBzdHlsZT17eyBmbGV4OiAxIH19PgogICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iY2FyZC10aXRsZSI+e3Iubm9tZX08L2Rpdj4KICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImNhcmQtc3ViIj4KICAgICAgICAgICAgICAgICAgICB7Zm9ybWF0YXJEYXRhKHIuZGF0YSl9IMK3IHtyLm1vbWVudG9zLmxlbmd0aH0gbW9tZW50b3tyLm1vbWVudG9zLmxlbmd0aCAhPT0gMSA/ICdzJyA6ICcnfQogICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAge2VoQWRtaW4gJiYgKAogICAgICAgICAgICAgICAgICA8YnV0dG9uIGNsYXNzTmFtZT0iYnRuLWRlbCIgb25DbGljaz17ZSA9PiBhcGFnYXJSb3RlaXJvKGUsIGkpfSBzdHlsZT17eyBmb250U2l6ZTogJzIwcHgnIH19PvCfl5E8L2J1dHRvbj4KICAgICAgICAgICAgICAgICl9CiAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgKSkKICAgICAgICApfQogICAgICA8L2Rpdj4KICAgICAge2VoQWRtaW4gJiYgKAogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmYWIiPgogICAgICAgICAgPGJ1dHRvbiBjbGFzc05hbWU9ImJ0bi1wcmltYXJ5IGJ0bi1hY2NlbnQiIG9uQ2xpY2s9e2FicmlyTm92b1JvdGVpcm99Pu+8iyBOb3ZvIFJvdGVpcm88L2J1dHRvbj4KICAgICAgICA8L2Rpdj4KICAgICAgKX0KICAgIDwvZGl2PgogICkKfQo=
+import { sb } from '../supabase'
+import { useApp } from '../context/AppContext'
+import { formatarData } from '../utils/formatarData'
+
+export default function ListaScreen() {
+  const {
+    membroAtual, organizacaoAtual,
+    roteiros, setRoteiros,
+    navigate, logout,
+    carregarRoteirosDaNuvem, abrirNovoRoteiro, abrirRoteiro,
+  } = useApp()
+
+  const ehAdmin = membroAtual?.role === 'admin'
+
+  const apagarRoteiro = async (e, i) => {
+    e.stopPropagation()
+    if (!confirm('Apagar este roteiro?')) return
+    const { error } = await sb.from('roteiros').delete().eq('id', roteiros[i].id)
+    if (error) { alert('Erro ao apagar: ' + error.message); return }
+    const lista = await carregarRoteirosDaNuvem(organizacaoAtual.id)
+    setRoteiros(lista)
+  }
+
+  return (
+    <div className="screen">
+      <div className="header">
+        <span style={{ fontSize: '22px' }}>📋</span>
+        <span className="header-title">Roteiro do Culto</span>
+        {ehAdmin && <button className="btn-icon" onClick={() => navigate('membros')}>👥</button>}
+        {ehAdmin && <button className="btn-icon" onClick={abrirNovoRoteiro}>＋</button>}
+        <button className="btn-icon" onClick={logout}>⎋</button>
+      </div>
+      <div className="content">
+        {roteiros.length === 0 ? (
+          <div className="empty-state">
+            <div className="icon">📋</div>
+            <p>Nenhum roteiro ainda.<br />{ehAdmin ? 'Cria o primeiro!' : 'Aguarda o admin criar um.'}</p>
+          </div>
+        ) : (
+          roteiros.map((r, i) => (
+            <div key={r.id} className="card" onClick={() => abrirRoteiro(i, roteiros)}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span style={{ fontSize: '20px' }}>📄</span>
+                <div style={{ flex: 1 }}>
+                  <div className="card-title">{r.nome}</div>
+                  <div className="card-sub">
+                    {formatarData(r.data)} · {r.momentos.length} momento{r.momentos.length !== 1 ? 's' : ''}
+                  </div>
+                </div>
+                {ehAdmin && (
+                  <button className="btn-del" onClick={e => apagarRoteiro(e, i)} style={{ fontSize: '20px' }}>🗑</button>
+                )}
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+      {ehAdmin && (
+        <div className="fab">
+          <button className="btn-primary btn-accent" onClick={abrirNovoRoteiro}>＋ Novo Roteiro</button>
+        </div>
+      )}
+    </div>
+  )
+}

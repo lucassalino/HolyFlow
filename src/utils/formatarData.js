@@ -1,1 +1,7 @@
-Y29uc3QgTUVTRVMgPSBbJ2phbmVpcm8nLCdmZXZlcmVpcm8nLCdtYXLDp28nLCdhYnJpbCcsJ21haW8nLCdqdW5obycsJ2p1bGhvJywnYWdvc3RvJywnc2V0ZW1icm8nLCdvdXR1YnJvJywnbm92ZW1icm8nLCdkZXplbWJybyddCgpleHBvcnQgZnVuY3Rpb24gZm9ybWF0YXJEYXRhKGQpIHsKICBpZiAoIWQpIHJldHVybiAn4oCUJwogIGNvbnN0IFt5LCBtLCBkaWFdID0gZC5zcGxpdCgnLScpCiAgcmV0dXJuIGAke3BhcnNlSW50KGRpYSl9IGRlICR7TUVTRVNbcGFyc2VJbnQobSkgLSAxXX0gZGUgJHt5fWAKfQo=
+const MESES = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro']
+
+export function formatarData(d) {
+  if (!d) return '—'
+  const [y, m, dia] = d.split('-')
+  return `${parseInt(dia)} de ${MESES[parseInt(m) - 1]} de ${y}`
+}
