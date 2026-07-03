@@ -24,37 +24,48 @@ export default function ListaScreen() {
   return (
     <div className="screen">
       <div className="header">
-        <span style={{ fontSize: '22px' }}>📋</span>
+        <span style={{ fontSize: '24px' }}>📋</span>
         <span className="header-title">Roteiro do Culto</span>
-        {ehAdmin && <button className="btn-icon" onClick={() => navigate('membros')}>👥</button>}
-        {ehAdmin && <button className="btn-icon" onClick={abrirNovoRoteiro}>＋</button>}
-        <button className="btn-icon" onClick={logout}>⎋</button>
+        {ehAdmin && (
+          <button className="btn-icon" onClick={() => navigate('membros')} title="Membros">👥</button>
+        )}
+        <button className="btn-icon" onClick={logout} title="Sair">⎋</button>
       </div>
+
       <div className="content">
         {roteiros.length === 0 ? (
           <div className="empty-state">
             <div className="icon">📋</div>
-            <p>Nenhum roteiro ainda.<br />{ehAdmin ? 'Cria o primeiro!' : 'Aguarda o admin criar um.'}</p>
+            <p>{ehAdmin ? 'Nenhum roteiro ainda.\nCria o primeiro!' : 'Nenhum roteiro ainda.\nAguarda o admin criar um.'}</p>
           </div>
         ) : (
-          roteiros.map((r, i) => (
-            <div key={r.id} className="card" onClick={() => abrirRoteiro(i, roteiros)}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span style={{ fontSize: '20px' }}>📄</span>
-                <div style={{ flex: 1 }}>
-                  <div className="card-title">{r.nome}</div>
-                  <div className="card-sub">
-                    {formatarData(r.data)} · {r.momentos.length} momento{r.momentos.length !== 1 ? 's' : ''}
+          <>
+            <div className="group-label">Roteiros</div>
+            {roteiros.map((r, i) => (
+              <div key={r.id} className="card" onClick={() => abrirRoteiro(i, roteiros)}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{
+                    width: 44, height: 44, borderRadius: 12,
+                    background: 'var(--bg3)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 20, flexShrink: 0,
+                  }}>📄</div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div className="card-title">{r.nome}</div>
+                    <div className="card-sub">
+                      {formatarData(r.data)} · {r.momentos.length} momento{r.momentos.length !== 1 ? 's' : ''}
+                    </div>
                   </div>
+                  {ehAdmin && (
+                    <button className="btn-del" onClick={e => apagarRoteiro(e, i)} style={{ fontSize: '18px' }}>🗑</button>
+                  )}
                 </div>
-                {ehAdmin && (
-                  <button className="btn-del" onClick={e => apagarRoteiro(e, i)} style={{ fontSize: '20px' }}>🗑</button>
-                )}
               </div>
-            </div>
-          ))
+            ))}
+          </>
         )}
       </div>
+
       {ehAdmin && (
         <div className="fab">
           <button className="btn-primary btn-accent" onClick={abrirNovoRoteiro}>＋ Novo Roteiro</button>

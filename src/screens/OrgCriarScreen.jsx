@@ -54,7 +54,7 @@ export default function OrgCriarScreen() {
             placeholder="Ex: Igreja Aliança Vizela"
           />
         </div>
-        <button className="btn-primary btn-accent" onClick={criar} disabled={loading}>
+        <button className="btn-primary btn-accent" onClick={criar} disabled={loading} style={{ marginTop: '8px' }}>
           {loading ? 'A criar...' : 'Criar Organização'}
         </button>
       </div>

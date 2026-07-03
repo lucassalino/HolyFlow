@@ -10,7 +10,7 @@ export default function OrgEscolhaScreen() {
         <button className="btn-icon" onClick={logout}>⎋</button>
       </div>
       <div className="content">
-        <p style={{ fontSize: '13px', color: 'var(--text2)', marginBottom: '18px' }}>
+        <p style={{ fontSize: '14px', color: 'var(--text2)', marginBottom: '24px', lineHeight: 1.5 }}>
           Para continuar, cria a tua organização ou entra com um código que já tenhas recebido.
         </p>
         <div className="org-choice-card" onClick={() => navigate('org-criar')}>
