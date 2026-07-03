@@ -55,11 +55,6 @@ export default function AuthScreen() {
           padding: '20px',
           boxShadow: 'var(--shadow)',
         }}>
-          <div className="auth-tabs" style={{ marginBottom: '20px' }}>
-            <button className={`auth-tab${modo === 'login' ? ' active' : ''}`} onClick={() => mudarModo('login')}>Entrar</button>
-            <button className={`auth-tab${modo === 'registo' ? ' active' : ''}`} onClick={() => mudarModo('registo')}>Criar Conta</button>
-          </div>
-
           {erro && <div className="auth-error">{erro}</div>}
 
           {modo === 'registo' && (
