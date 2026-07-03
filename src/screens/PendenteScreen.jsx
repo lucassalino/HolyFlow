@@ -27,9 +27,14 @@ export default function PendenteScreen() {
         <div className="pendente-box">
           <div className="icon">⏳</div>
           <h2>O teu pedido foi enviado</h2>
-          <p>Um administrador da organização precisa de aprovar o teu acesso antes de poderes ver os roteiros. Volta a abrir a app mais tarde.</p>
+          <p>Um administrador da organização precisa de aprovar o teu acesso antes de poderes ver os roteiros.</p>
         </div>
-        <button className="btn-primary" onClick={verificar}>🔄 Verificar novamente</button>
+        <button className="btn-primary" onClick={verificar} style={{ marginBottom: 12 }}>
+          🔄 Verificar novamente
+        </button>
+        <button className="btn-primary" onClick={logout} style={{ color: 'var(--danger)' }}>
+          Sair
+        </button>
       </div>
     </div>
   )

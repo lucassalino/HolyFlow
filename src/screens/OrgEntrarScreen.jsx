@@ -16,17 +16,14 @@ export default function OrgEntrarScreen() {
     setLoading(true)
     try {
       const { data: { user } } = await sb.auth.getUser()
-
       const { data: org, error: orgErr } = await sb.from('organizacoes').select('*').eq('codigo', c).maybeSingle()
       if (orgErr) throw orgErr
       if (!org) { setErro('Código não encontrado.'); setLoading(false); return }
-
       const nomeUtilizador = user.user_metadata?.nome || user.email
       const { data: membro, error: memErr } = await sb.from('membros')
         .insert({ user_id: user.id, organizacao_id: org.id, nome: nomeUtilizador, role: 'membro', status: 'pendente' })
         .select().single()
       if (memErr) throw memErr
-
       setMembroAtual(membro)
       setOrganizacaoAtual(org)
       navigate('pendente')
@@ -53,10 +50,10 @@ export default function OrgEntrarScreen() {
             onChange={e => setCodigo(e.target.value.toUpperCase())}
             onKeyDown={e => e.key === 'Enter' && entrar()}
             placeholder="Ex: IGREJA-X7K2"
-            style={{ textTransform: 'uppercase' }}
+            style={{ textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 600 }}
           />
         </div>
-        <button className="btn-primary btn-accent" onClick={entrar} disabled={loading}>
+        <button className="btn-primary btn-accent" onClick={entrar} disabled={loading} style={{ marginTop: '8px' }}>
           {loading ? 'A processar...' : 'Pedir para Entrar'}
         </button>
       </div>

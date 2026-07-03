@@ -62,75 +62,83 @@ export default function MembrosScreen() {
   return (
     <div className="screen">
       <div className="header">
-        <button className="btn-back" onClick={() => navigate('lista')}>›</button>
+        <button className="btn-back" onClick={() => navigate('lista')}>‹</button>
         <span className="header-title">Membros</span>
       </div>
       <div className="content">
-        <div className="codigo-display" style={{ padding: '16px', marginBottom: '6px' }}>
-          <div className="label">Código de acesso da organização</div>
-          <div className="codigo" style={{ fontSize: '22px', letterSpacing: '2px' }}>
-            {organizacaoAtual?.codigo || '—'}
-          </div>
-          <div style={{ marginTop: '12px', display: 'flex', gap: '8px' }}>
-            <button className="btn-primary" onClick={copiarCodigo} style={{ flex: 1, padding: '10px', fontSize: '13px' }}>
-              📋 Copiar código
+        <div className="codigo-display" style={{ marginBottom: '8px' }}>
+          <div className="label">Código de acesso</div>
+          <div className="codigo">{organizacaoAtual?.codigo || '—'}</div>
+          <div style={{ marginTop: '16px', display: 'flex', gap: '8px' }}>
+            <button className="btn-primary" onClick={copiarCodigo} style={{ flex: 1, padding: '11px', fontSize: '13px' }}>
+              📋 Copiar
             </button>
-            <button className="btn-primary" onClick={partilharCodigo} style={{ flex: 1, padding: '10px', fontSize: '13px' }}>
+            <button className="btn-primary" onClick={partilharCodigo} style={{ flex: 1, padding: '11px', fontSize: '13px' }}>
               ⬆ Partilhar
             </button>
           </div>
         </div>
-        <p style={{ fontSize: '12px', color: 'var(--text2)', textAlign: 'center', marginBottom: '16px' }}>
+        <p style={{ fontSize: '12px', color: 'var(--text3)', textAlign: 'center', marginBottom: '20px' }}>
           Partilha este código com os líderes — eles pedem acesso e tu aprovares aqui.
         </p>
 
         {loading ? (
-          <p style={{ color: 'var(--text3)', fontSize: '13px', textAlign: 'center', padding: '20px 0' }}>A carregar...</p>
+          <p style={{ color: 'var(--text3)', fontSize: '13px', textAlign: 'center', padding: '24px 0' }}>A carregar...</p>
         ) : (
           <>
             {pendentes.length > 0 && (
-              <div style={{ marginBottom: '8px' }}>
-                <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--warn-text)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '8px' }}>
+              <div style={{ marginBottom: '16px' }}>
+                <div className="group-label" style={{ color: 'var(--warn-text)' }}>
                   ⏳ Aguardando aprovação ({pendentes.length})
                 </div>
-                {pendentes.map(m => (
-                  <div key={m.id} className="membro-row" style={{ background: 'var(--warn-bg)', borderRadius: 'var(--radius-sm)', padding: '10px 12px', marginBottom: '6px', border: 'none' }}>
-                    <div className="membro-info">
-                      <div className="membro-nome">{m.nome}</div>
+                <div style={{ background: 'var(--bg2)', borderRadius: 'var(--radius)', overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
+                  {pendentes.map((m, idx) => (
+                    <div key={m.id} style={{
+                      display: 'flex', alignItems: 'center', gap: 12,
+                      padding: '13px 16px',
+                      borderBottom: idx < pendentes.length - 1 ? '1px solid var(--bg3)' : 'none',
+                    }}>
+                      <div style={{ flex: 1 }}>
+                        <div className="membro-nome">{m.nome}</div>
+                        <div style={{ fontSize: 11, color: 'var(--warn-text)', marginTop: 2, fontWeight: 600 }}>Pendente</div>
+                      </div>
+                      <div style={{ display: 'flex', gap: '6px' }}>
+                        <button className="btn-small" style={{ background: '#22c55e', color: '#fff' }} onClick={() => aprovar(m.id)}>✓ Aprovar</button>
+                        <button className="btn-small" style={{ color: 'var(--danger)' }} onClick={() => rejeitar(m.id)}>✕</button>
+                      </div>
                     </div>
-                    <div style={{ display: 'flex', gap: '6px' }}>
-                      <button className="btn-small" style={{ background: '#22c55e', color: '#fff', border: 'none' }} onClick={() => aprovar(m.id)}>✓ Aprovar</button>
-                      <button className="btn-small" style={{ color: 'var(--danger)' }} onClick={() => rejeitar(m.id)}>✕</button>
-                    </div>
-                  </div>
-                ))}
-                <div style={{ height: '0.5px', background: 'var(--border)', margin: '14px 0' }} />
+                  ))}
+                </div>
               </div>
             )}
 
             <div>
-              <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '8px' }}>
-                Membros
-              </div>
-              {membros.length === 0 ? (
-                <p style={{ color: 'var(--text2)', fontSize: '13px', textAlign: 'center', padding: '12px 0' }}>Nenhum membro aprovado ainda.</p>
-              ) : (
-                membros.map(m => (
-                  <div key={m.id} className="membro-row">
-                    <div className="membro-info">
-                      <div className="membro-nome">{m.nome}</div>
-                      <div className="membro-status">
-                        <span className={`badge-role ${m.role === 'admin' ? 'badge-admin' : 'badge-membro'}`}>
-                          {m.role === 'admin' ? 'Admin' : 'Membro'}
-                        </span>
+              <div className="group-label">Membros aprovados</div>
+              <div style={{ background: 'var(--bg2)', borderRadius: 'var(--radius)', overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
+                {membros.length === 0 ? (
+                  <p style={{ color: 'var(--text3)', fontSize: '13px', textAlign: 'center', padding: '20px' }}>Nenhum membro aprovado ainda.</p>
+                ) : (
+                  membros.map((m, idx) => (
+                    <div key={m.id} style={{
+                      display: 'flex', alignItems: 'center', gap: 12,
+                      padding: '13px 16px',
+                      borderBottom: idx < membros.length - 1 ? '1px solid var(--bg3)' : 'none',
+                    }}>
+                      <div style={{ flex: 1 }}>
+                        <div className="membro-nome">{m.nome}</div>
+                        <div className="membro-status">
+                          <span className={`badge-role ${m.role === 'admin' ? 'badge-admin' : 'badge-membro'}`}>
+                            {m.role === 'admin' ? 'Admin' : 'Membro'}
+                          </span>
+                        </div>
                       </div>
+                      {m.role === 'membro' && (
+                        <button className="btn-small" onClick={() => promoverAdmin(m.id)}>Tornar Admin</button>
+                      )}
                     </div>
-                    {m.role === 'membro' && (
-                      <button className="btn-small" onClick={() => promoverAdmin(m.id)}>Tornar Admin</button>
-                    )}
-                  </div>
-                ))
-              )}
+                  ))
+                )}
+              </div>
             </div>
           </>
         )}
