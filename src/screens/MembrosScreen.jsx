@@ -52,7 +52,7 @@ export default function MembrosScreen() {
     if (navigator.share) {
       navigator.share({
         title: 'HolyFlow — ' + nome,
-        text: `Entra na organização "${nome}" no Roteiro do Culto!\n\nUsa o código: ${codigo}\n\nAbre a app em: https://holyflow-app.netlify.app`,
+        text: `Entra na organização "${nome}" no Roteiro do Culto!\n\nUsa o código: ${codigo}\n\nAbre a app em: https://holyflow.pages.dev`,
       }).catch(() => {})
     } else {
       copiarCodigo()
@@ -62,7 +62,7 @@ export default function MembrosScreen() {
   return (
     <div className="screen">
       <div className="header">
-        <button className="btn-back" onClick={() => navigate('lista')}>‹</button>
+        <button className="btn-back" onClick={() => navigate('lista')}>›</button>
         <span className="header-title">Membros</span>
       </div>
       <div className="content">
