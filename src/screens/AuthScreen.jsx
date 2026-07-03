@@ -42,43 +42,52 @@ export default function AuthScreen() {
   return (
     <div className="screen">
       <div className="auth-wrap">
+
         <div className="auth-logo">
           <div className="emoji">📋</div>
           <h1>Roteiro do Culto</h1>
           <p>Cria e partilha roteiros com a tua equipa</p>
         </div>
 
-        <div className="auth-tabs">
-          <button className={`auth-tab${modo === 'login' ? ' active' : ''}`} onClick={() => mudarModo('login')}>Entrar</button>
-          <button className={`auth-tab${modo === 'registo' ? ' active' : ''}`} onClick={() => mudarModo('registo')}>Criar Conta</button>
-        </div>
-
-        {erro && <div className="auth-error">{erro}</div>}
-
-        {modo === 'registo' && (
-          <div className="campo">
-            <label>O teu nome</label>
-            <input type="text" value={nome} onChange={e => setNome(e.target.value)} onKeyDown={onKey} autoComplete="name" placeholder="João Silva" />
+        <div style={{
+          background: 'var(--bg2)',
+          borderRadius: 'var(--radius)',
+          padding: '20px',
+          boxShadow: 'var(--shadow)',
+        }}>
+          <div className="auth-tabs" style={{ marginBottom: '20px' }}>
+            <button className={`auth-tab${modo === 'login' ? ' active' : ''}`} onClick={() => mudarModo('login')}>Entrar</button>
+            <button className={`auth-tab${modo === 'registo' ? ' active' : ''}`} onClick={() => mudarModo('registo')}>Criar Conta</button>
           </div>
-        )}
-        <div className="campo">
-          <label>Email</label>
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} onKeyDown={onKey} autoComplete="email" placeholder="email@exemplo.com" />
-        </div>
-        <div className="campo">
-          <label>Password</label>
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={onKey} autoComplete="current-password" placeholder="••••••••" />
-        </div>
 
-        <button className="btn-primary btn-accent" onClick={submeter} disabled={loading} style={{ marginTop: '8px' }}>
-          {loading ? 'A processar...' : modo === 'registo' ? 'Criar Conta' : 'Entrar'}
-        </button>
+          {erro && <div className="auth-error">{erro}</div>}
+
+          {modo === 'registo' && (
+            <div className="campo">
+              <label>O teu nome</label>
+              <input type="text" value={nome} onChange={e => setNome(e.target.value)} onKeyDown={onKey} autoComplete="name" placeholder="João Silva" />
+            </div>
+          )}
+          <div className="campo">
+            <label>Email</label>
+            <input type="email" value={email} onChange={e => setEmail(e.target.value)} onKeyDown={onKey} autoComplete="email" placeholder="email@exemplo.com" />
+          </div>
+          <div className="campo" style={{ marginBottom: '20px' }}>
+            <label>Password</label>
+            <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={onKey} autoComplete="current-password" placeholder="••••••••" />
+          </div>
+
+          <button className="btn-primary btn-accent" onClick={submeter} disabled={loading}>
+            {loading ? 'A processar...' : modo === 'registo' ? 'Criar Conta' : 'Entrar'}
+          </button>
+        </div>
 
         <div className="auth-link">
           {modo === 'login'
             ? <>Ainda não tens conta? <span onClick={() => mudarModo('registo')}>Criar conta</span></>
-            : <>Já tens conta? <span onClick={() => mudarModo('login')}>Entrar</span>}
+            : <>Já tens conta? <span onClick={() => mudarModo('login')}>Entrar</span></>}
         </div>
+
       </div>
     </div>
   )
