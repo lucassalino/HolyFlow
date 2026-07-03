@@ -1,1 +1,74 @@
-aW1wb3J0IHsgdXNlQXBwIH0gZnJvbSAnLi4vY29udGV4dC9BcHBDb250ZXh0JwppbXBvcnQgeyBmb3JtYXRhckRhdGEgfSBmcm9tICcuLi91dGlscy9mb3JtYXRhckRhdGEnCmltcG9ydCB7IGdlcmFyUERGIH0gZnJvbSAnLi4vdXRpbHMvcGRmJwoKZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gUHJldmlld1NjcmVlbigpIHsKICBjb25zdCB7IG1vbWVudG9zLCBlZGl0b3JOb21lLCBlZGl0b3JEYXRhLCBlZGl0b3JUZW1hLCBlZGl0b3JWZXJzaWN1bG8sIGVkaXRhbmRvSWR4LCByb3RlaXJvcywgbmF2aWdhdGUgfSA9IHVzZUFwcCgpCgogIGNvbnN0IHJvdGVpcm8gPSBlZGl0YW5kb0lkeCAhPT0gbnVsbCA/IHJvdGVpcm9zW2VkaXRhbmRvSWR4XSA6IG51bGwKICBjb25zdCBub21lRXZlbnRvID0gZWRpdG9yTm9tZSB8fCAnU2VtIHTDrXR1bG8nCiAgY29uc3QgZGF0YUV2ZW50byA9IGZvcm1hdGFyRGF0YShlZGl0b3JEYXRhKQoKICBjb25zdCBwYXJ0aWxoYXIgPSAoKSA9PiB7CiAgICBpZiAobmF2aWdhdG9yLnNoYXJlKSB7CiAgICAgIGNvbnN0IGxpbmhhcyA9IG1vbWVudG9zLm1hcCgobSwgaSkgPT4gewogICAgICAgIGNvbnN0IHJlc3AgPSBtLnRpcG8gPT09ICdwZXNzb2EnID8gKG0ucmVzcG9uc2F2ZWwgfHwgJ+KAlCcpIDogbS50aXBvID09PSAndmlkZW8nID8gJ1bDrWRlbycgOiAnUHJvamXDp8OjbycKICAgICAgICBsZXQgdHh0ID0gYCR7aSArIDF9LiAke20ubm9tZX0g4oCUICR7cmVzcH1gCiAgICAgICAgaWYgKG0ub2JzKSB0eHQgKz0gYCAoJHttLm9ic30pYAogICAgICAgIGlmIChtLm11c2ljYXM/LmZpbHRlcih4ID0+IHgpLmxlbmd0aCkgdHh0ICs9ICdcbiAgIPCfjrUgJyArIG0ubXVzaWNhcy5maWx0ZXIoeCA9PiB4KS5qb2luKCcsICcpCiAgICAgICAgaWYgKG0uYXZpc29zPy5maWx0ZXIoeCA9PiB4KS5sZW5ndGgpIHR4dCArPSAnXG4gICDwn5OiICcgKyBtLmF2aXNvcy5maWx0ZXIoeCA9PiB4KS5qb2luKCdcbiAgIPCfk6IgJykKICAgICAgICByZXR1cm4gdHh0CiAgICAgIH0pLmpvaW4oJ1xuJykKICAgICAgbmF2aWdhdG9yLnNoYXJlKHsgdGl0bGU6IG5vbWVFdmVudG8sIHRleHQ6IGAke25vbWVFdmVudG99XG4ke2RhdGFFdmVudG99XG5cbiR7bGluaGFzfWAgfSkuY2F0Y2goKCkgPT4ge30pCiAgICB9IGVsc2UgewogICAgICBnZXJhclBERih7IG5vbWU6IG5vbWVFdmVudG8sIGRhdGE6IGVkaXRvckRhdGEsIHRlbWE6IGVkaXRvclRlbWEsIHZlcnNpY3VsbzogZWRpdG9yVmVyc2ljdWxvIH0sIG1vbWVudG9zKQogICAgfQogIH0KCiAgY29uc3Qgb25HZXJhclBERiA9ICgpID0+IHsKICAgIGdlcmFyUERGKHsgbm9tZTogbm9tZUV2ZW50bywgZGF0YTogZWRpdG9yRGF0YSwgdGVtYTogZWRpdG9yVGVtYSwgdmVyc2ljdWxvOiBlZGl0b3JWZXJzaWN1bG8gfSwgbW9tZW50b3MpCiAgfQoKICByZXR1cm4gKAogICAgPGRpdiBjbGFzc05hbWU9InNjcmVlbiI+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJoZWFkZXIiPgogICAgICAgIDxidXR0b24gY2xhc3NOYW1lPSJidG4tYmFjayIgb25DbGljaz17KCkgPT4gbmF2aWdhdGUoJ2VkaXRvcicpfT7igLk8L2J1dHRvbj4KICAgICAgICA8c3BhbiBjbGFzc05hbWU9ImhlYWRlci10aXRsZSI+Um90ZWlybyBGaW5hbDwvc3Bhbj4KICAgICAgICA8YnV0dG9uIGNsYXNzTmFtZT0iYnRuLWljb24iIG9uQ2xpY2s9e3BhcnRpbGhhcn0+4qyGPC9idXR0b24+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzTmFtZT0iY29udGVudCI+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9InByZXZpZXctaGVhZGVyIj4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJwcmV2aWV3LWV2ZW50byI+e25vbWVFdmVudG99PC9kaXY+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icHJldmlldy1kYXRhIj57ZGF0YUV2ZW50b308L2Rpdj4KICAgICAgICA8L2Rpdj4KICAgICAgICB7bW9tZW50b3MubGVuZ3RoID09PSAwID8gKAogICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImVtcHR5LXN0YXRlIj48cD5OZW5odW0gbW9tZW50byBhZGljaW9uYWRvLjwvcD48L2Rpdj4KICAgICAgICApIDogKAogICAgICAgICAgbW9tZW50b3MubWFwKChtLCBpKSA9PiB7CiAgICAgICAgICAgIGNvbnN0IHJlc3AgPSBtLnRpcG8gPT09ICdwZXNzb2EnID8gKG0ucmVzcG9uc2F2ZWwgfHwgJ+KAlCcpIDogbS50aXBvID09PSAndmlkZW8nID8gJ+KWtiBWw61kZW8nIDogJ/Cfk70gUHJvamXDp8OjbycKICAgICAgICAgICAgcmV0dXJuICgKICAgICAgICAgICAgICA8ZGl2IGtleT17aX0gY2xhc3NOYW1lPSJwcmV2aWV3LWl0ZW0iPgogICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9InByZXZpZXctbiI+e2kgKyAxfTwvZGl2PgogICAgICAgICAgICAgICAgPGRpdiBzdHlsZT17eyBmbGV4OiAxIH19PgogICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icHJldmlldy1ub21lIj57bS5ub21lfTwvZGl2PgogICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0icHJldmlldy1yZXNwb25zYXZlbCI+e3Jlc3B9PC9kaXY+CiAgICAgICAgICAgICAgICAgIHttLm9icyAmJiA8ZGl2IGNsYXNzTmFtZT0icHJldmlldy1zdWItaXRlbSI+wrcge20ub2JzfTwvZGl2Pn0KICAgICAgICAgICAgICAgICAge20ubXVzaWNhcz8uZmlsdGVyKHggPT4geCkubWFwKChtdSwgaikgPT4gKAogICAgICAgICAgICAgICAgICAgIDxkaXYga2V5PXtqfSBjbGFzc05hbWU9InByZXZpZXctc3ViLWl0ZW0iPvCfjrUge211fTwvZGl2PgogICAgICAgICAgICAgICAgICApKX0KICAgICAgICAgICAgICAgICAge20uYXZpc29zPy5maWx0ZXIoeCA9PiB4KS5tYXAoKGF2LCBqKSA9PiAoCiAgICAgICAgICAgICAgICAgICAgPGRpdiBrZXk9e2p9IGNsYXNzTmFtZT0icHJldmlldy1zdWItaXRlbSI+8J+ToiB7YXZ9PC9kaXY+CiAgICAgICAgICAgICAgICAgICkpfQogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICkKICAgICAgICAgIH0pCiAgICAgICAgKX0KICAgICAgPC9kaXY+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJmYWIiIHN0eWxlPXt7IGRpc3BsYXk6ICdmbGV4JywgZ2FwOiAnOHB4JyB9fT4KICAgICAgICA8YnV0dG9uIGNsYXNzTmFtZT0iYnRuLXByaW1hcnkgYnRuLWFjY2VudCIgb25DbGljaz17b25HZXJhclBERn0gc3R5bGU9e3sgZmxleDogMSB9fT7wn5OEIEdlcmFyIFBERjwvYnV0dG9uPgogICAgICAgIDxidXR0b24gY2xhc3NOYW1lPSJidG4tcHJpbWFyeSIgb25DbGljaz17cGFydGlsaGFyfSBzdHlsZT17eyBmbGV4OiAnMCAwIDUycHgnLCBwYWRkaW5nOiAnMTRweCAwJyB9fT7irIY8L2J1dHRvbj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICApCn0K
+import { useApp } from '../context/AppContext'
+import { formatarData } from '../utils/formatarData'
+import { gerarPDF } from '../utils/pdf'
+
+export default function PreviewScreen() {
+  const { momentos, editorNome, editorData, editorTema, editorVersiculo, editandoIdx, roteiros, navigate } = useApp()
+
+  const roteiro = editandoIdx !== null ? roteiros[editandoIdx] : null
+  const nomeEvento = editorNome || 'Sem título'
+  const dataEvento = formatarData(editorData)
+
+  const partilhar = () => {
+    if (navigator.share) {
+      const linhas = momentos.map((m, i) => {
+        const resp = m.tipo === 'pessoa' ? (m.responsavel || '—') : m.tipo === 'video' ? 'Vídeo' : 'Projeção'
+        let txt = `${i + 1}. ${m.nome} — ${resp}`
+        if (m.obs) txt += ` (${m.obs})`
+        if (m.musicas?.filter(x => x).length) txt += '\n   🎵 ' + m.musicas.filter(x => x).join(', ')
+        if (m.avisos?.filter(x => x).length) txt += '\n   📢 ' + m.avisos.filter(x => x).join('\n   📢 ')
+        return txt
+      }).join('\n')
+      navigator.share({ title: nomeEvento, text: `${nomeEvento}\n${dataEvento}\n\n${linhas}` }).catch(() => {})
+    } else {
+      gerarPDF({ nome: nomeEvento, data: editorData, tema: editorTema, versiculo: editorVersiculo }, momentos)
+    }
+  }
+
+  const onGerarPDF = () => {
+    gerarPDF({ nome: nomeEvento, data: editorData, tema: editorTema, versiculo: editorVersiculo }, momentos)
+  }
+
+  return (
+    <div className="screen">
+      <div className="header">
+        <button className="btn-back" onClick={() => navigate('editor')}>‹</button>
+        <span className="header-title">Roteiro Final</span>
+        <button className="btn-icon" onClick={partilhar}>⬆</button>
+      </div>
+      <div className="content">
+        <div className="preview-header">
+          <div className="preview-evento">{nomeEvento}</div>
+          <div className="preview-data">{dataEvento}</div>
+        </div>
+        {momentos.length === 0 ? (
+          <div className="empty-state"><p>Nenhum momento adicionado.</p></div>
+        ) : (
+          momentos.map((m, i) => {
+            const resp = m.tipo === 'pessoa' ? (m.responsavel || '—') : m.tipo === 'video' ? '▶ Vídeo' : '📽 Projeção'
+            return (
+              <div key={i} className="preview-item">
+                <div className="preview-n">{i + 1}</div>
+                <div style={{ flex: 1 }}>
+                  <div className="preview-nome">{m.nome}</div>
+                  <div className="preview-responsavel">{resp}</div>
+                  {m.obs && <div className="preview-sub-item">· {m.obs}</div>}
+                  {m.musicas?.filter(x => x).map((mu, j) => (
+                    <div key={j} className="preview-sub-item">🎵 {mu}</div>
+                  ))}
+                  {m.avisos?.filter(x => x).map((av, j) => (
+                    <div key={j} className="preview-sub-item">📢 {av}</div>
+                  ))}
+                </div>
+              </div>
+            )
+          })
+        )}
+      </div>
+      <div className="fab" style={{ display: 'flex', gap: '8px' }}>
+        <button className="btn-primary btn-accent" onClick={onGerarPDF} style={{ flex: 1 }}>📄 Gerar PDF</button>
+        <button className="btn-primary" onClick={partilhar} style={{ flex: '0 0 52px', padding: '14px 0' }}>⬆</button>
+      </div>
+    </div>
+  )
+}

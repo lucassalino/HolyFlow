@@ -1,1 +1,140 @@
-aW1wb3J0IHsgdXNlU3RhdGUsIHVzZUVmZmVjdCB9IGZyb20gJ3JlYWN0JwppbXBvcnQgeyBzYiB9IGZyb20gJy4uL3N1cGFiYXNlJwppbXBvcnQgeyB1c2VBcHAgfSBmcm9tICcuLi9jb250ZXh0L0FwcENvbnRleHQnCgpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBNZW1icm9zU2NyZWVuKCkgewogIGNvbnN0IHsgb3JnYW5pemFjYW9BdHVhbCwgbmF2aWdhdGUgfSA9IHVzZUFwcCgpCiAgY29uc3QgW3BlbmRlbnRlcywgc2V0UGVuZGVudGVzXSA9IHVzZVN0YXRlKFtdKQogIGNvbnN0IFttZW1icm9zLCBzZXRNZW1icm9zXSA9IHVzZVN0YXRlKFtdKQogIGNvbnN0IFtsb2FkaW5nLCBzZXRMb2FkaW5nXSA9IHVzZVN0YXRlKHRydWUpCgogIGNvbnN0IGNhcnJlZ2FyID0gYXN5bmMgKCkgPT4gewogICAgaWYgKCFvcmdhbml6YWNhb0F0dWFsPy5pZCkgcmV0dXJuCiAgICBzZXRMb2FkaW5nKHRydWUpCiAgICBjb25zdCB7IGRhdGEsIGVycm9yIH0gPSBhd2FpdCBzYi5mcm9tKCdtZW1icm9zJykKICAgICAgLnNlbGVjdCgnKicpLmVxKCdvcmdhbml6YWNhb19pZCcsIG9yZ2FuaXphY2FvQXR1YWwuaWQpLm9yZGVyKCdjcmVhdGVkX2F0JywgeyBhc2NlbmRpbmc6IHRydWUgfSkKICAgIGlmIChlcnJvcikgeyBjb25zb2xlLmVycm9yKGVycm9yKTsgc2V0TG9hZGluZyhmYWxzZSk7IHJldHVybiB9CiAgICBzZXRQZW5kZW50ZXMoKGRhdGEgfHwgW10pLmZpbHRlcihtID0+IG0uc3RhdHVzID09PSAncGVuZGVudGUnKSkKICAgIHNldE1lbWJyb3MoKGRhdGEgfHwgW10pLmZpbHRlcihtID0+IG0uc3RhdHVzICE9PSAncGVuZGVudGUnKSkKICAgIHNldExvYWRpbmcoZmFsc2UpCiAgfQoKICB1c2VFZmZlY3QoKCkgPT4geyBjYXJyZWdhcigpIH0sIFtvcmdhbml6YWNhb0F0dWFsPy5pZF0pCgogIGNvbnN0IGFwcm92YXIgPSBhc3luYyAoaWQpID0+IHsKICAgIGF3YWl0IHNiLmZyb20oJ21lbWJyb3MnKS51cGRhdGUoeyBzdGF0dXM6ICdhcHJvdmFkbycgfSkuZXEoJ2lkJywgaWQpCiAgICBjYXJyZWdhcigpCiAgfQoKICBjb25zdCByZWplaXRhciA9IGFzeW5jIChpZCkgPT4gewogICAgaWYgKCFjb25maXJtKCdSZWplaXRhciBlc3RlIHBlZGlkbyBkZSBhY2Vzc28/JykpIHJldHVybgogICAgYXdhaXQgc2IuZnJvbSgnbWVtYnJvcycpLnVwZGF0ZSh7IHN0YXR1czogJ3JlamVpdGFkbycgfSkuZXEoJ2lkJywgaWQpCiAgICBjYXJyZWdhcigpCiAgfQoKICBjb25zdCBwcm9tb3ZlckFkbWluID0gYXN5bmMgKGlkKSA9PiB7CiAgICBhd2FpdCBzYi5mcm9tKCdtZW1icm9zJykudXBkYXRlKHsgcm9sZTogJ2FkbWluJyB9KS5lcSgnaWQnLCBpZCkKICAgIGNhcnJlZ2FyKCkKICB9CgogIGNvbnN0IGNvcGlhckNvZGlnbyA9ICgpID0+IHsKICAgIGNvbnN0IGNvZGlnbyA9IG9yZ2FuaXphY2FvQXR1YWw/LmNvZGlnbwogICAgaWYgKCFjb2RpZ28pIHJldHVybgogICAgbmF2aWdhdG9yLmNsaXBib2FyZD8ud3JpdGVUZXh0KGNvZGlnbykKICAgICAgLnRoZW4oKCkgPT4gYWxlcnQoJ0PDs2RpZ28gY29waWFkbzogJyArIGNvZGlnbykpCiAgICAgIC5jYXRjaCgoKSA9PiBhbGVydCgnQ8OzZGlnbzogJyArIGNvZGlnbykpCiAgfQoKICBjb25zdCBwYXJ0aWxoYXJDb2RpZ28gPSAoKSA9PiB7CiAgICBjb25zdCBjb2RpZ28gPSBvcmdhbml6YWNhb0F0dWFsPy5jb2RpZ28KICAgIGNvbnN0IG5vbWUgPSBvcmdhbml6YWNhb0F0dWFsPy5ub21lCiAgICBpZiAoIWNvZGlnbykgcmV0dXJuCiAgICBpZiAobmF2aWdhdG9yLnNoYXJlKSB7CiAgICAgIG5hdmlnYXRvci5zaGFyZSh7CiAgICAgICAgdGl0bGU6ICdIb2x5RmxvdyDigJQgJyArIG5vbWUsCiAgICAgICAgdGV4dDogYEVudHJhIG5hIG9yZ2FuaXphw6fDo28gIiR7bm9tZX0iIG5vIFJvdGVpcm8gZG8gQ3VsdG8hXG5cblVzYSBvIGPDs2RpZ286ICR7Y29kaWdvfVxuXG5BYnJlIGEgYXBwIGVtOiBodHRwczovL2hvbHlmbG93LWFwcC5uZXRsaWZ5LmFwcGAsCiAgICAgIH0pLmNhdGNoKCgpID0+IHt9KQogICAgfSBlbHNlIHsKICAgICAgY29waWFyQ29kaWdvKCkKICAgIH0KICB9CgogIHJldHVybiAoCiAgICA8ZGl2IGNsYXNzTmFtZT0ic2NyZWVuIj4KICAgICAgPGRpdiBjbGFzc05hbWU9ImhlYWRlciI+CiAgICAgICAgPGJ1dHRvbiBjbGFzc05hbWU9ImJ0bi1iYWNrIiBvbkNsaWNrPXsoKSA9PiBuYXZpZ2F0ZSgnbGlzdGEnKX0+4oC5PC9idXR0b24+CiAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJoZWFkZXItdGl0bGUiPk1lbWJyb3M8L3NwYW4+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzTmFtZT0iY29udGVudCI+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9ImNvZGlnby1kaXNwbGF5IiBzdHlsZT17eyBwYWRkaW5nOiAnMTZweCcsIG1hcmdpbkJvdHRvbTogJzZweCcgfX0+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibGFiZWwiPkPDs2RpZ28gZGUgYWNlc3NvIGRhIG9yZ2FuaXphw6fDo288L2Rpdj4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJjb2RpZ28iIHN0eWxlPXt7IGZvbnRTaXplOiAnMjJweCcsIGxldHRlclNwYWNpbmc6ICcycHgnIH19PgogICAgICAgICAgICB7b3JnYW5pemFjYW9BdHVhbD8uY29kaWdvIHx8ICfigJQnfQogICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8ZGl2IHN0eWxlPXt7IG1hcmdpblRvcDogJzEycHgnLCBkaXNwbGF5OiAnZmxleCcsIGdhcDogJzhweCcgfX0+CiAgICAgICAgICAgIDxidXR0b24gY2xhc3NOYW1lPSJidG4tcHJpbWFyeSIgb25DbGljaz17Y29waWFyQ29kaWdvfSBzdHlsZT17eyBmbGV4OiAxLCBwYWRkaW5nOiAnMTBweCcsIGZvbnRTaXplOiAnMTNweCcgfX0+CiAgICAgICAgICAgICAg8J+TiyBDb3BpYXIgY8OzZGlnbwogICAgICAgICAgICA8L2J1dHRvbj4KICAgICAgICAgICAgPGJ1dHRvbiBjbGFzc05hbWU9ImJ0bi1wcmltYXJ5IiBvbkNsaWNrPXtwYXJ0aWxoYXJDb2RpZ299IHN0eWxlPXt7IGZsZXg6IDEsIHBhZGRpbmc6ICcxMHB4JywgZm9udFNpemU6ICcxM3B4JyB9fT4KICAgICAgICAgICAgICDirIYgUGFydGlsaGFyCiAgICAgICAgICAgIDwvYnV0dG9uPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPHAgc3R5bGU9e3sgZm9udFNpemU6ICcxMnB4JywgY29sb3I6ICd2YXIoLS10ZXh0MiknLCB0ZXh0QWxpZ246ICdjZW50ZXInLCBtYXJnaW5Cb3R0b206ICcxNnB4JyB9fT4KICAgICAgICAgIFBhcnRpbGhhIGVzdGUgY8OzZGlnbyBjb20gb3MgbMOtZGVyZXMg4oCUIGVsZXMgcGVkZW0gYWNlc3NvIGUgdHUgYXByb3ZhcmVzIGFxdWkuCiAgICAgICAgPC9wPgoKICAgICAgICB7bG9hZGluZyA/ICgKICAgICAgICAgIDxwIHN0eWxlPXt7IGNvbG9yOiAndmFyKC0tdGV4dDMpJywgZm9udFNpemU6ICcxM3B4JywgdGV4dEFsaWduOiAnY2VudGVyJywgcGFkZGluZzogJzIwcHggMCcgfX0+QSBjYXJyZWdhci4uLjwvcD4KICAgICAgICApIDogKAogICAgICAgICAgPD4KICAgICAgICAgICAge3BlbmRlbnRlcy5sZW5ndGggPiAwICYmICgKICAgICAgICAgICAgICA8ZGl2IHN0eWxlPXt7IG1hcmdpbkJvdHRvbTogJzhweCcgfX0+CiAgICAgICAgICAgICAgICA8ZGl2IHN0eWxlPXt7IGZvbnRTaXplOiAnMTJweCcsIGZvbnRXZWlnaHQ6IDYwMCwgY29sb3I6ICd2YXIoLS13YXJuLXRleHQpJywgdGV4dFRyYW5zZm9ybTogJ3VwcGVyY2FzZScsIGxldHRlclNwYWNpbmc6ICcwLjVweCcsIG1hcmdpbkJvdHRvbTogJzhweCcgfX0+CiAgICAgICAgICAgICAgICAgIOKPsyBBZ3VhcmRhbmRvIGFwcm92YcOnw6NvICh7cGVuZGVudGVzLmxlbmd0aH0pCiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgIHtwZW5kZW50ZXMubWFwKG0gPT4gKAogICAgICAgICAgICAgICAgICA8ZGl2IGtleT17bS5pZH0gY2xhc3NOYW1lPSJtZW1icm8tcm93IiBzdHlsZT17eyBiYWNrZ3JvdW5kOiAndmFyKC0td2Fybi1iZyknLCBib3JkZXJSYWRpdXM6ICd2YXIoLS1yYWRpdXMtc20pJywgcGFkZGluZzogJzEwcHggMTJweCcsIG1hcmdpbkJvdHRvbTogJzZweCcsIGJvcmRlcjogJ25vbmUnIH19PgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtZW1icm8taW5mbyI+CiAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibWVtYnJvLW5vbWUiPnttLm5vbWV9PC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPGRpdiBzdHlsZT17eyBkaXNwbGF5OiAnZmxleCcsIGdhcDogJzZweCcgfX0+CiAgICAgICAgICAgICAgICAgICAgICA8YnV0dG9uIGNsYXNzTmFtZT0iYnRuLXNtYWxsIiBzdHlsZT17eyBiYWNrZ3JvdW5kOiAnIzIyYzU1ZScsIGNvbG9yOiAnI2ZmZicsIGJvcmRlcjogJ25vbmUnIH19IG9uQ2xpY2s9eygpID0+IGFwcm92YXIobS5pZCl9PuKckyBBcHJvdmFyPC9idXR0b24+CiAgICAgICAgICAgICAgICAgICAgICA8YnV0dG9uIGNsYXNzTmFtZT0iYnRuLXNtYWxsIiBzdHlsZT17eyBjb2xvcjogJ3ZhcigtLWRhbmdlciknIH19IG9uQ2xpY2s9eygpID0+IHJlamVpdGFyKG0uaWQpfT7inJU8L2J1dHRvbj4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICApKX0KICAgICAgICAgICAgICAgIDxkaXYgc3R5bGU9e3sgaGVpZ2h0OiAnMC41cHgnLCBiYWNrZ3JvdW5kOiAndmFyKC0tYm9yZGVyKScsIG1hcmdpbjogJzE0cHggMCcgfX0gLz4KICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgKX0KCiAgICAgICAgICAgIDxkaXY+CiAgICAgICAgICAgICAgPGRpdiBzdHlsZT17eyBmb250U2l6ZTogJzEycHgnLCBmb250V2VpZ2h0OiA2MDAsIGNvbG9yOiAndmFyKC0tdGV4dDIpJywgdGV4dFRyYW5zZm9ybTogJ3VwcGVyY2FzZScsIGxldHRlclNwYWNpbmc6ICcwLjVweCcsIG1hcmdpbkJvdHRvbTogJzhweCcgfX0+CiAgICAgICAgICAgICAgICBNZW1icm9zCiAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAge21lbWJyb3MubGVuZ3RoID09PSAwID8gKAogICAgICAgICAgICAgICAgPHAgc3R5bGU9e3sgY29sb3I6ICd2YXIoLS10ZXh0MiknLCBmb250U2l6ZTogJzEzcHgnLCB0ZXh0QWxpZ246ICdjZW50ZXInLCBwYWRkaW5nOiAnMTJweCAwJyB9fT5OZW5odW0gbWVtYnJvIGFwcm92YWRvIGFpbmRhLjwvcD4KICAgICAgICAgICAgICApIDogKAogICAgICAgICAgICAgICAgbWVtYnJvcy5tYXAobSA9PiAoCiAgICAgICAgICAgICAgICAgIDxkaXYga2V5PXttLmlkfSBjbGFzc05hbWU9Im1lbWJyby1yb3ciPgogICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtZW1icm8taW5mbyI+CiAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibWVtYnJvLW5vbWUiPnttLm5vbWV9PC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibWVtYnJvLXN0YXR1cyI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT17YGJhZGdlLXJvbGUgJHttLnJvbGUgPT09ICdhZG1pbicgPyAnYmFkZ2UtYWRtaW4nIDogJ2JhZGdlLW1lbWJybyd9YH0+CiAgICAgICAgICAgICAgICAgICAgICAgICAge20ucm9sZSA9PT0gJ2FkbWluJyA/ICdBZG1pbicgOiAnTWVtYnJvJ30KICAgICAgICAgICAgICAgICAgICAgICAgPC9zcGFuPgogICAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAge20ucm9sZSA9PT0gJ21lbWJybycgJiYgKAogICAgICAgICAgICAgICAgICAgICAgPGJ1dHRvbiBjbGFzc05hbWU9ImJ0bi1zbWFsbCIgb25DbGljaz17KCkgPT4gcHJvbW92ZXJBZG1pbihtLmlkKX0+VG9ybmFyIEFkbWluPC9idXR0b24+CiAgICAgICAgICAgICAgICAgICAgKX0KICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICApKQogICAgICAgICAgICAgICl9CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgPC8+CiAgICAgICAgKX0KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICApCn0K
+import { useState, useEffect } from 'react'
+import { sb } from '../supabase'
+import { useApp } from '../context/AppContext'
+
+export default function MembrosScreen() {
+  const { organizacaoAtual, navigate } = useApp()
+  const [pendentes, setPendentes] = useState([])
+  const [membros, setMembros] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  const carregar = async () => {
+    if (!organizacaoAtual?.id) return
+    setLoading(true)
+    const { data, error } = await sb.from('membros')
+      .select('*').eq('organizacao_id', organizacaoAtual.id).order('created_at', { ascending: true })
+    if (error) { console.error(error); setLoading(false); return }
+    setPendentes((data || []).filter(m => m.status === 'pendente'))
+    setMembros((data || []).filter(m => m.status !== 'pendente'))
+    setLoading(false)
+  }
+
+  useEffect(() => { carregar() }, [organizacaoAtual?.id])
+
+  const aprovar = async (id) => {
+    await sb.from('membros').update({ status: 'aprovado' }).eq('id', id)
+    carregar()
+  }
+
+  const rejeitar = async (id) => {
+    if (!confirm('Rejeitar este pedido de acesso?')) return
+    await sb.from('membros').update({ status: 'rejeitado' }).eq('id', id)
+    carregar()
+  }
+
+  const promoverAdmin = async (id) => {
+    await sb.from('membros').update({ role: 'admin' }).eq('id', id)
+    carregar()
+  }
+
+  const copiarCodigo = () => {
+    const codigo = organizacaoAtual?.codigo
+    if (!codigo) return
+    navigator.clipboard?.writeText(codigo)
+      .then(() => alert('Código copiado: ' + codigo))
+      .catch(() => alert('Código: ' + codigo))
+  }
+
+  const partilharCodigo = () => {
+    const codigo = organizacaoAtual?.codigo
+    const nome = organizacaoAtual?.nome
+    if (!codigo) return
+    if (navigator.share) {
+      navigator.share({
+        title: 'HolyFlow — ' + nome,
+        text: `Entra na organização "${nome}" no Roteiro do Culto!\n\nUsa o código: ${codigo}\n\nAbre a app em: https://holyflow-app.netlify.app`,
+      }).catch(() => {})
+    } else {
+      copiarCodigo()
+    }
+  }
+
+  return (
+    <div className="screen">
+      <div className="header">
+        <button className="btn-back" onClick={() => navigate('lista')}>‹</button>
+        <span className="header-title">Membros</span>
+      </div>
+      <div className="content">
+        <div className="codigo-display" style={{ padding: '16px', marginBottom: '6px' }}>
+          <div className="label">Código de acesso da organização</div>
+          <div className="codigo" style={{ fontSize: '22px', letterSpacing: '2px' }}>
+            {organizacaoAtual?.codigo || '—'}
+          </div>
+          <div style={{ marginTop: '12px', display: 'flex', gap: '8px' }}>
+            <button className="btn-primary" onClick={copiarCodigo} style={{ flex: 1, padding: '10px', fontSize: '13px' }}>
+              📋 Copiar código
+            </button>
+            <button className="btn-primary" onClick={partilharCodigo} style={{ flex: 1, padding: '10px', fontSize: '13px' }}>
+              ⬆ Partilhar
+            </button>
+          </div>
+        </div>
+        <p style={{ fontSize: '12px', color: 'var(--text2)', textAlign: 'center', marginBottom: '16px' }}>
+          Partilha este código com os líderes — eles pedem acesso e tu aprovares aqui.
+        </p>
+
+        {loading ? (
+          <p style={{ color: 'var(--text3)', fontSize: '13px', textAlign: 'center', padding: '20px 0' }}>A carregar...</p>
+        ) : (
+          <>
+            {pendentes.length > 0 && (
+              <div style={{ marginBottom: '8px' }}>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--warn-text)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '8px' }}>
+                  ⏳ Aguardando aprovação ({pendentes.length})
+                </div>
+                {pendentes.map(m => (
+                  <div key={m.id} className="membro-row" style={{ background: 'var(--warn-bg)', borderRadius: 'var(--radius-sm)', padding: '10px 12px', marginBottom: '6px', border: 'none' }}>
+                    <div className="membro-info">
+                      <div className="membro-nome">{m.nome}</div>
+                    </div>
+                    <div style={{ display: 'flex', gap: '6px' }}>
+                      <button className="btn-small" style={{ background: '#22c55e', color: '#fff', border: 'none' }} onClick={() => aprovar(m.id)}>✓ Aprovar</button>
+                      <button className="btn-small" style={{ color: 'var(--danger)' }} onClick={() => rejeitar(m.id)}>✕</button>
+                    </div>
+                  </div>
+                ))}
+                <div style={{ height: '0.5px', background: 'var(--border)', margin: '14px 0' }} />
+              </div>
+            )}
+
+            <div>
+              <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '8px' }}>
+                Membros
+              </div>
+              {membros.length === 0 ? (
+                <p style={{ color: 'var(--text2)', fontSize: '13px', textAlign: 'center', padding: '12px 0' }}>Nenhum membro aprovado ainda.</p>
+              ) : (
+                membros.map(m => (
+                  <div key={m.id} className="membro-row">
+                    <div className="membro-info">
+                      <div className="membro-nome">{m.nome}</div>
+                      <div className="membro-status">
+                        <span className={`badge-role ${m.role === 'admin' ? 'badge-admin' : 'badge-membro'}`}>
+                          {m.role === 'admin' ? 'Admin' : 'Membro'}
+                        </span>
+                      </div>
+                    </div>
+                    {m.role === 'membro' && (
+                      <button className="btn-small" onClick={() => promoverAdmin(m.id)}>Tornar Admin</button>
+                    )}
+                  </div>
+                ))
+              )}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}

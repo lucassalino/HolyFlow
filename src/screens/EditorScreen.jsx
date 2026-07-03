@@ -1,1 +1,205 @@
-aW1wb3J0IHsgdXNlUmVmIH0gZnJvbSAncmVhY3QnCmltcG9ydCB7IHNiIH0gZnJvbSAnLi4vc3VwYWJhc2UnCmltcG9ydCB7IHVzZUFwcCB9IGZyb20gJy4uL2NvbnRleHQvQXBwQ29udGV4dCcKCmNvbnN0IE9QQ09FU19NT01FTlRPID0gWydPcmHDp8OjbycsJ0xvdXZvcicsJ0TDrXppbW9zIC8gT2ZlcnRhcycsJ09yYcOnw6NvIHAvIENyaWFuw6dhcycsJ1Zpc2l0YW50ZXMnLCdBdmlzb3MnLCdNaW5pc3RyYcOnw6NvJywnUGFsYXZyYScsJ0NlaWEgZG8gU2VuaG9yJywnVGVzdGVtdW5obycsJ0VuY2VycmFtZW50byddCgpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBFZGl0b3JTY3JlZW4oKSB7CiAgY29uc3QgewogICAgb3JnYW5pemFjYW9BdHVhbCwgZWRpdGFuZG9JZHgsIHJvdGVpcm9zLAogICAgbW9tZW50b3MsIHNldE1vbWVudG9zLAogICAgc2V0TW9tZW50b0VkaXRhbmRvSWR4LAogICAgZWRpdG9yTm9tZSwgc2V0RWRpdG9yTm9tZSwKICAgIGVkaXRvckRhdGEsIHNldEVkaXRvckRhdGEsCiAgICBlZGl0b3JUZW1hLCBzZXRFZGl0b3JUZW1hLAogICAgZWRpdG9yVmVyc2ljdWxvLCBzZXRFZGl0b3JWZXJzaWN1bG8sCiAgICBuYXZpZ2F0ZSwgY2FycmVnYXJSb3RlaXJvc0RhTnV2ZW0sIHNldFJvdGVpcm9zLAogIH0gPSB1c2VBcHAoKQoKICBjb25zdCBkcmFnU3JjSWR4ID0gdXNlUmVmKG51bGwpCgogIGNvbnN0IGd1YXJkYXIgPSBhc3luYyAoKSA9PiB7CiAgICBjb25zdCBwYXlsb2FkID0gewogICAgICBub21lOiBlZGl0b3JOb21lLnRyaW0oKSB8fCAnU2VtIHTDrXR1bG8nLAogICAgICBkYXRhOiBlZGl0b3JEYXRhIHx8IG51bGwsCiAgICAgIHRlbWE6IGVkaXRvclRlbWEudHJpbSgpLAogICAgICB2ZXJzaWN1bG86IGVkaXRvclZlcnNpY3Vsby50cmltKCksCiAgICAgIG1vbWVudG9zOiBKU09OLnBhcnNlKEpTT04uc3RyaW5naWZ5KG1vbWVudG9zKSksCiAgICB9CiAgICB0cnkgewogICAgICBpZiAoZWRpdGFuZG9JZHggIT09IG51bGwpIHsKICAgICAgICBjb25zdCB7IGVycm9yIH0gPSBhd2FpdCBzYi5mcm9tKCdyb3RlaXJvcycpCiAgICAgICAgICAudXBkYXRlKHsgLi4ucGF5bG9hZCwgdXBkYXRlZF9hdDogbmV3IERhdGUoKS50b0lTT1N0cmluZygpIH0pCiAgICAgICAgICAuZXEoJ2lkJywgcm90ZWlyb3NbZWRpdGFuZG9JZHhdLmlkKQogICAgICAgIGlmIChlcnJvcikgdGhyb3cgZXJyb3IKICAgICAgfSBlbHNlIHsKICAgICAgICBjb25zdCB7IGRhdGE6IHsgdXNlciB9IH0gPSBhd2FpdCBzYi5hdXRoLmdldFVzZXIoKQogICAgICAgIGNvbnN0IHsgZXJyb3IgfSA9IGF3YWl0IHNiLmZyb20oJ3JvdGVpcm9zJykKICAgICAgICAgIC5pbnNlcnQoeyAuLi5wYXlsb2FkLCBvcmdhbml6YWNhb19pZDogb3JnYW5pemFjYW9BdHVhbC5pZCwgY3JpYWRvX3BvcjogdXNlci5pZCB9KQogICAgICAgIGlmIChlcnJvcikgdGhyb3cgZXJyb3IKICAgICAgfQogICAgICBjb25zdCBsaXN0YSA9IGF3YWl0IGNhcnJlZ2FyUm90ZWlyb3NEYU51dmVtKG9yZ2FuaXphY2FvQXR1YWwuaWQpCiAgICAgIHNldFJvdGVpcm9zKGxpc3RhKQogICAgICBuYXZpZ2F0ZSgnbGlzdGEnKQogICAgfSBjYXRjaCAoZXJyKSB7CiAgICAgIGFsZXJ0KCdFcnJvIGFvIGd1YXJkYXI6ICcgKyBlcnIubWVzc2FnZSkKICAgIH0KICB9CgogIGNvbnN0IGFicmlyQWRkTW9tZW50byA9ICgpID0+IHsKICAgIHNldE1vbWVudG9FZGl0YW5kb0lkeChudWxsKQogICAgbmF2aWdhdGUoJ21vbWVudG8nKQogIH0KCiAgY29uc3QgZWRpdGFyTW9tZW50byA9IChpKSA9PiB7CiAgICBzZXRNb21lbnRvRWRpdGFuZG9JZHgoaSkKICAgIG5hdmlnYXRlKCdtb21lbnRvJykKICB9CgogIGNvbnN0IHJlbW92ZXJNb21lbnRvID0gKGUsIGkpID0+IHsKICAgIGUuc3RvcFByb3BhZ2F0aW9uKCkKICAgIGNvbnN0IG5vdm8gPSBbLi4ubW9tZW50b3NdCiAgICBub3ZvLnNwbGljZShpLCAxKQogICAgc2V0TW9tZW50b3Mobm92bykKICB9CgogIC8vIERyYWcgJiBkcm9wIChtb3VzZSkKICBjb25zdCBvbkRyYWdTdGFydCA9IChlLCBpZHgpID0+IHsKICAgIGRyYWdTcmNJZHguY3VycmVudCA9IGlkeAogICAgZS5kYXRhVHJhbnNmZXIuZWZmZWN0QWxsb3dlZCA9ICdtb3ZlJwogICAgc2V0VGltZW91dCgoKSA9PiBlLnRhcmdldC5jbGFzc0xpc3QuYWRkKCdkcmFnZ2luZycpLCAwKQogIH0KICBjb25zdCBvbkRyYWdPdmVyID0gKGUsIGlkeCkgPT4gewogICAgZS5wcmV2ZW50RGVmYXVsdCgpCiAgICBpZiAoaWR4ID09PSBkcmFnU3JjSWR4LmN1cnJlbnQpIHJldHVybgogICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLm1vbWVudG8taXRlbScpLmZvckVhY2goZWwgPT4gZWwuY2xhc3NMaXN0LnJlbW92ZSgnZHJhZy1vdmVyJykpCiAgICBlLmN1cnJlbnRUYXJnZXQuY2xhc3NMaXN0LmFkZCgnZHJhZy1vdmVyJykKICB9CiAgY29uc3Qgb25EcmFnTGVhdmUgPSAoZSkgPT4gZS5jdXJyZW50VGFyZ2V0LmNsYXNzTGlzdC5yZW1vdmUoJ2RyYWctb3ZlcicpCiAgY29uc3Qgb25Ecm9wID0gKGUsIGlkeCkgPT4gewogICAgZS5wcmV2ZW50RGVmYXVsdCgpCiAgICBpZiAoZHJhZ1NyY0lkeC5jdXJyZW50ID09PSBudWxsIHx8IGRyYWdTcmNJZHguY3VycmVudCA9PT0gaWR4KSByZXR1cm4KICAgIGNvbnN0IG5vdm8gPSBbLi4ubW9tZW50b3NdCiAgICBjb25zdCBbbV0gPSBub3ZvLnNwbGljZShkcmFnU3JjSWR4LmN1cnJlbnQsIDEpCiAgICBub3ZvLnNwbGljZShpZHgsIDAsIG0pCiAgICBkcmFnU3JjSWR4LmN1cnJlbnQgPSBudWxsCiAgICBzZXRNb21lbnRvcyhub3ZvKQogICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLm1vbWVudG8taXRlbScpLmZvckVhY2goZWwgPT4gZWwuY2xhc3NMaXN0LnJlbW92ZSgnZHJhZy1vdmVyJywgJ2RyYWdnaW5nJykpCiAgfQogIGNvbnN0IG9uRHJhZ0VuZCA9ICgpID0+IHsKICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJy5tb21lbnRvLWl0ZW0nKS5mb3JFYWNoKGVsID0+IGVsLmNsYXNzTGlzdC5yZW1vdmUoJ2RyYWdnaW5nJywgJ2RyYWctb3ZlcicpKQogICAgZHJhZ1NyY0lkeC5jdXJyZW50ID0gbnVsbAogIH0KCiAgLy8gVG91Y2ggZHJhZwogIGNvbnN0IHRvdWNoU3JjID0gdXNlUmVmKG51bGwpCiAgY29uc3Qgb25Ub3VjaFN0YXJ0ID0gKGUsIGlkeCkgPT4gewogICAgdG91Y2hTcmMuY3VycmVudCA9IGlkeAogICAgZS5jdXJyZW50VGFyZ2V0LmNsb3Nlc3QoJy5tb21lbnRvLWl0ZW0nKT8uY2xhc3NMaXN0LmFkZCgnZHJhZ2dpbmcnKQogIH0KICBjb25zdCBvblRvdWNoTW92ZSA9IChlKSA9PiB7CiAgICBlLnByZXZlbnREZWZhdWx0KCkKICAgIGNvbnN0IHQgPSBlLnRvdWNoZXNbMF0KICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJy5tb21lbnRvLWl0ZW0nKS5mb3JFYWNoKGVsID0+IGVsLmNsYXNzTGlzdC5yZW1vdmUoJ2RyYWctb3ZlcicpKQogICAgZG9jdW1lbnQuZWxlbWVudEZyb21Qb2ludCh0LmNsaWVudFgsIHQuY2xpZW50WSk/LmNsb3Nlc3QoJy5tb21lbnRvLWl0ZW0nKT8uY2xhc3NMaXN0LmFkZCgnZHJhZy1vdmVyJykKICB9CiAgY29uc3Qgb25Ub3VjaEVuZCA9IChlKSA9PiB7CiAgICBlLnByZXZlbnREZWZhdWx0KCkKICAgIGNvbnN0IHQgPSBlLmNoYW5nZWRUb3VjaGVzWzBdCiAgICBjb25zdCB0YXJnZXQgPSBkb2N1bWVudC5lbGVtZW50RnJvbVBvaW50KHQuY2xpZW50WCwgdC5jbGllbnRZKT8uY2xvc2VzdCgnLm1vbWVudG8taXRlbScpCiAgICBpZiAodGFyZ2V0ICYmIHRvdWNoU3JjLmN1cnJlbnQgIT09IG51bGwpIHsKICAgICAgY29uc3QgdElkeCA9IHBhcnNlSW50KHRhcmdldC5kYXRhc2V0LmlkeCkKICAgICAgaWYgKCFpc05hTih0SWR4KSAmJiB0SWR4ICE9PSB0b3VjaFNyYy5jdXJyZW50KSB7CiAgICAgICAgY29uc3Qgbm92byA9IFsuLi5tb21lbnRvc10KICAgICAgICBjb25zdCBbbV0gPSBub3ZvLnNwbGljZSh0b3VjaFNyYy5jdXJyZW50LCAxKQogICAgICAgIG5vdm8uc3BsaWNlKHRJZHgsIDAsIG0pCiAgICAgICAgc2V0TW9tZW50b3Mobm92bykKICAgICAgfQogICAgfQogICAgdG91Y2hTcmMuY3VycmVudCA9IG51bGwKICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJy5tb21lbnRvLWl0ZW0nKS5mb3JFYWNoKGVsID0+IGVsLmNsYXNzTGlzdC5yZW1vdmUoJ2RyYWdnaW5nJywgJ2RyYWctb3ZlcicpKQogIH0KCiAgY29uc3QgcmVuZGVyQmFkZ2UgPSAobSkgPT4gewogICAgaWYgKG0udGlwbyA9PT0gJ3Blc3NvYScpIHJldHVybiA8c3BhbiBjbGFzc05hbWU9Im1vbWVudG8tYmFkZ2UgYmFkZ2UtcGVzc29hIj57bS5yZXNwb25zYXZlbCB8fCAnUGVzc29hJ308L3NwYW4+CiAgICBpZiAobS50aXBvID09PSAndmlkZW8nKSByZXR1cm4gPHNwYW4gY2xhc3NOYW1lPSJtb21lbnRvLWJhZGdlIGJhZGdlLXZpZGVvIj5Ww61kZW88L3NwYW4+CiAgICByZXR1cm4gPHNwYW4gY2xhc3NOYW1lPSJtb21lbnRvLWJhZGdlIGJhZGdlLXByb2plY2FvIj5Qcm9qZcOnw6NvPC9zcGFuPgogIH0KCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJzY3JlZW4iPgogICAgICA8ZGl2IGNsYXNzTmFtZT0iaGVhZGVyIj4KICAgICAgICA8YnV0dG9uIGNsYXNzTmFtZT0iYnRuLWJhY2siIG9uQ2xpY2s9eygpID0+IG5hdmlnYXRlKCdsaXN0YScpfT7igLk8L2J1dHRvbj4KICAgICAgICA8c3BhbiBjbGFzc05hbWU9ImhlYWRlci10aXRsZSI+e2VkaXRhbmRvSWR4ICE9PSBudWxsID8gJ0VkaXRhciBSb3RlaXJvJyA6ICdOb3ZvIFJvdGVpcm8nfTwvc3Bhbj4KICAgICAgICA8YnV0dG9uIGNsYXNzTmFtZT0iYnRuLWljb24iIG9uQ2xpY2s9eygpID0+IG5hdmlnYXRlKCdwcmV2aWV3Jyl9PvCfkYE8L2J1dHRvbj4KICAgICAgPC9kaXY+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJjb250ZW50Ij4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iY2FtcG8iPgogICAgICAgICAgPGxhYmVsPk5vbWUgZG8gZXZlbnRvIC8gY3VsdG88L2xhYmVsPgogICAgICAgICAgPGlucHV0IHR5cGU9InRleHQiIHZhbHVlPXtlZGl0b3JOb21lfSBvbkNoYW5nZT17ZSA9PiBzZXRFZGl0b3JOb21lKGUudGFyZ2V0LnZhbHVlKX0gLz4KICAgICAgICA8L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iY2FtcG8iPgogICAgICAgICAgPGxhYmVsPkRhdGE8L2xhYmVsPgogICAgICAgICAgPGlucHV0IHR5cGU9ImRhdGUiIHZhbHVlPXtlZGl0b3JEYXRhfSBvbkNoYW5nZT17ZSA9PiBzZXRFZGl0b3JEYXRhKGUudGFyZ2V0LnZhbHVlKX0gLz4KICAgICAgICA8L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iY2FtcG8iPgogICAgICAgICAgPGxhYmVsPlRlbWEgKG9wY2lvbmFsKTwvbGFiZWw+CiAgICAgICAgICA8aW5wdXQgdHlwZT0idGV4dCIgdmFsdWU9e2VkaXRvclRlbWF9IG9uQ2hhbmdlPXtlID0+IHNldEVkaXRvclRlbWEoZS50YXJnZXQudmFsdWUpfSAvPgogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJjYW1wbyI+CiAgICAgICAgICA8bGFiZWw+VmVyc8OtY3Vsby1jaGF2ZSAob3BjaW9uYWwpPC9sYWJlbD4KICAgICAgICAgIDxpbnB1dCB0eXBlPSJ0ZXh0IiB2YWx1ZT17ZWRpdG9yVmVyc2ljdWxvfSBvbkNoYW5nZT17ZSA9PiBzZXRFZGl0b3JWZXJzaWN1bG8oZS50YXJnZXQudmFsdWUpfSAvPgogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJkaXZpZGVyIiAvPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJzZWN0aW9uLWhlYWRlciI+CiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9InNlY3Rpb24tbGFiZWwiPk1vbWVudG9zPC9zcGFuPgogICAgICAgICAgPGJ1dHRvbiBjbGFzc05hbWU9ImJ0bi1pY29uIiBvbkNsaWNrPXthYnJpckFkZE1vbWVudG99IHN0eWxlPXt7IGNvbG9yOiAndmFyKC0tdGV4dCknIH19PuKKlTwvYnV0dG9uPgogICAgICAgIDwvZGl2PgogICAgICAgIHttb21lbnRvcy5sZW5ndGggPT09IDAgPyAoCiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZW1wdHktc3RhdGUiPgogICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaWNvbiI+8J+TnTwvZGl2PgogICAgICAgICAgICA8cD5BaW5kYSBzZW0gbW9tZW50b3MuPGJyIC8+VG9jYSBlbSDiipUgcGFyYSBhZGljaW9uYXIuPC9wPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgKSA6ICgKICAgICAgICAgIG1vbWVudG9zLm1hcCgobSwgaSkgPT4gKAogICAgICAgICAgICA8ZGl2CiAgICAgICAgICAgICAga2V5PXtpfQogICAgICAgICAgICAgIGNsYXNzTmFtZT0ibW9tZW50by1pdGVtIgogICAgICAgICAgICAgIGRyYWdnYWJsZQogICAgICAgICAgICAgIGRhdGEtaWR4PXtpfQogICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IGVkaXRhck1vbWVudG8oaSl9CiAgICAgICAgICAgICAgb25EcmFnU3RhcnQ9e2UgPT4gb25EcmFnU3RhcnQoZSwgaSl9CiAgICAgICAgICAgICAgb25EcmFnT3Zlcj17ZSA9PiBvbkRyYWdPdmVyKGUsIGkpfQogICAgICAgICAgICAgIG9uRHJhZ0xlYXZlPXtvbkRyYWdMZWF2ZX0KICAgICAgICAgICAgICBvbkRyb3A9e2UgPT4gb25Ecm9wKGUsIGkpfQogICAgICAgICAgICAgIG9uRHJhZ0VuZD17b25EcmFnRW5kfQogICAgICAgICAgICA+CiAgICAgICAgICAgICAgPGRpdgogICAgICAgICAgICAgICAgY2xhc3NOYW1lPSJkcmFnLWhhbmRsZSIKICAgICAgICAgICAgICAgIG9uQ2xpY2s9e2UgPT4gZS5zdG9wUHJvcGFnYXRpb24oKX0KICAgICAgICAgICAgICAgIG9uVG91Y2hTdGFydD17ZSA9PiB7IGUuc3RvcFByb3BhZ2F0aW9uKCk7IG9uVG91Y2hTdGFydChlLCBpKSB9fQogICAgICAgICAgICAgICAgb25Ub3VjaE1vdmU9e2UgPT4geyBlLnByZXZlbnREZWZhdWx0KCk7IG9uVG91Y2hNb3ZlKGUpIH19CiAgICAgICAgICAgICAgICBvblRvdWNoRW5kPXtlID0+IHsgZS5wcmV2ZW50RGVmYXVsdCgpOyBvblRvdWNoRW5kKGUpIH19CiAgICAgICAgICAgICAgICBzdHlsZT17eyB0b3VjaEFjdGlvbjogJ25vbmUnIH19CiAgICAgICAgICAgICAgPuKgvzwvZGl2PgogICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtb21lbnRvLW51bSI+e2kgKyAxfTwvZGl2PgogICAgICAgICAgICAgIDxkaXYgc3R5bGU9e3sgZmxleDogMSwgbWluV2lkdGg6IDAgfX0+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibW9tZW50by1ub21lIj57bS5ub21lfTwvZGl2PgogICAgICAgICAgICAgICAge20ubXVzaWNhcz8uZmlsdGVyKHggPT4geCkubGVuZ3RoID4gMCAmJiAoCiAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJtb21lbnRvLXN1YiI+8J+OtSB7bS5tdXNpY2FzLmZpbHRlcih4ID0+IHgpLmpvaW4oJyDCtyAnKX08L2Rpdj4KICAgICAgICAgICAgICAgICl9CiAgICAgICAgICAgICAgICB7bS5hdmlzb3M/LmZpbHRlcih4ID0+IHgpLmxlbmd0aCA+IDAgJiYgKAogICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ibW9tZW50by1zdWIiPvCfk6Ige20uYXZpc29zLmZpbHRlcih4ID0+IHgpLmxlbmd0aH0gYXZpc297bS5hdmlzb3MuZmlsdGVyKHggPT4geCkubGVuZ3RoID4gMSA/ICdzJyA6ICcnfTwvZGl2PgogICAgICAgICAgICAgICAgKX0KICAgICAgICAgICAgICAgIHttLm9icyAmJiA8ZGl2IGNsYXNzTmFtZT0ibW9tZW50by1zdWIiPnttLm9ic308L2Rpdj59CiAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAge3JlbmRlckJhZGdlKG0pfQogICAgICAgICAgICAgIDxidXR0b24gY2xhc3NOYW1lPSJidG4tZGVsIiBvbkNsaWNrPXtlID0+IHJlbW92ZXJNb21lbnRvKGUsIGkpfT7wn5eRPC9idXR0b24+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgKSkKICAgICAgICApfQogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzc05hbWU9ImZhYiI+CiAgICAgICAgPGJ1dHRvbiBjbGFzc05hbWU9ImJ0bi1wcmltYXJ5IGJ0bi1hY2NlbnQiIG9uQ2xpY2s9e2d1YXJkYXJ9PvCfkr4gR3VhcmRhciBSb3RlaXJvPC9idXR0b24+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgKQp9Cg==
+import { useRef } from 'react'
+import { sb } from '../supabase'
+import { useApp } from '../context/AppContext'
+
+const OPCOES_MOMENTO = ['Oração','Louvor','Dízimos / Ofertas','Oração p/ Crianças','Visitantes','Avisos','Ministração','Palavra','Ceia do Senhor','Testemunho','Encerramento']
+
+export default function EditorScreen() {
+  const {
+    organizacaoAtual, editandoIdx, roteiros,
+    momentos, setMomentos,
+    setMomentoEditandoIdx,
+    editorNome, setEditorNome,
+    editorData, setEditorData,
+    editorTema, setEditorTema,
+    editorVersiculo, setEditorVersiculo,
+    navigate, carregarRoteirosDaNuvem, setRoteiros,
+  } = useApp()
+
+  const dragSrcIdx = useRef(null)
+
+  const guardar = async () => {
+    const payload = {
+      nome: editorNome.trim() || 'Sem título',
+      data: editorData || null,
+      tema: editorTema.trim(),
+      versiculo: editorVersiculo.trim(),
+      momentos: JSON.parse(JSON.stringify(momentos)),
+    }
+    try {
+      if (editandoIdx !== null) {
+        const { error } = await sb.from('roteiros')
+          .update({ ...payload, updated_at: new Date().toISOString() })
+          .eq('id', roteiros[editandoIdx].id)
+        if (error) throw error
+      } else {
+        const { data: { user } } = await sb.auth.getUser()
+        const { error } = await sb.from('roteiros')
+          .insert({ ...payload, organizacao_id: organizacaoAtual.id, criado_por: user.id })
+        if (error) throw error
+      }
+      const lista = await carregarRoteirosDaNuvem(organizacaoAtual.id)
+      setRoteiros(lista)
+      navigate('lista')
+    } catch (err) {
+      alert('Erro ao guardar: ' + err.message)
+    }
+  }
+
+  const abrirAddMomento = () => {
+    setMomentoEditandoIdx(null)
+    navigate('momento')
+  }
+
+  const editarMomento = (i) => {
+    setMomentoEditandoIdx(i)
+    navigate('momento')
+  }
+
+  const removerMomento = (e, i) => {
+    e.stopPropagation()
+    const novo = [...momentos]
+    novo.splice(i, 1)
+    setMomentos(novo)
+  }
+
+  const onDragStart = (e, idx) => {
+    dragSrcIdx.current = idx
+    e.dataTransfer.effectAllowed = 'move'
+    setTimeout(() => e.target.classList.add('dragging'), 0)
+  }
+  const onDragOver = (e, idx) => {
+    e.preventDefault()
+    if (idx === dragSrcIdx.current) return
+    document.querySelectorAll('.momento-item').forEach(el => el.classList.remove('drag-over'))
+    e.currentTarget.classList.add('drag-over')
+  }
+  const onDragLeave = (e) => e.currentTarget.classList.remove('drag-over')
+  const onDrop = (e, idx) => {
+    e.preventDefault()
+    if (dragSrcIdx.current === null || dragSrcIdx.current === idx) return
+    const novo = [...momentos]
+    const [m] = novo.splice(dragSrcIdx.current, 1)
+    novo.splice(idx, 0, m)
+    dragSrcIdx.current = null
+    setMomentos(novo)
+    document.querySelectorAll('.momento-item').forEach(el => el.classList.remove('drag-over', 'dragging'))
+  }
+  const onDragEnd = () => {
+    document.querySelectorAll('.momento-item').forEach(el => el.classList.remove('dragging', 'drag-over'))
+    dragSrcIdx.current = null
+  }
+
+  const touchSrc = useRef(null)
+  const onTouchStart = (e, idx) => {
+    touchSrc.current = idx
+    e.currentTarget.closest('.momento-item')?.classList.add('dragging')
+  }
+  const onTouchMove = (e) => {
+    e.preventDefault()
+    const t = e.touches[0]
+    document.querySelectorAll('.momento-item').forEach(el => el.classList.remove('drag-over'))
+    document.elementFromPoint(t.clientX, t.clientY)?.closest('.momento-item')?.classList.add('drag-over')
+  }
+  const onTouchEnd = (e) => {
+    e.preventDefault()
+    const t = e.changedTouches[0]
+    const target = document.elementFromPoint(t.clientX, t.clientY)?.closest('.momento-item')
+    if (target && touchSrc.current !== null) {
+      const tIdx = parseInt(target.dataset.idx)
+      if (!isNaN(tIdx) && tIdx !== touchSrc.current) {
+        const novo = [...momentos]
+        const [m] = novo.splice(touchSrc.current, 1)
+        novo.splice(tIdx, 0, m)
+        setMomentos(novo)
+      }
+    }
+    touchSrc.current = null
+    document.querySelectorAll('.momento-item').forEach(el => el.classList.remove('dragging', 'drag-over'))
+  }
+
+  const renderBadge = (m) => {
+    if (m.tipo === 'pessoa') return <span className="momento-badge badge-pessoa">{m.responsavel || 'Pessoa'}</span>
+    if (m.tipo === 'video') return <span className="momento-badge badge-video">Vídeo</span>
+    return <span className="momento-badge badge-projecao">Projeção</span>
+  }
+
+  return (
+    <div className="screen">
+      <div className="header">
+        <button className="btn-back" onClick={() => navigate('lista')}>‹</button>
+        <span className="header-title">{editandoIdx !== null ? 'Editar Roteiro' : 'Novo Roteiro'}</span>
+        <button className="btn-icon" onClick={() => navigate('preview')}>👁</button>
+      </div>
+      <div className="content">
+        <div className="campo">
+          <label>Nome do evento / culto</label>
+          <input type="text" value={editorNome} onChange={e => setEditorNome(e.target.value)} />
+        </div>
+        <div className="campo">
+          <label>Data</label>
+          <input type="date" value={editorData} onChange={e => setEditorData(e.target.value)} />
+        </div>
+        <div className="campo">
+          <label>Tema (opcional)</label>
+          <input type="text" value={editorTema} onChange={e => setEditorTema(e.target.value)} />
+        </div>
+        <div className="campo">
+          <label>Versículo-chave (opcional)</label>
+          <input type="text" value={editorVersiculo} onChange={e => setEditorVersiculo(e.target.value)} />
+        </div>
+        <div className="divider" />
+        <div className="section-header">
+          <span className="section-label">Momentos</span>
+          <button className="btn-icon" onClick={abrirAddMomento} style={{ color: 'var(--text)' }}>⊕</button>
+        </div>
+        {momentos.length === 0 ? (
+          <div className="empty-state">
+            <div className="icon">📝</div>
+            <p>Ainda sem momentos.<br />Toca em ⊕ para adicionar.</p>
+          </div>
+        ) : (
+          momentos.map((m, i) => (
+            <div
+              key={i}
+              className="momento-item"
+              draggable
+              data-idx={i}
+              onClick={() => editarMomento(i)}
+              onDragStart={e => onDragStart(e, i)}
+              onDragOver={e => onDragOver(e, i)}
+              onDragLeave={onDragLeave}
+              onDrop={e => onDrop(e, i)}
+              onDragEnd={onDragEnd}
+            >
+              <div
+                className="drag-handle"
+                onClick={e => e.stopPropagation()}
+                onTouchStart={e => { e.stopPropagation(); onTouchStart(e, i) }}
+                onTouchMove={e => { e.preventDefault(); onTouchMove(e) }}
+                onTouchEnd={e => { e.preventDefault(); onTouchEnd(e) }}
+                style={{ touchAction: 'none' }}
+              >⠇</div>
+              <div className="momento-num">{i + 1}</div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="momento-nome">{m.nome}</div>
+                {m.musicas?.filter(x => x).length > 0 && (
+                  <div className="momento-sub">🎵 {m.musicas.filter(x => x).join(' · ')}</div>
+                )}
+                {m.avisos?.filter(x => x).length > 0 && (
+                  <div className="momento-sub">📢 {m.avisos.filter(x => x).length} aviso{m.avisos.filter(x => x).length > 1 ? 's' : ''}</div>
+                )}
+                {m.obs && <div className="momento-sub">{m.obs}</div>}
+              </div>
+              {renderBadge(m)}
+              <button className="btn-del" onClick={e => removerMomento(e, i)}>🗑</button>
+            </div>
+          ))
+        )}
+      </div>
+      <div className="fab">
+        <button className="btn-primary btn-accent" onClick={guardar}>💾 Guardar Roteiro</button>
+      </div>
+    </div>
+  )
+}

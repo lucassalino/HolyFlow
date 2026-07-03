@@ -1,1 +1,16 @@
-ZXhwb3J0IGZ1bmN0aW9uIGdlcmFyQ29kaWdvT3JnYW5pemFjYW8obm9tZU9yZykgewogIGNvbnN0IGJhc2UgPSBub21lT3JnCiAgICAubm9ybWFsaXplKCdORkQnKS5yZXBsYWNlKC9bzIAtza9dL2csICcnKQogICAgLnJlcGxhY2UoL1teYS16QS1aXS9nLCAnJykudG9VcHBlckNhc2UoKS5zbGljZSgwLCA3KSB8fCAnSUdSRUpBJwogIGNvbnN0IHN1Zml4byA9IE1hdGgucmFuZG9tKCkudG9TdHJpbmcoMzYpLnNsaWNlKDIsIDYpLnRvVXBwZXJDYXNlKCkKICByZXR1cm4gYCR7YmFzZX0tJHtzdWZpeG99YAp9CgpleHBvcnQgZnVuY3Rpb24gdHJhZHV6aXJFcnJvQXV0aChtc2cpIHsKICBpZiAoIW1zZykgcmV0dXJuICdPY29ycmV1IHVtIGVycm8uIFRlbnRhIG5vdmFtZW50ZS4nCiAgaWYgKG1zZy5pbmNsdWRlcygnSW52YWxpZCBsb2dpbiBjcmVkZW50aWFscycpKSByZXR1cm4gJ0VtYWlsIG91IHBhc3N3b3JkIGluY29ycmV0b3MuJwogIGlmIChtc2cuaW5jbHVkZXMoJ2FscmVhZHkgcmVnaXN0ZXJlZCcpIHx8IG1zZy5pbmNsdWRlcygnYWxyZWFkeSBleGlzdHMnKSkgcmV0dXJuICdFc3RlIGVtYWlsIGrDoSB0ZW0gY29udGEg4oCUIHRlbnRhIGVudHJhci4nCiAgaWYgKG1zZy5pbmNsdWRlcygnUGFzc3dvcmQgc2hvdWxkIGJlIGF0IGxlYXN0JykpIHJldHVybiAnQSBwYXNzd29yZCBkZXZlIHRlciBwZWxvIG1lbm9zIDYgY2FyYWN0ZXJlcy4nCiAgaWYgKG1zZy5pbmNsdWRlcygnVW5hYmxlIHRvIHZhbGlkYXRlIGVtYWlsJykpIHJldHVybiAnRW1haWwgaW52w6FsaWRvLicKICByZXR1cm4gbXNnCn0K
+export function gerarCodigoOrganizacao(nomeOrg) {
+  const base = nomeOrg
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-zA-Z]/g, '').toUpperCase().slice(0, 7) || 'IGREJA'
+  const sufixo = Math.random().toString(36).slice(2, 6).toUpperCase()
+  return `${base}-${sufixo}`
+}
+
+export function traduzirErroAuth(msg) {
+  if (!msg) return 'Ocorreu um erro. Tenta novamente.'
+  if (msg.includes('Invalid login credentials')) return 'Email ou password incorretos.'
+  if (msg.includes('already registered') || msg.includes('already exists')) return 'Este email já tem conta — tenta entrar.'
+  if (msg.includes('Password should be at least')) return 'A password deve ter pelo menos 6 caracteres.'
+  if (msg.includes('Unable to validate email')) return 'Email inválido.'
+  return msg
+}
