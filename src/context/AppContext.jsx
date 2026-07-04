@@ -9,10 +9,8 @@ export function AppProvider({ children }) {
   const [membroAtual, setMembroAtual] = useState(null)
   const [organizacaoAtual, setOrganizacaoAtual] = useState(null)
 
-  // Roteiros
   const [roteiros, setRoteiros] = useState([])
 
-  // Estado do editor (partilhado entre EditorScreen e MomentoScreen)
   const [editandoIdx, setEditandoIdx] = useState(null)
   const [momentos, setMomentos] = useState([])
   const [momentoEditandoIdx, setMomentoEditandoIdx] = useState(null)
@@ -20,6 +18,7 @@ export function AppProvider({ children }) {
   const [editorData, setEditorData] = useState('')
   const [editorTema, setEditorTema] = useState('')
   const [editorVersiculo, setEditorVersiculo] = useState('')
+  const [editorStatus, setEditorStatus] = useState('rascunho')
 
   const navigate = useCallback((s) => setScreen(s), [])
 
@@ -40,6 +39,8 @@ export function AppProvider({ children }) {
       id: r.id, nome: r.nome, data: r.data,
       tema: r.tema || '', versiculo: r.versiculo || '',
       momentos: r.momentos || [],
+      status: r.status || 'rascunho',
+      criado_por: r.criado_por,
     }))
   }, [])
 
@@ -61,7 +62,6 @@ export function AppProvider({ children }) {
       .limit(1)
 
     if (error) { console.error(error); navigate('org-escolha'); return }
-
     if (!membros || !membros.length) { navigate('org-escolha'); return }
 
     const membro = membros[0]
@@ -80,6 +80,7 @@ export function AppProvider({ children }) {
     setEditorData(new Date().toISOString().split('T')[0])
     setEditorTema('')
     setEditorVersiculo('')
+    setEditorStatus('rascunho')
     setMomentos([])
     navigate('editor')
   }, [navigate])
@@ -91,6 +92,7 @@ export function AppProvider({ children }) {
     setEditorData(r.data || '')
     setEditorTema(r.tema || '')
     setEditorVersiculo(r.versiculo || '')
+    setEditorStatus(r.status || 'rascunho')
     setMomentos(JSON.parse(JSON.stringify(r.momentos)))
     navigate('editor')
   }, [navigate])
@@ -109,6 +111,7 @@ export function AppProvider({ children }) {
       editorData, setEditorData,
       editorTema, setEditorTema,
       editorVersiculo, setEditorVersiculo,
+      editorStatus, setEditorStatus,
       logout, depoisDoLogin, entrarNaApp,
       carregarRoteirosDaNuvem,
       abrirNovoRoteiro, abrirRoteiro,

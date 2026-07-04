@@ -12,6 +12,7 @@ export default function EditorScreen() {
     editorData, setEditorData,
     editorTema, setEditorTema,
     editorVersiculo, setEditorVersiculo,
+    editorStatus, setEditorStatus,
     navigate, carregarRoteirosDaNuvem, setRoteiros,
   } = useApp()
 
@@ -24,6 +25,7 @@ export default function EditorScreen() {
       tema: editorTema.trim(),
       versiculo: editorVersiculo.trim(),
       momentos: JSON.parse(JSON.stringify(momentos)),
+      status: editorStatus,
     }
     try {
       if (editandoIdx !== null) {
@@ -69,6 +71,8 @@ export default function EditorScreen() {
     return <span className="momento-badge badge-projecao">Projeção</span>
   }
 
+  const isPublicado = editorStatus === 'publicado'
+
   return (
     <div className="screen">
       <div className="header">
@@ -81,6 +85,39 @@ export default function EditorScreen() {
         </button>
       </div>
       <div className="content">
+        {/* Status toggle */}
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          background: 'var(--bg2)', borderRadius: 'var(--radius)',
+          padding: '12px 16px', marginBottom: 12,
+          boxShadow: 'var(--shadow-sm)',
+        }}>
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text1)' }}>
+              {isPublicado ? 'Publicado' : 'Rascunho'}
+            </div>
+            <div style={{ fontSize: 11, color: 'var(--text3)', marginTop: 2 }}>
+              {isPublicado ? 'Visível para toda a organização' : 'Visível apenas para ti'}
+            </div>
+          </div>
+          <button
+            onClick={() => setEditorStatus(isPublicado ? 'rascunho' : 'publicado')}
+            style={{
+              padding: '7px 16px',
+              borderRadius: 99,
+              border: 'none',
+              fontSize: 12,
+              fontWeight: 600,
+              cursor: 'pointer',
+              background: isPublicado ? 'var(--bg3)' : 'var(--accent)',
+              color: isPublicado ? 'var(--text2)' : 'var(--accent-text)',
+              transition: 'background 0.2s',
+            }}
+          >
+            {isPublicado ? 'Tornar Rascunho' : 'Publicar'}
+          </button>
+        </div>
+
         <div style={{ background: 'var(--bg2)', borderRadius: 'var(--radius)', padding: '16px', marginBottom: '16px', boxShadow: 'var(--shadow-sm)' }}>
           <div className="campo" style={{ marginBottom: 12 }}>
             <label>Nome do evento / culto</label>
@@ -140,10 +177,10 @@ export default function EditorScreen() {
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div className="momento-nome">{m.nome}</div>
                 {m.musicas?.filter(x => x).length > 0 && (
-                  <div className="momento-sub">🎵 {m.musicas.filter(x => x).join(' · ')}</div>
+                  <div className="momento-sub">{m.musicas.filter(x => x).join(' · ')}</div>
                 )}
                 {m.avisos?.filter(x => x).length > 0 && (
-                  <div className="momento-sub">📢 {m.avisos.filter(x => x).length} aviso{m.avisos.filter(x => x).length > 1 ? 's' : ''}</div>
+                  <div className="momento-sub">{m.avisos.filter(x => x).length} aviso{m.avisos.filter(x => x).length > 1 ? 's' : ''}</div>
                 )}
                 {m.obs && <div className="momento-sub">{m.obs}</div>}
               </div>

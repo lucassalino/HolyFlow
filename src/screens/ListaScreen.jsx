@@ -30,18 +30,19 @@ export default function ListaScreen() {
     border: '1px solid rgba(255,255,255,0.07)',
   }
 
+  const podeBotaoApagar = (r) =>
+    ehAdmin || r.criado_por === membroAtual?.user_id
+
   return (
     <div className="screen" style={{ position: 'relative', overflow: 'hidden', background: '#060606' }}>
       <DarkGrainBackground />
 
-      {/* Header */}
       <div className="header" style={{
         position: 'relative', zIndex: 2,
         background: 'rgba(6,6,6,0.6)',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
         borderBottom: '1px solid rgba(255,255,255,0.06)',
-        color: 'rgba(255,255,255,0.88)',
       }}>
         <Icon name="clipboard" size={22} color="rgba(255,255,255,0.6)" />
         <span className="header-title" style={{ color: 'rgba(255,255,255,0.88)' }}>Roteiro do Culto</span>
@@ -55,14 +56,11 @@ export default function ListaScreen() {
         </button>
       </div>
 
-      {/* Content */}
       <div className="content" style={{ position: 'relative', zIndex: 1 }}>
         {roteiros.length === 0 ? (
           <div className="empty-state" style={{ color: 'rgba(255,255,255,0.3)' }}>
-            <div className="icon">
-              <Icon name="clipboard" size={52} color="rgba(255,255,255,0.15)" />
-            </div>
-            <p style={{ color: 'rgba(255,255,255,0.3)' }}>
+            <Icon name="clipboard" size={52} color="rgba(255,255,255,0.15)" />
+            <p style={{ color: 'rgba(255,255,255,0.3)', marginTop: 14 }}>
               {ehAdmin ? 'Nenhum roteiro ainda.\nCria o primeiro!' : 'Nenhum roteiro ainda.\nAguarda o admin criar um.'}
             </p>
           </div>
@@ -86,12 +84,24 @@ export default function ListaScreen() {
                     <Icon name="document" size={22} color="rgba(255,255,255,0.45)" />
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div className="card-title" style={{ color: 'rgba(255,255,255,0.85)' }}>{r.nome}</div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
+                      <div className="card-title" style={{ color: 'rgba(255,255,255,0.85)' }}>{r.nome}</div>
+                      <span style={{
+                        fontSize: 10, fontWeight: 600, letterSpacing: '0.05em',
+                        padding: '2px 7px', borderRadius: 99,
+                        background: r.status === 'publicado' ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.06)',
+                        color: r.status === 'publicado' ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)',
+                        border: r.status === 'publicado' ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(255,255,255,0.08)',
+                        flexShrink: 0,
+                      }}>
+                        {r.status === 'publicado' ? 'Publicado' : 'Rascunho'}
+                      </span>
+                    </div>
                     <div className="card-sub" style={{ color: 'rgba(255,255,255,0.35)' }}>
                       {formatarData(r.data)} · {r.momentos.length} momento{r.momentos.length !== 1 ? 's' : ''}
                     </div>
                   </div>
-                  {ehAdmin && (
+                  {podeBotaoApagar(r) && (
                     <button
                       className="btn-del"
                       onClick={e => apagarRoteiro(e, i)}
@@ -107,7 +117,6 @@ export default function ListaScreen() {
         )}
       </div>
 
-      {/* FAB */}
       {ehAdmin && (
         <div className="fab" style={{ position: 'relative', zIndex: 2 }}>
           <button
