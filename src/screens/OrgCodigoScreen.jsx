@@ -1,4 +1,5 @@
 import { useApp } from '../context/AppContext'
+import Icon from '../components/Icon'
 
 export default function OrgCodigoScreen() {
   const { organizacaoAtual, membroAtual, entrarNaApp } = useApp()
@@ -10,8 +11,8 @@ export default function OrgCodigoScreen() {
       </div>
       <div className="content">
         <div className="empty-state" style={{ padding: '32px 0 24px' }}>
-          <div className="icon">🎉</div>
-          <p style={{ fontWeight: 700, fontSize: '17px', color: 'var(--text)', marginBottom: 6 }}>Tudo pronto!</p>
+          <Icon name="check" size={52} color="#22c55e" />
+          <p style={{ fontWeight: 700, fontSize: '17px', color: 'var(--text)', marginBottom: 6, marginTop: 12 }}>Tudo pronto!</p>
           <p>A tua organização foi criada com sucesso.</p>
         </div>
         <div className="codigo-display">
@@ -19,10 +20,10 @@ export default function OrgCodigoScreen() {
           <div className="codigo">{organizacaoAtual?.codigo || '—'}</div>
         </div>
         <p style={{ fontSize: '13px', color: 'var(--text2)', textAlign: 'center', marginBottom: '24px', lineHeight: 1.5 }}>
-          Partilha este código com os líderes da tua igreja para eles poderem pedir acesso.
+          Partilha este código com os líderes da tua igreja.
         </p>
         <button className="btn-primary btn-accent" onClick={() => entrarNaApp(membroAtual, organizacaoAtual)}>
-          Continuar →
+          Continuar <Icon name="arrow-right" size={18} color="var(--accent-text)" />
         </button>
       </div>
     </div>

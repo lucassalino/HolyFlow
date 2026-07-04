@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { sb } from '../supabase'
 import { useApp } from '../context/AppContext'
+import Icon from '../components/Icon'
 
 export default function EditorScreen() {
   const {
@@ -51,7 +52,6 @@ export default function EditorScreen() {
     const novo = [...momentos]; novo.splice(i, 1); setMomentos(novo)
   }
 
-  const dragSrc = useRef(null)
   const onDragStart = (e, idx) => { dragSrcIdx.current = idx; e.dataTransfer.effectAllowed = 'move'; setTimeout(() => e.target.classList.add('dragging'), 0) }
   const onDragOver = (e, idx) => { e.preventDefault(); if (idx === dragSrcIdx.current) return; document.querySelectorAll('.momento-item').forEach(el => el.classList.remove('drag-over')); e.currentTarget.classList.add('drag-over') }
   const onDragLeave = (e) => e.currentTarget.classList.remove('drag-over')
@@ -72,9 +72,13 @@ export default function EditorScreen() {
   return (
     <div className="screen">
       <div className="header">
-        <button className="btn-back" onClick={() => navigate('lista')}>‹</button>
+        <button className="btn-back" onClick={() => navigate('lista')}>
+          <Icon name="chevron-left" size={20} />
+        </button>
         <span className="header-title">{editandoIdx !== null ? 'Editar Roteiro' : 'Novo Roteiro'}</span>
-        <button className="btn-icon" onClick={() => navigate('preview')}>👁</button>
+        <button className="btn-icon" onClick={() => navigate('preview')}>
+          <Icon name="eye" size={18} />
+        </button>
       </div>
       <div className="content">
         <div style={{ background: 'var(--bg2)', borderRadius: 'var(--radius)', padding: '16px', marginBottom: '16px', boxShadow: 'var(--shadow-sm)' }}>
@@ -98,13 +102,15 @@ export default function EditorScreen() {
 
         <div className="section-header" style={{ marginTop: 4 }}>
           <span className="section-label">Momentos</span>
-          <button className="btn-icon" onClick={abrirAddMomento}>⊕</button>
+          <button className="btn-icon" onClick={abrirAddMomento}>
+            <Icon name="plus" size={18} />
+          </button>
         </div>
 
         {momentos.length === 0 ? (
           <div className="empty-state">
-            <div className="icon">📝</div>
-            <p>Ainda sem momentos.\nToca em ⊕ para adicionar.</p>
+            <Icon name="clipboard" size={48} color="var(--text3)" />
+            <p style={{ marginTop: 14 }}>Ainda sem momentos.{"\n"}Toca em + para adicionar.</p>
           </div>
         ) : (
           momentos.map((m, i) => (
@@ -126,8 +132,10 @@ export default function EditorScreen() {
                 onTouchStart={e => { e.stopPropagation(); onTouchStart(e, i) }}
                 onTouchMove={e => { e.preventDefault(); onTouchMove(e) }}
                 onTouchEnd={e => { e.preventDefault(); onTouchEnd(e) }}
-                style={{ touchAction: 'none' }}
-              >⠇</div>
+                style={{ touchAction: 'none', color: 'var(--text3)' }}
+              >
+                <Icon name="grip" size={18} />
+              </div>
               <div className="momento-num">{i + 1}</div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div className="momento-nome">{m.nome}</div>
@@ -140,13 +148,18 @@ export default function EditorScreen() {
                 {m.obs && <div className="momento-sub">{m.obs}</div>}
               </div>
               {renderBadge(m)}
-              <button className="btn-del" onClick={e => removerMomento(e, i)}>🗑</button>
+              <button className="btn-del" onClick={e => removerMomento(e, i)}>
+                <Icon name="trash" size={16} />
+              </button>
             </div>
           ))
         )}
       </div>
       <div className="fab">
-        <button className="btn-primary btn-accent" onClick={guardar}>💾 Guardar Roteiro</button>
+        <button className="btn-primary btn-accent" onClick={guardar}>
+          <Icon name="save" size={18} color="var(--accent-text)" />
+          Guardar Roteiro
+        </button>
       </div>
     </div>
   )

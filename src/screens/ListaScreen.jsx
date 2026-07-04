@@ -1,6 +1,7 @@
 import { sb } from '../supabase'
 import { useApp } from '../context/AppContext'
 import { formatarData } from '../utils/formatarData'
+import Icon from '../components/Icon'
 
 export default function ListaScreen() {
   const {
@@ -24,18 +25,24 @@ export default function ListaScreen() {
   return (
     <div className="screen">
       <div className="header">
-        <span style={{ fontSize: '24px' }}>📋</span>
+        <Icon name="clipboard" size={22} />
         <span className="header-title">Roteiro do Culto</span>
         {ehAdmin && (
-          <button className="btn-icon" onClick={() => navigate('membros')} title="Membros">👥</button>
+          <button className="btn-icon" onClick={() => navigate('membros')}>
+            <Icon name="users" size={18} />
+          </button>
         )}
-        <button className="btn-icon" onClick={logout} title="Sair">⎋</button>
+        <button className="btn-icon" onClick={logout}>
+          <Icon name="logout" size={18} />
+        </button>
       </div>
 
       <div className="content">
         {roteiros.length === 0 ? (
           <div className="empty-state">
-            <div className="icon">📋</div>
+            <div className="icon" style={{ fontSize: 48 }}>
+              <Icon name="clipboard" size={52} color="var(--text3)" />
+            </div>
             <p>{ehAdmin ? 'Nenhum roteiro ainda.\nCria o primeiro!' : 'Nenhum roteiro ainda.\nAguarda o admin criar um.'}</p>
           </div>
         ) : (
@@ -48,8 +55,10 @@ export default function ListaScreen() {
                     width: 44, height: 44, borderRadius: 12,
                     background: 'var(--bg3)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 20, flexShrink: 0,
-                  }}>📄</div>
+                    color: 'var(--text2)', flexShrink: 0,
+                  }}>
+                    <Icon name="document" size={22} />
+                  </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div className="card-title">{r.nome}</div>
                     <div className="card-sub">
@@ -57,7 +66,9 @@ export default function ListaScreen() {
                     </div>
                   </div>
                   {ehAdmin && (
-                    <button className="btn-del" onClick={e => apagarRoteiro(e, i)} style={{ fontSize: '18px' }}>🗑</button>
+                    <button className="btn-del" onClick={e => apagarRoteiro(e, i)}>
+                      <Icon name="trash" size={18} />
+                    </button>
                   )}
                 </div>
               </div>
@@ -68,7 +79,10 @@ export default function ListaScreen() {
 
       {ehAdmin && (
         <div className="fab">
-          <button className="btn-primary btn-accent" onClick={abrirNovoRoteiro}>＋ Novo Roteiro</button>
+          <button className="btn-primary btn-accent" onClick={abrirNovoRoteiro}>
+            <Icon name="plus" size={18} color="var(--accent-text)" />
+            Novo Roteiro
+          </button>
         </div>
       )}
     </div>

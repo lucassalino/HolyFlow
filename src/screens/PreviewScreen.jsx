@@ -1,9 +1,10 @@
 import { useApp } from '../context/AppContext'
 import { formatarData } from '../utils/formatarData'
 import { gerarPDF } from '../utils/pdf'
+import Icon from '../components/Icon'
 
 export default function PreviewScreen() {
-  const { momentos, editorNome, editorData, editorTema, editorVersiculo, editandoIdx, roteiros, navigate } = useApp()
+  const { momentos, editorNome, editorData, editorTema, editorVersiculo, navigate } = useApp()
 
   const nomeEvento = editorNome || 'Sem título'
   const dataEvento = formatarData(editorData)
@@ -31,9 +32,13 @@ export default function PreviewScreen() {
   return (
     <div className="screen">
       <div className="header">
-        <button className="btn-back" onClick={() => navigate('editor')}>‹</button>
+        <button className="btn-back" onClick={() => navigate('editor')}>
+          <Icon name="chevron-left" size={20} />
+        </button>
         <span className="header-title">Roteiro Final</span>
-        <button className="btn-icon" onClick={partilhar}>⬆</button>
+        <button className="btn-icon" onClick={partilhar}>
+          <Icon name="share" size={18} />
+        </button>
       </div>
       <div className="content">
         <div className="preview-header">
@@ -47,7 +52,7 @@ export default function PreviewScreen() {
         ) : (
           <div style={{ background: 'var(--bg2)', borderRadius: 'var(--radius)', boxShadow: 'var(--shadow-sm)', overflow: 'hidden' }}>
             {momentos.map((m, i) => {
-              const resp = m.tipo === 'pessoa' ? (m.responsavel || '—') : m.tipo === 'video' ? '▶ Vídeo' : '🏗 Projeção'
+              const resp = m.tipo === 'pessoa' ? (m.responsavel || '—') : m.tipo === 'video' ? 'Vídeo' : 'Projeção'
               return (
                 <div key={i} className="preview-item" style={{ padding: '14px 16px' }}>
                   <div className="preview-n">{i + 1}</div>
@@ -69,8 +74,13 @@ export default function PreviewScreen() {
         )}
       </div>
       <div className="fab" style={{ display: 'flex', gap: '8px' }}>
-        <button className="btn-primary btn-accent" onClick={onGerarPDF} style={{ flex: 1 }}>📄 Gerar PDF</button>
-        <button className="btn-primary" onClick={partilhar} style={{ flex: '0 0 54px', padding: '15px 0' }}>⬆</button>
+        <button className="btn-primary btn-accent" onClick={onGerarPDF} style={{ flex: 1 }}>
+          <Icon name="pdf" size={18} color="var(--accent-text)" />
+          Gerar PDF
+        </button>
+        <button className="btn-primary" onClick={partilhar} style={{ flex: '0 0 54px', padding: '15px 0' }}>
+          <Icon name="share" size={18} />
+        </button>
       </div>
     </div>
   )
