@@ -2,6 +2,7 @@ import { sb } from '../supabase'
 import { useApp } from '../context/AppContext'
 import { formatarData } from '../utils/formatarData'
 import Icon from '../components/Icon'
+import DarkGrainBackground from '../components/DarkGrainBackground'
 
 export default function ListaScreen() {
   const {
@@ -22,51 +23,80 @@ export default function ListaScreen() {
     setRoteiros(lista)
   }
 
+  const glass = {
+    background: 'rgba(255,255,255,0.05)',
+    backdropFilter: 'blur(24px) saturate(140%)',
+    WebkitBackdropFilter: 'blur(24px) saturate(140%)',
+    border: '1px solid rgba(255,255,255,0.07)',
+  }
+
   return (
-    <div className="screen">
-      <div className="header">
-        <Icon name="clipboard" size={22} />
-        <span className="header-title">Roteiro do Culto</span>
+    <div className="screen" style={{ position: 'relative', overflow: 'hidden', background: '#060606' }}>
+      <DarkGrainBackground />
+
+      {/* Header */}
+      <div className="header" style={{
+        position: 'relative', zIndex: 2,
+        background: 'rgba(6,6,6,0.6)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        color: 'rgba(255,255,255,0.88)',
+      }}>
+        <Icon name="clipboard" size={22} color="rgba(255,255,255,0.6)" />
+        <span className="header-title" style={{ color: 'rgba(255,255,255,0.88)' }}>Roteiro do Culto</span>
         {ehAdmin && (
-          <button className="btn-icon" onClick={() => navigate('membros')}>
+          <button className="btn-icon" onClick={() => navigate('membros')} style={{ color: 'rgba(255,255,255,0.5)' }}>
             <Icon name="users" size={18} />
           </button>
         )}
-        <button className="btn-icon" onClick={logout}>
+        <button className="btn-icon" onClick={logout} style={{ color: 'rgba(255,255,255,0.5)' }}>
           <Icon name="logout" size={18} />
         </button>
       </div>
 
-      <div className="content">
+      {/* Content */}
+      <div className="content" style={{ position: 'relative', zIndex: 1 }}>
         {roteiros.length === 0 ? (
-          <div className="empty-state">
-            <div className="icon" style={{ fontSize: 48 }}>
-              <Icon name="clipboard" size={52} color="var(--text3)" />
+          <div className="empty-state" style={{ color: 'rgba(255,255,255,0.3)' }}>
+            <div className="icon">
+              <Icon name="clipboard" size={52} color="rgba(255,255,255,0.15)" />
             </div>
-            <p>{ehAdmin ? 'Nenhum roteiro ainda.\nCria o primeiro!' : 'Nenhum roteiro ainda.\nAguarda o admin criar um.'}</p>
+            <p style={{ color: 'rgba(255,255,255,0.3)' }}>
+              {ehAdmin ? 'Nenhum roteiro ainda.\nCria o primeiro!' : 'Nenhum roteiro ainda.\nAguarda o admin criar um.'}
+            </p>
           </div>
         ) : (
           <>
-            <div className="group-label">Roteiros</div>
+            <div className="group-label" style={{ color: 'rgba(255,255,255,0.3)' }}>Roteiros</div>
             {roteiros.map((r, i) => (
-              <div key={r.id} className="card" onClick={() => abrirRoteiro(i, roteiros)}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div
+                key={r.id}
+                className="card"
+                onClick={() => abrirRoteiro(i, roteiros)}
+                style={{ ...glass, borderRadius: 16, marginBottom: 10, cursor: 'pointer' }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div style={{
                     width: 44, height: 44, borderRadius: 12,
-                    background: 'var(--bg3)',
+                    background: 'rgba(255,255,255,0.07)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: 'var(--text2)', flexShrink: 0,
+                    flexShrink: 0,
                   }}>
-                    <Icon name="document" size={22} />
+                    <Icon name="document" size={22} color="rgba(255,255,255,0.45)" />
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div className="card-title">{r.nome}</div>
-                    <div className="card-sub">
+                    <div className="card-title" style={{ color: 'rgba(255,255,255,0.85)' }}>{r.nome}</div>
+                    <div className="card-sub" style={{ color: 'rgba(255,255,255,0.35)' }}>
                       {formatarData(r.data)} · {r.momentos.length} momento{r.momentos.length !== 1 ? 's' : ''}
                     </div>
                   </div>
                   {ehAdmin && (
-                    <button className="btn-del" onClick={e => apagarRoteiro(e, i)}>
+                    <button
+                      className="btn-del"
+                      onClick={e => apagarRoteiro(e, i)}
+                      style={{ color: 'rgba(255,255,255,0.3)' }}
+                    >
                       <Icon name="trash" size={18} />
                     </button>
                   )}
@@ -77,10 +107,15 @@ export default function ListaScreen() {
         )}
       </div>
 
+      {/* FAB */}
       {ehAdmin && (
-        <div className="fab">
-          <button className="btn-primary btn-accent" onClick={abrirNovoRoteiro}>
-            <Icon name="plus" size={18} color="var(--accent-text)" />
+        <div className="fab" style={{ position: 'relative', zIndex: 2 }}>
+          <button
+            className="btn-primary"
+            onClick={abrirNovoRoteiro}
+            style={{ background: 'rgba(255,255,255,0.90)', color: '#080808' }}
+          >
+            <Icon name="plus" size={18} color="#080808" />
             Novo Roteiro
           </button>
         </div>

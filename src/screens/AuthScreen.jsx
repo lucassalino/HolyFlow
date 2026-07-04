@@ -1,67 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { sb } from '../supabase'
 import { traduzirErroAuth } from '../utils/auth'
 import { useApp } from '../context/AppContext'
-
-function DarkGrainBackground() {
-  const ref = useRef(null)
-  useEffect(() => {
-    const canvas = ref.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    const W = 390, H = 844
-    canvas.width = W
-    canvas.height = H
-
-    ctx.fillStyle = '#060606'
-    ctx.fillRect(0, 0, W, H)
-
-    const g1 = ctx.createRadialGradient(W*0.78, H*0.22, 0, W*0.78, H*0.22, W*0.55)
-    g1.addColorStop(0, 'rgba(80,80,80,0.32)')
-    g1.addColorStop(0.4, 'rgba(50,50,50,0.18)')
-    g1.addColorStop(1, 'rgba(0,0,0,0)')
-    ctx.fillStyle = g1; ctx.fillRect(0, 0, W, H)
-
-    const g2 = ctx.createRadialGradient(W*0.65, H*0.52, 0, W*0.65, H*0.52, W*0.5)
-    g2.addColorStop(0, 'rgba(65,65,65,0.28)')
-    g2.addColorStop(0.5, 'rgba(35,35,35,0.14)')
-    g2.addColorStop(1, 'rgba(0,0,0,0)')
-    ctx.fillStyle = g2; ctx.fillRect(0, 0, W, H)
-
-    const g3 = ctx.createRadialGradient(W*0.42, H*0.78, 0, W*0.42, H*0.78, W*0.45)
-    g3.addColorStop(0, 'rgba(55,55,55,0.22)')
-    g3.addColorStop(0.6, 'rgba(25,25,25,0.10)')
-    g3.addColorStop(1, 'rgba(0,0,0,0)')
-    ctx.fillStyle = g3; ctx.fillRect(0, 0, W, H)
-
-    const g4 = ctx.createRadialGradient(W*0.05, H*0.05, 0, W*0.05, H*0.05, W*0.4)
-    g4.addColorStop(0, 'rgba(0,0,0,0.3)')
-    g4.addColorStop(1, 'rgba(0,0,0,0)')
-    ctx.fillStyle = g4; ctx.fillRect(0, 0, W, H)
-
-    const imgData = ctx.getImageData(0, 0, W, H)
-    const d = imgData.data
-    let seed = 137
-    const rand = () => {
-      seed ^= seed << 13; seed ^= seed >> 17; seed ^= seed << 5
-      return (seed >>> 0) / 0xffffffff
-    }
-    for (let i = 0; i < d.length; i += 4) {
-      const n = (rand() - 0.5) * 44
-      d[i]   = Math.max(0, Math.min(255, d[i]   + n))
-      d[i+1] = Math.max(0, Math.min(255, d[i+1] + n))
-      d[i+2] = Math.max(0, Math.min(255, d[i+2] + n))
-    }
-    ctx.putImageData(imgData, 0, 0)
-  }, [])
-
-  return (
-    <canvas
-      ref={ref}
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
-    />
-  )
-}
+import DarkGrainBackground from '../components/DarkGrainBackground'
 
 export default function AuthScreen() {
   const { setSessaoAtual, depoisDoLogin } = useApp()
