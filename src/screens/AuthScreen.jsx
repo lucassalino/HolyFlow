@@ -1,108 +1,63 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { sb } from '../supabase'
 import { traduzirErroAuth } from '../utils/auth'
 import { useApp } from '../context/AppContext'
 
-function BibleBackground() {
+function DarkGrainBackground() {
+  const ref = useRef(null)
+  useEffect(() => {
+    const canvas = ref.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    const W = 390, H = 844
+    canvas.width = W
+    canvas.height = H
+
+    ctx.fillStyle = '#07090e'
+    ctx.fillRect(0, 0, W, H)
+
+    const blobs = [
+      { x: 0.72, y: 0.28, r: 0.38, c: 'rgba(60,90,130,0.28)' },
+      { x: 0.25, y: 0.62, r: 0.32, c: 'rgba(40,70,110,0.22)' },
+      { x: 0.55, y: 0.72, r: 0.28, c: 'rgba(50,85,120,0.18)' },
+      { x: 0.1,  y: 0.18, r: 0.22, c: 'rgba(30,55,90,0.16)' },
+    ]
+    blobs.forEach(b => {
+      const gx = b.x * W, gy = b.y * H, gr = b.r * Math.max(W, H)
+      const g = ctx.createRadialGradient(gx, gy, 0, gx, gy, gr)
+      g.addColorStop(0, b.c)
+      g.addColorStop(1, 'rgba(0,0,0,0)')
+      ctx.fillStyle = g
+      ctx.fillRect(0, 0, W, H)
+    })
+
+    const imgData = ctx.getImageData(0, 0, W, H)
+    const d = imgData.data
+    let seed = 42
+    const rand = () => {
+      seed = (seed * 1664525 + 1013904223) & 0xffffffff
+      return (seed >>> 0) / 0xffffffff
+    }
+    for (let i = 0; i < d.length; i += 4) {
+      const n = (rand() - 0.5) * 38
+      d[i]   = Math.max(0, Math.min(255, d[i]   + n))
+      d[i+1] = Math.max(0, Math.min(255, d[i+1] + n))
+      d[i+2] = Math.max(0, Math.min(255, d[i+2] + n))
+    }
+    ctx.putImageData(imgData, 0, 0)
+
+    const bot = ctx.createLinearGradient(0, H * 0.45, 0, H)
+    bot.addColorStop(0, 'rgba(4,6,10,0)')
+    bot.addColorStop(1, 'rgba(4,6,10,0.55)')
+    ctx.fillStyle = bot
+    ctx.fillRect(0, 0, W, H)
+  }, [])
+
   return (
-    <svg
-      viewBox="0 0 390 844"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: 'absolute', inset: 0,
-        width: '100%', height: '100%',
-        opacity: 0.13,
-      }}
-      preserveAspectRatio="xMidYMid slice"
-    >
-      {/* Dark background */}
-      <rect width="390" height="844" fill="#000" />
-
-      {/* Book 1 — top-left, rotated -35deg */}
-      <g transform="rotate(-35 120 200)">
-        {/* Cover */}
-        <rect x="20" y="100" width="200" height="260" rx="4" fill="#111" stroke="#333" strokeWidth="1.5" />
-        {/* Spine */}
-        <rect x="20" y="100" width="14" height="260" rx="2" fill="#222" />
-        {/* Left page */}
-        <rect x="34" y="108" width="86" height="244" fill="#e8e8e8" />
-        {/* Right page */}
-        <rect x="122" y="108" width="90" height="244" fill="#f0f0f0" />
-        {/* Center gutter shadow */}
-        <rect x="118" y="108" width="8" height="244" fill="#ccc" opacity="0.5" />
-        {/* Text lines left page */}
-        {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(i => (
-          <rect key={i} x="40" y={118 + i * 12} width={i % 5 === 4 ? 55 : 74} height="1.5" fill="#888" opacity="0.7" />
-        ))}
-        {/* Bold heading left */}
-        <rect x="40" y="116" width="60" height="3" fill="#444" />
-        {/* Text lines right page */}
-        {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(i => (
-          <rect key={i} x="128" y={118 + i * 12} width={i % 4 === 3 ? 50 : 72} height="1.5" fill="#888" opacity="0.7" />
-        ))}
-        {/* Chapter number */}
-        <text x="128" y="145" fontSize="28" fill="#555" fontFamily="Georgia, serif" fontWeight="bold">3</text>
-        {/* Book title on spine */}
-        <text x="27" y="230" fontSize="7" fill="#999" fontFamily="Georgia, serif" writingMode="tb">HABACUQUE</text>
-      </g>
-
-      {/* Book 2 — center, rotated 20deg */}
-      <g transform="rotate(20 240 500)">
-        <rect x="130" y="380" width="220" height="280" rx="4" fill="#0a0a0a" stroke="#2a2a2a" strokeWidth="1.5" />
-        <rect x="130" y="380" width="14" height="280" rx="2" fill="#1a1a1a" />
-        <rect x="144" y="389" width="96" height="262" fill="#e5e5e5" />
-        <rect x="242" y="389" width="100" height="262" fill="#efefef" />
-        <rect x="238" y="389" width="8" height="262" fill="#bbb" opacity="0.4" />
-        {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map(i => (
-          <rect key={i} x="150" y={399 + i * 11} width={i % 6 === 5 ? 60 : 82} height="1.5" fill="#777" opacity="0.7" />
-        ))}
-        <rect x="150" y="397" width="70" height="3" fill="#333" />
-        {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map(i => (
-          <rect key={i} x="248" y={399 + i * 11} width={i % 5 === 4 ? 55 : 84} height="1.5" fill="#777" opacity="0.7" />
-        ))}
-        <text x="150" y="428" fontSize="22" fill="#444" fontFamily="Georgia, serif" fontWeight="bold">1</text>
-        <text x="150" y="406" fontSize="6" fill="#666" fontFamily="Georgia, serif" letterSpacing="1">SOFONIAS 1-2</text>
-        <text x="137" y="520" fontSize="7" fill="#888" fontFamily="Georgia, serif" writingMode="tb">SOFONIAS</text>
-      </g>
-
-      {/* Book 3 — bottom-right, rotated -15deg */}
-      <g transform="rotate(-15 310 720)">
-        <rect x="180" y="600" width="200" height="250" rx="4" fill="#0d0d0d" stroke="#2a2a2a" strokeWidth="1.5" />
-        <rect x="180" y="600" width="14" height="250" rx="2" fill="#1e1e1e" />
-        <rect x="194" y="608" width="86" height="234" fill="#e8e8e8" />
-        <rect x="282" y="608" width="90" height="234" fill="#f2f2f2" />
-        <rect x="278" y="608" width="8" height="234" fill="#c0c0c0" opacity="0.4" />
-        {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17].map(i => (
-          <rect key={i} x="200" y={618 + i * 12} width={i % 5 === 4 ? 55 : 72} height="1.5" fill="#888" opacity="0.7" />
-        ))}
-        <rect x="200" y="617" width="55" height="2.5" fill="#444" />
-        {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17].map(i => (
-          <rect key={i} x="288" y={618 + i * 12} width={i % 4 === 3 ? 50 : 74} height="1.5" fill="#888" opacity="0.7" />
-        ))}
-        <text x="187" y="720" fontSize="7" fill="#999" fontFamily="Georgia, serif" writingMode="tb">LIVRO DE JONAS</text>
-      </g>
-
-      {/* Laptop keyboard hint — top-right */}
-      <g transform="rotate(30 350 80)" opacity="0.6">
-        <rect x="230" y="-60" width="220" height="160" rx="8" fill="#0a0a0a" stroke="#222" strokeWidth="1" />
-        {/* Key rows */}
-        {[0,1,2,3].map(row => (
-          [0,1,2,3,4,5,6,7,8,9].map(col => (
-            <rect key={`${row}-${col}`}
-              x={238 + col * 20} y={-52 + row * 32}
-              width="15" height="24" rx="3"
-              fill="#1a1a1a" stroke="#333" strokeWidth="0.5"
-            />
-          ))
-        ))}
-      </g>
-
-      {/* Subtle cross watermark center */}
-      <g opacity="0.06">
-        <rect x="185" y="320" width="20" height="80" rx="3" fill="white" />
-        <rect x="165" y="345" width="60" height="20" rx="3" fill="white" />
-      </g>
-    </svg>
+    <canvas
+      ref={ref}
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
+    />
   )
 }
 
@@ -142,62 +97,77 @@ export default function AuthScreen() {
 
   const onKey = (e) => { if (e.key === 'Enter') submeter() }
 
+  const fieldStyle = {
+    background: 'rgba(255,255,255,0.06)',
+    border: '1px solid rgba(255,255,255,0.08)',
+    color: 'rgba(255,255,255,0.85)',
+    borderRadius: 10,
+  }
+
+  const labelStyle = {
+    fontSize: 10,
+    fontWeight: 600,
+    letterSpacing: '0.08em',
+    textTransform: 'uppercase',
+    color: 'rgba(255,255,255,0.38)',
+    marginBottom: 6,
+    display: 'block',
+  }
+
   return (
-    <div className="screen" style={{ position: 'relative', overflow: 'hidden', background: '#0d0d0d' }}>
-      <BibleBackground />
-
-      {/* Gradient overlay to darken bottom where form sits */}
+    <div className="screen" style={{ position: 'relative', overflow: 'hidden', background: '#07090e' }}>
+      <DarkGrainBackground />
       <div style={{
-        position: 'absolute', inset: 0,
-        background: 'linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.7) 40%, rgba(13,13,13,0.92) 100%)',
-        pointerEvents: 'none',
-      }} />
-
-      <div className="auth-wrap" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="auth-logo">
-          <div style={{ fontSize: 52 }}>📋</div>
-          <h1 style={{ color: '#f0f0f5' }}>Roteiro do Culto</h1>
-          <p style={{ color: 'rgba(240,240,245,0.6)' }}>Cria e partilha roteiros com a tua equipa</p>
+        position: 'absolute', inset: 0, zIndex: 1,
+        display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'flex-end',
+        padding: '0 24px 44px',
+      }}>
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+          <h1 style={{ fontSize: 22, fontWeight: 600, letterSpacing: '-0.3px', color: 'rgba(255,255,255,0.92)', marginBottom: 5 }}>
+            Roteiro do Culto
+          </h1>
+          <p style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.38)' }}>
+            Cria e partilha roteiros com a tua equipa
+          </p>
         </div>
-
         <div style={{
-          background: 'rgba(28,28,36,0.85)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          borderRadius: 'var(--radius)',
-          padding: '20px',
+          width: '100%',
+          background: 'rgba(255,255,255,0.055)',
+          backdropFilter: 'blur(28px) saturate(160%)',
+          WebkitBackdropFilter: 'blur(28px) saturate(160%)',
+          borderRadius: 20,
           border: '1px solid rgba(255,255,255,0.08)',
+          padding: '24px 20px 20px',
         }}>
           {erro && <div className="auth-error">{erro}</div>}
-
           {modo === 'registo' && (
             <div className="campo">
-              <label style={{ color: 'rgba(255,255,255,0.4)' }}>O teu nome</label>
-              <input type="text" value={nome} onChange={e => setNome(e.target.value)} onKeyDown={onKey} autoComplete="name" placeholder="João Silva"
-                style={{ background: 'rgba(255,255,255,0.07)', color: '#f0f0f5', border: '1px solid rgba(255,255,255,0.1)' }} />
+              <label style={labelStyle}>O teu nome</label>
+              <input type="text" value={nome} onChange={e => setNome(e.target.value)} onKeyDown={onKey} autoComplete="name" style={fieldStyle} />
             </div>
           )}
           <div className="campo">
-            <label style={{ color: 'rgba(255,255,255,0.4)' }}>Email</label>
-            <input type="email" value={email} onChange={e => setEmail(e.target.value)} onKeyDown={onKey} autoComplete="email" placeholder="email@exemplo.com"
-              style={{ background: 'rgba(255,255,255,0.07)', color: '#f0f0f5', border: '1px solid rgba(255,255,255,0.1)' }} />
+            <label style={labelStyle}>Email</label>
+            <input type="email" value={email} onChange={e => setEmail(e.target.value)} onKeyDown={onKey} autoComplete="email" style={fieldStyle} />
           </div>
-          <div className="campo" style={{ marginBottom: '20px' }}>
-            <label style={{ color: 'rgba(255,255,255,0.4)' }}>Password</label>
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={onKey} autoComplete="current-password" placeholder="••••••••"
-              style={{ background: 'rgba(255,255,255,0.07)', color: '#f0f0f5', border: '1px solid rgba(255,255,255,0.1)' }} />
+          <div className="campo">
+            <label style={labelStyle}>Password</label>
+            <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={onKey} autoComplete="current-password" style={fieldStyle} />
           </div>
-
-          <button className="btn-primary btn-accent" onClick={submeter} disabled={loading}
-            style={{ background: '#f0f0f5', color: '#0d0d0d', border: 'none' }}>
+          <button
+            className="btn-primary"
+            onClick={submeter}
+            disabled={loading}
+            style={{ background: 'rgba(255,255,255,0.92)', color: '#07090e', marginTop: 4 }}
+          >
             {loading ? 'A processar...' : modo === 'registo' ? 'Criar Conta' : 'Entrar'}
           </button>
         </div>
-
-        <div className="auth-link" style={{ color: 'rgba(240,240,245,0.5)' }}>
+        <div style={{ textAlign: 'center', marginTop: 18, fontSize: 12.5, color: 'rgba(255,255,255,0.32)' }}>
           {modo === 'login'
-            ? <>Ainda não tens conta? <span style={{ color: '#f0f0f5', fontWeight: 700 }} onClick={() => mudarModo('registo')}>Criar conta</span></>
-            : <>Já tens conta? <span style={{ color: '#f0f0f5', fontWeight: 700 }} onClick={() => mudarModo('login')}>Entrar</span></>}
+            ? <>Ainda não tens conta? <span onClick={() => mudarModo('registo')} style={{ color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>Criar conta</span></>
+            : <>Já tens conta? <span onClick={() => mudarModo('login')} style={{ color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>Entrar</span></>}
         </div>
       </div>
     </div>
