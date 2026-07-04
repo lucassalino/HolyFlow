@@ -21,6 +21,7 @@
   --radius-pill: 99px;
   --shadow: 0 2px 12px rgba(0,0,0,0.07);
   --shadow-sm: 0 1px 6px rgba(0,0,0,0.05);
+  --panel-w: 430px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -54,8 +55,10 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 #root { height: 100%; }
+
+/* ── SHELL ─────────────────────────────────────── */
 .app {
-  max-width: 430px;
+  max-width: var(--panel-w);
   margin: 0 auto;
   height: 100%;
   display: flex;
@@ -64,11 +67,54 @@ html, body {
   overflow: hidden;
   background: var(--bg);
 }
+
+/* Tablet */
+@media (min-width: 640px) {
+  :root { --panel-w: 560px; }
+  html, body { overflow: hidden; }
+  body { background: #0a0a0f; }
+  .app {
+    margin: 0 auto;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 32px 80px rgba(0,0,0,0.6);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  :root { --panel-w: 100%; }
+  html, body { overflow: hidden; }
+  body { background: #07090e; }
+  .app {
+    max-width: 1100px;
+    flex-direction: row;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  /* Sidebar (first .screen in row layout) gets fixed width */
+  .app > .screen:first-child {
+    width: 320px;
+    min-width: 320px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    height: 100%;
+  }
+  /* Main content area */
+  .app > .screen:not(:first-child) {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
 .screen {
   display: flex;
   flex-direction: column;
   height: 100%;
   background: var(--bg);
+  flex-shrink: 0;
+  width: 100%;
 }
 .screen.slide-in { animation: slideIn 0.28s cubic-bezier(0.4,0,0.2,1) forwards; }
 @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
@@ -81,6 +127,9 @@ html, body {
   gap: 12px;
   background: var(--bg);
   flex-shrink: 0;
+}
+@media (min-width: 640px) {
+  .header { padding: 18px 24px 14px; }
 }
 .header-title {
   font-size: 18px;
@@ -130,6 +179,22 @@ html, body {
   -webkit-overflow-scrolling: touch;
   padding-bottom: 110px;
 }
+@media (min-width: 640px) {
+  .content { padding: 16px 24px 120px; }
+}
+@media (min-width: 1024px) {
+  .content {
+    padding: 24px 32px 100px;
+    max-width: 760px;
+  }
+  /* Card grid on desktop */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .cards-grid .card { margin-bottom: 0; }
+}
 
 /* BOTÕES */
 .btn-primary {
@@ -161,10 +226,24 @@ html, body {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 430px;
+  max-width: var(--panel-w);
   padding: 12px 20px;
   padding-bottom: calc(16px + env(safe-area-inset-bottom));
   background: var(--bg);
+}
+@media (min-width: 640px) {
+  .fab { padding: 16px 24px 20px; }
+}
+@media (min-width: 1024px) {
+  .fab {
+    position: sticky;
+    bottom: 0;
+    left: auto;
+    transform: none;
+    width: auto;
+    max-width: 760px;
+    padding: 16px 32px 24px;
+  }
 }
 
 /* CARDS */
@@ -213,6 +292,17 @@ html, body {
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 38px;
+}
+/* Two-column form fields on desktop */
+@media (min-width: 1024px) {
+  .campos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 16px;
+  }
+  .campos-grid .campo:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
 }
 
 /* TIPO SELECTOR */
@@ -434,4 +524,12 @@ html, body {
   letter-spacing: 0.8px;
   margin-bottom: 10px;
   margin-top: 6px;
+}
+
+/* Desktop: dark grain screens fill viewport behind the panel */
+@media (min-width: 640px) {
+  .screen[style*='background: #060606'],
+  .screen[style*="background: #060606"] {
+    border-radius: 0;
+  }
 }
