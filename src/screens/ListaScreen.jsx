@@ -44,8 +44,7 @@ export default function ListaScreen() {
         WebkitBackdropFilter: 'blur(20px)',
         borderBottom: '1px solid rgba(255,255,255,0.06)',
       }}>
-        <Icon name="clipboard" size={22} color="rgba(255,255,255,0.6)" />
-        <span className="header-title" style={{ color: 'rgba(255,255,255,0.88)' }}>Roteiro do Culto</span>
+        <span className="header-title" style={{ color: 'rgba(255,255,255,0.88)', fontWeight: 700, letterSpacing: '-0.3px' }}>HolyFlow</span>
         {ehAdmin && (
           <button className="btn-icon" onClick={() => navigate('membros')} style={{ color: 'rgba(255,255,255,0.5)' }}>
             <Icon name="users" size={18} />

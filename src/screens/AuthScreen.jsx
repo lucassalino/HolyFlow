@@ -67,8 +67,8 @@ export default function AuthScreen() {
         padding: '0 24px',
       }}>
         <div style={{ textAlign: 'center', marginBottom: 36 }}>
-          <h1 style={{ fontSize: 23, fontWeight: 600, letterSpacing: '-0.4px', color: 'rgba(255,255,255,0.90)', marginBottom: 6 }}>
-            Roteiro do Culto
+          <h1 style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-0.5px', color: 'rgba(255,255,255,0.92)', marginBottom: 6 }}>
+            HolyFlow
           </h1>
           <p style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.35)' }}>
             Cria e partilha roteiros com a tua equipa
