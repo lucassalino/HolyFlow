@@ -1,25 +1,20 @@
+import { useEffect } from 'react'
+import { sb } from './supabase'
 import { AppProvider, useApp } from './context/AppContext'
 import AuthScreen from './screens/AuthScreen'
-import ListaScreen from './screens/ListaScreen'
-import EditorScreen from './screens/EditorScreen'
-import MomentoScreen from './screens/MomentoScreen'
-import PreviewScreen from './screens/PreviewScreen'
-import MembrosScreen from './screens/MembrosScreen'
 import OrgEscolhaScreen from './screens/OrgEscolhaScreen'
 import OrgCriarScreen from './screens/OrgCriarScreen'
 import OrgEntrarScreen from './screens/OrgEntrarScreen'
 import OrgCodigoScreen from './screens/OrgCodigoScreen'
 import PendenteScreen from './screens/PendenteScreen'
-import LoadingScreen from './screens/LoadingScreen'
+import ListaScreen from './screens/ListaScreen'
+import EditorScreen from './screens/EditorScreen'
+import MomentoScreen from './screens/MomentoScreen'
+import PreviewScreen from './screens/PreviewScreen'
+import MembrosScreen from './screens/MembrosScreen'
 
-const SCREENS = {
-  loading: LoadingScreen,
+const AUTH_SCREENS = {
   auth: AuthScreen,
-  lista: ListaScreen,
-  editor: EditorScreen,
-  momento: MomentoScreen,
-  preview: PreviewScreen,
-  membros: MembrosScreen,
   'org-escolha': OrgEscolhaScreen,
   'org-criar': OrgCriarScreen,
   'org-entrar': OrgEntrarScreen,
@@ -27,12 +22,57 @@ const SCREENS = {
   pendente: PendenteScreen,
 }
 
+const APP_SCREENS = {
+  editor: EditorScreen,
+  momento: MomentoScreen,
+  preview: PreviewScreen,
+  membros: MembrosScreen,
+}
+
 function AppInner() {
-  const { screen } = useApp()
-  const Screen = SCREENS[screen] || LoadingScreen
+  const { screen, navigate, setSessaoAtual, depoisDoLogin } = useApp()
+
+  useEffect(() => {
+    sb.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        setSessaoAtual(session)
+        depoisDoLogin()
+      } else {
+        navigate('auth')
+      }
+    })
+  }, [])
+
+  if (screen === 'loading') {
+    return (
+      <div className="app" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <span style={{ color: 'var(--text3)', fontSize: '14px' }}>A carregar...</span>
+      </div>
+    )
+  }
+
+  // Auth flow: full-screen single panel
+  if (AUTH_SCREENS[screen]) {
+    const Screen = AUTH_SCREENS[screen]
+    return (
+      <div className="app">
+        <Screen key={screen} />
+      </div>
+    )
+  }
+
+  // App flow: two-panel layout on desktop, single panel on mobile/tablet
+  const RightScreen = APP_SCREENS[screen]
   return (
-    <div className="app">
-      <Screen />
+    <div className="app app--split">
+      <div className={`app-sidebar${screen === 'lista' ? ' app-sidebar--active' : ''}`}>
+        <ListaScreen />
+      </div>
+      {RightScreen && (
+        <div className="app-main app-main--active">
+          <RightScreen key={screen} />
+        </div>
+      )}
     </div>
   )
 }

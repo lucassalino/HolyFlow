@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useApp } from '../context/AppContext'
-import Icon from '../components/Icon'
 
 const OPCOES = ['Oração','Louvor','Dízimos / Ofertas','Oração p/ Crianças','Visitantes','Avisos','Ministração','Palavra','Ceia do Senhor','Testemunho','Encerramento']
 
@@ -30,17 +29,22 @@ export default function MomentoScreen() {
     const nome = sel === 'outro' ? custom.trim() : sel
     if (!nome) return
     const novoMomento = {
-      nome, tipo,
+      nome,
+      tipo,
       responsavel: tipo === 'pessoa' ? responsavel.trim() : '',
-      obs: obs.trim(), duracao: duracao.trim(),
+      obs: obs.trim(),
+      duracao: duracao.trim(),
       palavraTema: (sel === 'Palavra' || sel === 'Ministração') ? palavraTema.trim() : '',
       palavraTexto: (sel === 'Palavra' || sel === 'Ministração') ? palavraTexto.trim() : '',
       musicas: sel === 'Louvor' ? musicas.filter(x => x.trim()) : [],
       avisos: sel === 'Avisos' ? avisos.filter(x => x.trim()) : [],
     }
     const novo = [...momentos]
-    if (momentoEditandoIdx !== null) novo[momentoEditandoIdx] = novoMomento
-    else novo.push(novoMomento)
+    if (momentoEditandoIdx !== null) {
+      novo[momentoEditandoIdx] = novoMomento
+    } else {
+      novo.push(novoMomento)
+    }
     setMomentos(novo)
     navigate('editor')
   }
@@ -60,9 +64,7 @@ export default function MomentoScreen() {
   return (
     <div className="screen">
       <div className="header">
-        <button className="btn-back" onClick={() => navigate('editor')}>
-          <Icon name="chevron-left" size={20} />
-        </button>
+        <button className="btn-back" onClick={() => navigate('editor')}>‹</button>
         <span className="header-title">{momentoEditandoIdx !== null ? 'Editar Momento' : 'Adicionar Momento'}</span>
       </div>
       <div className="content">
@@ -84,38 +86,40 @@ export default function MomentoScreen() {
 
         {showMusicas && (
           <div className="extra-section">
-            <div className="extra-section-title">Músicas do Louvor</div>
+            <div className="extra-section-title">🎵 Músicas do Louvor</div>
             {musicas.map((v, i) => (
               <div key={i} className="extra-row">
+                <span style={{ fontSize: '15px', flexShrink: 0 }}>🎵</span>
                 <input type="text" placeholder="Nome da música..." value={v} onChange={e => updateMusica(i, e.target.value)} />
-                <button className="btn-del" onClick={() => removeMusica(i)}><Icon name="x" size={15} /></button>
+                <button className="btn-del" onClick={() => removeMusica(i)}>✕</button>
               </div>
             ))}
-            <button className="btn-add-extra" onClick={addMusica}><Icon name="plus" size={15} /> Adicionar música</button>
+            <button className="btn-add-extra" onClick={addMusica}>＋ Adicionar música</button>
           </div>
         )}
 
         {showAvisos && (
           <div className="extra-section">
-            <div className="extra-section-title">Lista de Avisos</div>
+            <div className="extra-section-title">📢 Lista de Avisos</div>
             {avisos.map((v, i) => (
               <div key={i} className="extra-row">
+                <span style={{ fontSize: '15px', flexShrink: 0 }}>📢</span>
                 <input type="text" placeholder="Texto do aviso..." value={v} onChange={e => updateAviso(i, e.target.value)} />
-                <button className="btn-del" onClick={() => removeAviso(i)}><Icon name="x" size={15} /></button>
+                <button className="btn-del" onClick={() => removeAviso(i)}>✕</button>
               </div>
             ))}
-            <button className="btn-add-extra" onClick={addAviso}><Icon name="plus" size={15} /> Adicionar aviso</button>
+            <button className="btn-add-extra" onClick={addAviso}>＋ Adicionar aviso</button>
           </div>
         )}
 
         {showPalavra && (
           <div className="extra-section">
-            <div className="extra-section-title">Detalhes da Palavra</div>
+            <div className="extra-section-title">📖 Detalhes da Palavra</div>
             <div className="extra-row" style={{ flexDirection: 'column', alignItems: 'stretch', gap: '8px' }}>
               <input type="text" placeholder="Tema da mensagem..." value={palavraTema} onChange={e => setPalavraTema(e.target.value)}
-                style={{ padding: '10px 12px', border: 'none', borderRadius: 'var(--radius-sm)', background: 'var(--bg3)', color: 'var(--text)', fontSize: '14px', fontFamily: 'inherit' }} />
+                style={{ padding: '8px 11px', border: '0.5px solid var(--border)', borderRadius: 'var(--radius-sm)', background: 'var(--bg)', color: 'var(--text)', fontSize: '14px', fontFamily: 'inherit' }} />
               <input type="text" placeholder="Texto bíblico (ex: João 3:16)..." value={palavraTexto} onChange={e => setPalavraTexto(e.target.value)}
-                style={{ padding: '10px 12px', border: 'none', borderRadius: 'var(--radius-sm)', background: 'var(--bg3)', color: 'var(--text)', fontSize: '14px', fontFamily: 'inherit' }} />
+                style={{ padding: '8px 11px', border: '0.5px solid var(--border)', borderRadius: 'var(--radius-sm)', background: 'var(--bg)', color: 'var(--text)', fontSize: '14px', fontFamily: 'inherit' }} />
             </div>
           </div>
         )}
@@ -149,8 +153,7 @@ export default function MomentoScreen() {
 
         <div style={{ marginTop: '8px', marginBottom: '24px' }}>
           <button className="btn-primary btn-accent" onClick={confirmar}>
-            <Icon name="check" size={18} color="var(--accent-text)" />
-            {momentoEditandoIdx !== null ? 'Guardar alterações' : 'Adicionar'}
+            ✓ {momentoEditandoIdx !== null ? 'Guardar alterações' : 'Adicionar'}
           </button>
         </div>
       </div>
