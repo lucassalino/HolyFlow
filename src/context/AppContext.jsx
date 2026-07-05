@@ -3,6 +3,8 @@ import { sb } from '../supabase'
 
 const AppContext = createContext(null)
 
+const LAST_ORG_KEY = 'holyflow_last_org_id'
+
 export function AppProvider({ children }) {
   const [screen, setScreen] = useState('loading')
   const [sessaoAtual, setSessaoAtual] = useState(null)
@@ -24,6 +26,7 @@ export function AppProvider({ children }) {
 
   const logout = useCallback(async () => {
     await sb.auth.signOut()
+    localStorage.removeItem(LAST_ORG_KEY)
     setSessaoAtual(null)
     setMembroAtual(null)
     setOrganizacaoAtual(null)
@@ -44,6 +47,7 @@ export function AppProvider({ children }) {
   }, [])
 
   const entrarNaApp = useCallback(async (membro, org) => {
+    localStorage.setItem(LAST_ORG_KEY, org.id)
     const lista = await carregarRoteirosDaNuvem(org.id)
     setRoteiros(lista)
     navigate('lista')
@@ -76,6 +80,7 @@ export function AppProvider({ children }) {
     setMembroAtual(null)
     setOrganizacaoAtual(null)
     setRoteiros([])
+    localStorage.removeItem(LAST_ORG_KEY)
     navigate('org-escolha')
   }, [membroAtual, minhasOrgs, navigate])
 
@@ -102,22 +107,29 @@ export function AppProvider({ children }) {
     const aprovados = membros.filter(m => m.status === 'aprovado')
     const pendentes = membros.filter(m => m.status === 'pendente')
 
-    if (aprovados.length === 1 && pendentes.length === 0) {
-      // único org aprovada — entrar direto
-      const membro = aprovados[0]
-      const org = membro.organizacoes
-      setMembroAtual(membro)
-      setOrganizacaoAtual(org)
-      await entrarNaApp(membro, org)
-    } else if (aprovados.length === 0 && pendentes.length === 1) {
-      // único pedido pendente
+    if (aprovados.length === 0 && pendentes.length === 1) {
       setMembroAtual(pendentes[0])
       setOrganizacaoAtual(pendentes[0].organizacoes)
       navigate('pendente')
-    } else {
-      // múltiplas orgs ou mix → user escolhe
-      navigate('org-escolha')
+      return
     }
+
+    if (aprovados.length === 0) {
+      navigate('org-escolha')
+      return
+    }
+
+    // Tentar entrar na última org usada
+    const lastOrgId = localStorage.getItem(LAST_ORG_KEY)
+    const ultimaMembro = lastOrgId
+      ? aprovados.find(m => m.organizacoes?.id === lastOrgId)
+      : null
+
+    const membroParaEntrar = ultimaMembro || aprovados[0]
+    const org = membroParaEntrar.organizacoes
+    setMembroAtual(membroParaEntrar)
+    setOrganizacaoAtual(org)
+    await entrarNaApp(membroParaEntrar, org)
   }, [navigate, entrarNaApp])
 
   const abrirNovoRoteiro = useCallback(() => {
