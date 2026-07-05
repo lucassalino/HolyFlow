@@ -3,7 +3,7 @@ import { sb } from '../supabase'
 import { traduzirErroAuth } from '../utils/auth'
 import { useApp } from '../context/AppContext'
 
-function GrainBackground() {
+export function GrainBackground() {
   const canvasRef = useRef(null)
 
   useEffect(() => {
@@ -11,35 +11,25 @@ function GrainBackground() {
     if (!canvas) return
     const ctx = canvas.getContext('2d')
 
-    const resize = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-      draw()
-    }
-
     const draw = () => {
-      const w = canvas.width
-      const h = canvas.height
+      const w = canvas.width = canvas.offsetWidth
+      const h = canvas.height = canvas.offsetHeight
 
-      // Dark base
       ctx.fillStyle = '#080808'
       ctx.fillRect(0, 0, w, h)
 
-      // Soft light spot — upper right
       const g1 = ctx.createRadialGradient(w * 0.72, h * 0.22, 0, w * 0.72, h * 0.22, w * 0.55)
       g1.addColorStop(0, 'rgba(80,80,80,0.28)')
       g1.addColorStop(1, 'rgba(0,0,0,0)')
       ctx.fillStyle = g1
       ctx.fillRect(0, 0, w, h)
 
-      // Soft light spot — lower center
       const g2 = ctx.createRadialGradient(w * 0.6, h * 0.72, 0, w * 0.6, h * 0.72, w * 0.5)
       g2.addColorStop(0, 'rgba(65,65,65,0.22)')
       g2.addColorStop(1, 'rgba(0,0,0,0)')
       ctx.fillStyle = g2
       ctx.fillRect(0, 0, w, h)
 
-      // Film grain
       const imageData = ctx.getImageData(0, 0, w, h)
       const data = imageData.data
       for (let i = 0; i < data.length; i += 4) {
@@ -51,16 +41,13 @@ function GrainBackground() {
       ctx.putImageData(imageData, 0, 0)
     }
 
-    resize()
-    window.addEventListener('resize', resize)
-    return () => window.removeEventListener('resize', resize)
+    draw()
+    window.addEventListener('resize', draw)
+    return () => window.removeEventListener('resize', draw)
   }, [])
 
   return (
-    <canvas
-      ref={canvasRef}
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
-    />
+    <canvas ref={canvasRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
   )
 }
 
@@ -111,7 +98,7 @@ export default function AuthScreen() {
       <div className="auth-wrap" style={{ position: 'relative', zIndex: 1 }}>
         <div className="auth-logo">
           <div style={{ fontSize: 52 }}>📋</div>
-          <h1 style={{ color: '#f0f0f5' }}>Roteiro do Culto</h1>
+          <h1 style={{ color: '#f0f0f5' }}>HolyFlow</h1>
           <p style={{ color: 'rgba(240,240,245,0.6)' }}>Cria e partilha roteiros com a tua equipa</p>
         </div>
         <div style={{
