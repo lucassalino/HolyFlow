@@ -64,6 +64,34 @@ html, body {
   overflow: hidden;
   background: var(--bg);
 }
+
+/* Split layout */
+.app--split { flex-direction: column; }
+.app-sidebar, .app-main { display: none; flex-direction: column; flex: 1; overflow: hidden; }
+.app-sidebar--active, .app-main--active { display: flex; }
+
+/* Tablet (640px+): full-width */
+@media (min-width: 640px) {
+  .app { max-width: 100%; }
+  .app--split { max-width: 100%; }
+}
+
+/* Desktop (1024px+): two-panel */
+@media (min-width: 1024px) {
+  .app--split { flex-direction: row; }
+  .app-sidebar { display: flex; width: 360px; flex-shrink: 0; border-right: 1px solid var(--bg3); }
+  .app-main { display: flex; flex: 1; }
+  .app--split:not(:has(.app-main--active)) .app-sidebar { width: 100%; border-right: none; }
+  .app-sidebar .fab,
+  .app-main .fab {
+    position: sticky;
+    left: 0;
+    transform: none;
+    max-width: 100%;
+    bottom: 0;
+  }
+}
+
 .screen {
   display: flex;
   flex-direction: column;

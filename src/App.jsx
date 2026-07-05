@@ -13,14 +13,16 @@ import MomentoScreen from './screens/MomentoScreen'
 import PreviewScreen from './screens/PreviewScreen'
 import MembrosScreen from './screens/MembrosScreen'
 
-const SCREENS = {
+const AUTH_SCREENS = {
   auth: AuthScreen,
   'org-escolha': OrgEscolhaScreen,
   'org-criar': OrgCriarScreen,
   'org-entrar': OrgEntrarScreen,
   'org-codigo': OrgCodigoScreen,
   pendente: PendenteScreen,
-  lista: ListaScreen,
+}
+
+const APP_SCREENS = {
   editor: EditorScreen,
   momento: MomentoScreen,
   preview: PreviewScreen,
@@ -49,10 +51,26 @@ function AppInner() {
     )
   }
 
-  const Screen = SCREENS[screen]
+  if (AUTH_SCREENS[screen]) {
+    const Screen = AUTH_SCREENS[screen]
+    return (
+      <div className="app">
+        <Screen key={screen} />
+      </div>
+    )
+  }
+
+  const RightScreen = APP_SCREENS[screen]
   return (
-    <div className="app">
-      {Screen ? <Screen key={screen} /> : null}
+    <div className="app app--split">
+      <div className={`app-sidebar${screen === 'lista' ? ' app-sidebar--active' : ''}`}>
+        <ListaScreen />
+      </div>
+      {RightScreen && (
+        <div className="app-main app-main--active">
+          <RightScreen key={screen} />
+        </div>
+      )}
     </div>
   )
 }
