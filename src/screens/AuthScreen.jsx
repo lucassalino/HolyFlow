@@ -95,6 +95,8 @@ export default function AuthScreen() {
         background: 'linear-gradient(to bottom, rgba(8,8,8,0.1) 0%, rgba(8,8,8,0.5) 50%, rgba(8,8,8,0.85) 100%)',
         pointerEvents: 'none',
       }} />
+
+      {/* Centered container */}
       <div style={{
         position: 'relative', zIndex: 1,
         flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -107,6 +109,7 @@ export default function AuthScreen() {
             <h1 style={{ color: '#f0f0f5', fontSize: 26, fontWeight: 800, marginTop: 12, letterSpacing: '-0.5px' }}>HolyFlow</h1>
             <p style={{ color: 'rgba(240,240,245,0.55)', fontSize: 14, marginTop: 6 }}>Cria e partilha roteiros com a tua equipa</p>
           </div>
+
           <div style={{
             background: 'rgba(28,28,36,0.85)',
             backdropFilter: 'blur(20px)',
@@ -138,6 +141,7 @@ export default function AuthScreen() {
               {loading ? 'A processar...' : modo === 'registo' ? 'Criar Conta' : 'Entrar'}
             </button>
           </div>
+
           <div className="auth-link" style={{ color: 'rgba(240,240,245,0.45)', marginTop: 18 }}>
             {modo === 'login'
               ? <>Ainda não tens conta? <span style={{ color: '#f0f0f5', fontWeight: 700 }} onClick={() => mudarModo('registo')}>Criar conta</span></>

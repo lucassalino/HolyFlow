@@ -4,6 +4,8 @@ import { formatarData } from '../utils/formatarData'
 import Icon from '../components/Icon'
 import { GrainBackground } from './AuthScreen'
 
+const DARK = 'rgba(8,8,8,0)'
+
 export default function ListaScreen() {
   const {
     membroAtual, organizacaoAtual,
@@ -39,6 +41,7 @@ export default function ListaScreen() {
         background: 'linear-gradient(to bottom, rgba(8,8,8,0.45) 0%, rgba(8,8,8,0.25) 40%, rgba(8,8,8,0.55) 100%)',
         pointerEvents: 'none',
       }} />
+
       <div className="header" style={{ position: 'relative', zIndex: 1, background: 'transparent' }}>
         <Icon name="clipboard" size={22} color="rgba(240,240,245,0.8)" />
         <span className="header-title" style={{ color: '#f0f0f5' }}>HolyFlow</span>
@@ -53,6 +56,7 @@ export default function ListaScreen() {
           <Icon name="logout" size={18} />
         </button>
       </div>
+
       <div className="content" style={{ position: 'relative', zIndex: 1 }}>
         {roteiros.length === 0 ? (
           <div className="empty-state">
@@ -94,6 +98,7 @@ export default function ListaScreen() {
           </>
         )}
       </div>
+
       {ehAdmin && (
         <div className="fab" style={{ position: 'relative', zIndex: 1, background: 'transparent', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <button className="btn-primary btn-accent" onClick={abrirNovoRoteiro}
