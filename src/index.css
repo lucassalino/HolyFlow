@@ -21,6 +21,38 @@
 html, body { height: 100%; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); }
 #root { height: 100%; }
 .app { max-width: 430px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+
+/* Split layout (used for app screens: lista + editor/etc) */
+.app--split { max-width: 430px; flex-direction: column; }
+/* Mobile: show only the active panel */
+.app-sidebar, .app-main { display: none; flex-direction: column; flex: 1; overflow: hidden; }
+.app-sidebar--active, .app-main--active { display: flex; }
+
+/* Tablet (640px+): full-width, no side centering, still single panel */
+@media (min-width: 640px) {
+  .app { max-width: 100%; }
+  .app--split { max-width: 100%; }
+  .header { padding-top: 28px; }
+}
+
+/* Desktop (1024px+): two-panel side by side */
+@media (min-width: 1024px) {
+  .app--split { flex-direction: row; }
+  /* Both panels always visible */
+  .app-sidebar { display: flex; width: 320px; flex-shrink: 0; border-right: 0.5px solid var(--border); }
+  .app-main { display: flex; flex: 1; }
+  /* When only lista is active (no right panel open), sidebar fills full width */
+  .app--split:not(:has(.app-main--active)) .app-sidebar { width: 100%; border-right: none; }
+  /* FAB: sticky inside its panel column, not fixed to viewport */
+  .app-sidebar .fab,
+  .app-main .fab {
+    position: sticky;
+    left: 0;
+    transform: none;
+    max-width: 100%;
+    bottom: 0;
+  }
+}
 .screen { display: flex; flex-direction: column; height: 100%; background: var(--bg); }
 .screen.slide-in { animation: slideIn 0.25s ease forwards; }
 @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
@@ -39,7 +71,7 @@ html, body { height: 100%; overflow: hidden; font-family: -apple-system, BlinkMa
 .btn-primary { width: 100%; padding: 14px; background: var(--bg); border: 0.5px solid var(--border2); border-radius: var(--radius); font-size: 15px; font-weight: 500; color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .btn-primary:active { opacity: 0.7; }
 .btn-accent { background: var(--accent); color: var(--accent-text); border: none; }
-.fab { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; padding: 12px 16px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); background: var(--bg); border-top: 0.5px solid var(--border); }
+.fab { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; padding: 12px 16px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); background: var(--bg); border-top: 0.5px solid var(--border); z-index: 10; }
 
 /* CARDS */
 .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px; cursor: pointer; }
