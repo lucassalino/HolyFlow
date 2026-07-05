@@ -1,6 +1,7 @@
 import { sb } from '../supabase'
 import { useApp } from '../context/AppContext'
 import { formatarData } from '../utils/formatarData'
+import Icon from '../components/Icon'
 
 export default function ListaScreen() {
   const {
@@ -24,40 +25,62 @@ export default function ListaScreen() {
   return (
     <div className="screen">
       <div className="header">
-        <span style={{ fontSize: '22px' }}>📋</span>
+        <Icon name="clipboard" size={22} />
         <span className="header-title">Roteiro do Culto</span>
-        {ehAdmin && <button className="btn-icon" onClick={() => navigate('membros')}>👥</button>}
-        {ehAdmin && <button className="btn-icon" onClick={abrirNovoRoteiro}>＋</button>}
-        <button className="btn-icon" onClick={logout}>⎋</button>
+        {ehAdmin && (
+          <button className="btn-icon" onClick={() => navigate('membros')}>
+            <Icon name="users" size={18} />
+          </button>
+        )}
+        <button className="btn-icon" onClick={logout}>
+          <Icon name="logout" size={18} />
+        </button>
       </div>
       <div className="content">
         {roteiros.length === 0 ? (
           <div className="empty-state">
-            <div className="icon">📋</div>
-            <p>Nenhum roteiro ainda.<br />{ehAdmin ? 'Cria o primeiro!' : 'Aguarda o admin criar um.'}</p>
+            <div className="icon" style={{ fontSize: 48 }}>
+              <Icon name="clipboard" size={52} color="var(--text3)" />
+            </div>
+            <p>{ehAdmin ? 'Nenhum roteiro ainda.\nCria o primeiro!' : 'Nenhum roteiro ainda.\nAguarda o admin criar um.'}</p>
           </div>
         ) : (
-          roteiros.map((r, i) => (
-            <div key={r.id} className="card" onClick={() => abrirRoteiro(i, roteiros)}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span style={{ fontSize: '20px' }}>📄</span>
-                <div style={{ flex: 1 }}>
-                  <div className="card-title">{r.nome}</div>
-                  <div className="card-sub">
-                    {formatarData(r.data)} · {r.momentos.length} momento{r.momentos.length !== 1 ? 's' : ''}
+          <>
+            <div className="group-label">Roteiros</div>
+            {roteiros.map((r, i) => (
+              <div key={r.id} className="card" onClick={() => abrirRoteiro(i, roteiros)}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{
+                    width: 44, height: 44, borderRadius: 12,
+                    background: 'var(--bg3)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: 'var(--text2)', flexShrink: 0,
+                  }}>
+                    <Icon name="document" size={22} />
                   </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div className="card-title">{r.nome}</div>
+                    <div className="card-sub">
+                      {formatarData(r.data)} · {r.momentos.length} momento{r.momentos.length !== 1 ? 's' : ''}
+                    </div>
+                  </div>
+                  {ehAdmin && (
+                    <button className="btn-del" onClick={e => apagarRoteiro(e, i)}>
+                      <Icon name="trash" size={18} />
+                    </button>
+                  )}
                 </div>
-                {ehAdmin && (
-                  <button className="btn-del" onClick={e => apagarRoteiro(e, i)} style={{ fontSize: '20px' }}>🗑</button>
-                )}
               </div>
-            </div>
-          ))
+            ))}
+          </>
         )}
       </div>
       {ehAdmin && (
         <div className="fab">
-          <button className="btn-primary btn-accent" onClick={abrirNovoRoteiro}>＋ Novo Roteiro</button>
+          <button className="btn-primary btn-accent" onClick={abrirNovoRoteiro}>
+            <Icon name="plus" size={18} color="var(--accent-text)" />
+            Novo Roteiro
+          </button>
         </div>
       )}
     </div>

@@ -9,8 +9,10 @@ export function AppProvider({ children }) {
   const [membroAtual, setMembroAtual] = useState(null)
   const [organizacaoAtual, setOrganizacaoAtual] = useState(null)
 
+  // Roteiros
   const [roteiros, setRoteiros] = useState([])
 
+  // Estado do editor (partilhado entre EditorScreen e MomentoScreen)
   const [editandoIdx, setEditandoIdx] = useState(null)
   const [momentos, setMomentos] = useState([])
   const [momentoEditandoIdx, setMomentoEditandoIdx] = useState(null)
