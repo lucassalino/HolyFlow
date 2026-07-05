@@ -11,6 +11,7 @@ export default function ListaScreen() {
     roteiros, setRoteiros,
     navigate, selecionarOrg,
     carregarRoteirosDaNuvem, abrirNovoRoteiro, abrirRoteiro,
+    showConfirm, showAlert,
   } = useApp()
 
   const [mostrarDropdown, setMostrarDropdown] = useState(false)
@@ -20,9 +21,10 @@ export default function ListaScreen() {
 
   const apagarRoteiro = async (e, i) => {
     e.stopPropagation()
-    if (!confirm('Apagar este roteiro?')) return
+    const ok = await showConfirm({ message: 'Apagar este roteiro?', confirmLabel: 'Apagar', danger: true })
+    if (!ok) return
     const { error } = await sb.from('roteiros').delete().eq('id', roteiros[i].id)
-    if (error) { alert('Erro ao apagar: ' + error.message); return }
+    if (error) { await showAlert('Erro ao apagar: ' + error.message); return }
     const lista = await carregarRoteirosDaNuvem(organizacaoAtual.id)
     setRoteiros(lista)
   }
@@ -44,26 +46,19 @@ export default function ListaScreen() {
         pointerEvents: 'none',
       }} />
 
-      {/* Overlay + dropdown */}
       {mostrarDropdown && (
-        <div
-          style={{ position: 'absolute', inset: 0, zIndex: 50 }}
-          onClick={() => setMostrarDropdown(false)}
-        >
+        <div style={{ position: 'absolute', inset: 0, zIndex: 50 }} onClick={() => setMostrarDropdown(false)}>
           <div
             style={{
               position: 'absolute', top: 56, left: 12, right: 12,
               background: 'rgba(22,22,30,0.97)',
-              backdropFilter: 'blur(24px)',
-              WebkitBackdropFilter: 'blur(24px)',
-              borderRadius: 16,
-              border: '1px solid rgba(255,255,255,0.1)',
-              overflow: 'hidden',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.7)',
+              backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)',
+              borderRadius: 16, border: '1px solid rgba(255,255,255,0.1)',
+              overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.7)',
             }}
             onClick={e => e.stopPropagation()}
           >
-            {orgsAprovadas.map((m, idx) => {
+            {orgsAprovadas.map((m) => {
               const isAtual = m.organizacao_id === organizacaoAtual?.id
               return (
                 <div
@@ -74,9 +69,7 @@ export default function ListaScreen() {
                     borderBottom: '1px solid rgba(255,255,255,0.06)',
                     cursor: isAtual ? 'default' : 'pointer',
                   }}
-                  onClick={() => {
-                    if (!isAtual) { selecionarOrg(m, m.organizacoes); setMostrarDropdown(false) }
-                  }}
+                  onClick={() => { if (!isAtual) { selecionarOrg(m, m.organizacoes); setMostrarDropdown(false) } }}
                 >
                   <div style={{
                     width: 32, height: 32, borderRadius: 9,
@@ -110,19 +103,12 @@ export default function ListaScreen() {
         </div>
       )}
 
-      {/* Header */}
       <div className="header" style={{ position: 'relative', zIndex: 1, background: 'transparent' }}>
-        {/* Trigger compacto */}
         <button
           onClick={() => setMostrarDropdown(v => !v)}
           style={{
-            flex: 1,
-            display: 'flex', alignItems: 'center', gap: 10,
-            background: 'transparent',
-            border: 'none',
-            padding: '4px 0',
-            cursor: 'pointer',
-            minWidth: 0,
+            flex: 1, display: 'flex', alignItems: 'center', gap: 10,
+            background: 'transparent', border: 'none', padding: '4px 0', cursor: 'pointer', minWidth: 0,
           }}
         >
           <div style={{
@@ -133,22 +119,14 @@ export default function ListaScreen() {
           }}>{inicial}</div>
           <span style={{
             fontWeight: 600, fontSize: 15, color: '#f0f0f5',
-            overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-            textAlign: 'left',
+            overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textAlign: 'left',
           }}>
             {organizacaoAtual?.nome || 'HolyFlow'}
           </span>
-          <Icon
-            name={mostrarDropdown ? 'chevron-up' : 'chevron-down'}
-            size={16}
-            color="rgba(240,240,245,0.45)"
-          />
+          <Icon name={mostrarDropdown ? 'chevron-up' : 'chevron-down'} size={16} color="rgba(240,240,245,0.45)" />
         </button>
-
         <button
-          className="btn-icon"
-          onClick={() => navigate('configuracoes')}
-          title="Configurações"
+          className="btn-icon" onClick={() => navigate('configuracoes')} title="Configurações"
           style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(240,240,245,0.7)', flexShrink: 0 }}
         >
           <Icon name="gear" size={18} />
@@ -158,9 +136,7 @@ export default function ListaScreen() {
       <div className="content" style={{ position: 'relative', zIndex: 1 }}>
         {roteiros.length === 0 ? (
           <div className="empty-state">
-            <div className="icon">
-              <Icon name="clipboard" size={52} color="rgba(240,240,245,0.25)" />
-            </div>
+            <div className="icon"><Icon name="clipboard" size={52} color="rgba(240,240,245,0.25)" /></div>
             <p style={{ color: 'rgba(240,240,245,0.4)' }}>
               {ehAdmin ? 'Nenhum roteiro ainda.\nCria o primeiro!' : 'Nenhum roteiro ainda.\nAguarda o admin criar um.'}
             </p>
@@ -198,8 +174,7 @@ export default function ListaScreen() {
 
       {ehAdmin && (
         <div className="fab" style={{ position: 'relative', zIndex: 1, background: 'transparent', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-          <button className="btn-primary btn-accent" onClick={abrirNovoRoteiro}
-            style={{ background: '#f0f0f5', color: '#0d0d0d' }}>
+          <button className="btn-primary btn-accent" onClick={abrirNovoRoteiro} style={{ background: '#f0f0f5', color: '#0d0d0d' }}>
             <Icon name="plus" size={18} color="#0d0d0d" />
             Novo Roteiro
           </button>

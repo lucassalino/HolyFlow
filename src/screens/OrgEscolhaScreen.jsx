@@ -2,7 +2,7 @@ import { useApp } from '../context/AppContext'
 import Icon from '../components/Icon'
 
 export default function OrgEscolhaScreen() {
-  const { navigate, logout, minhasOrgs, selecionarOrg } = useApp()
+  const { navigate, logout, minhasOrgs, selecionarOrg, showConfirm, showAlert } = useApp()
 
   const aprovadas = minhasOrgs.filter(m => m.status === 'aprovado')
   const pendentes = minhasOrgs.filter(m => m.status === 'pendente')
@@ -10,10 +10,11 @@ export default function OrgEscolhaScreen() {
 
   const handleSair = async (e, membro) => {
     e.stopPropagation()
-    if (!confirm(`Sair de "${membro.organizacoes.nome}"?`)) return
+    const ok = await showConfirm({ message: `Sair de "${membro.organizacoes.nome}"?`, confirmLabel: 'Sair', danger: true })
+    if (!ok) return
     const { sb } = await import('../supabase')
     const { error } = await sb.from('membros').delete().eq('id', membro.id)
-    if (error) { alert('Erro: ' + error.message); return }
+    if (error) { await showAlert('Erro: ' + error.message); return }
     window.location.reload()
   }
 
@@ -30,8 +31,7 @@ export default function OrgEscolhaScreen() {
           <>
             <div className="group-label">As minhas organizações</div>
             {aprovadas.map(m => (
-              <div key={m.id} className="card" onClick={() => selecionarOrg(m, m.organizacoes)}
-                style={{ cursor: 'pointer' }}>
+              <div key={m.id} className="card" onClick={() => selecionarOrg(m, m.organizacoes)} style={{ cursor: 'pointer' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div style={{
                     width: 40, height: 40, borderRadius: 12,
@@ -45,13 +45,10 @@ export default function OrgEscolhaScreen() {
                     <div className="card-sub">{m.role === 'admin' ? 'Admin' : 'Membro'}</div>
                   </div>
                   <button
-                    className="btn-icon"
-                    title="Sair desta organização"
+                    className="btn-icon" title="Sair desta organização"
                     onClick={e => handleSair(e, m)}
                     style={{ color: 'var(--danger)', background: 'transparent', flexShrink: 0 }}
-                  >
-                    <Icon name="x" size={16} />
-                  </button>
+                  ><Icon name="x" size={16} /></button>
                   <Icon name="arrow-right" size={18} color="var(--text3)" />
                 </div>
               </div>
@@ -77,13 +74,10 @@ export default function OrgEscolhaScreen() {
                     <div className="card-sub" style={{ color: 'var(--warn-text)' }}>Pedido pendente</div>
                   </div>
                   <button
-                    className="btn-icon"
-                    title="Cancelar pedido"
+                    className="btn-icon" title="Cancelar pedido"
                     onClick={e => handleSair(e, m)}
                     style={{ color: 'var(--danger)', background: 'transparent', flexShrink: 0 }}
-                  >
-                    <Icon name="x" size={16} />
-                  </button>
+                  ><Icon name="x" size={16} /></button>
                 </div>
               </div>
             ))}

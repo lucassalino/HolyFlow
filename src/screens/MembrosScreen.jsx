@@ -4,7 +4,7 @@ import { useApp } from '../context/AppContext'
 import Icon from '../components/Icon'
 
 export default function MembrosScreen() {
-  const { organizacaoAtual, navigate } = useApp()
+  const { organizacaoAtual, navigate, showConfirm } = useApp()
   const [pendentes, setPendentes] = useState([])
   const [membros, setMembros] = useState([])
   const [loading, setLoading] = useState(true)
@@ -23,7 +23,12 @@ export default function MembrosScreen() {
   useEffect(() => { carregar() }, [organizacaoAtual?.id])
 
   const aprovar = async (id) => { await sb.from('membros').update({ status: 'aprovado' }).eq('id', id); carregar() }
-  const rejeitar = async (id) => { if (!confirm('Rejeitar este pedido?')) return; await sb.from('membros').update({ status: 'rejeitado' }).eq('id', id); carregar() }
+  const rejeitar = async (id) => {
+    const ok = await showConfirm({ message: 'Rejeitar este pedido?' })
+    if (!ok) return
+    await sb.from('membros').update({ status: 'rejeitado' }).eq('id', id)
+    carregar()
+  }
   const promoverAdmin = async (id) => { await sb.from('membros').update({ role: 'admin' }).eq('id', id); carregar() }
 
   return (

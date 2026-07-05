@@ -13,6 +13,7 @@ export default function EditorScreen() {
     editorTema, setEditorTema,
     editorVersiculo, setEditorVersiculo,
     navigate, carregarRoteirosDaNuvem, setRoteiros,
+    showAlert,
   } = useApp()
 
   const dragSrcIdx = useRef(null)
@@ -41,7 +42,7 @@ export default function EditorScreen() {
       setRoteiros(lista)
       navigate('lista')
     } catch (err) {
-      alert('Erro ao guardar: ' + err.message)
+      await showAlert('Erro ao guardar: ' + err.message)
     }
   }
 
