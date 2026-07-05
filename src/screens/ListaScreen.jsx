@@ -63,7 +63,6 @@ export default function ListaScreen() {
             }}
             onClick={e => e.stopPropagation()}
           >
-            {/* Lista de orgs */}
             {orgsAprovadas.map((m, idx) => {
               const isAtual = m.organizacao_id === organizacaoAtual?.id
               return (
@@ -72,7 +71,7 @@ export default function ListaScreen() {
                   style={{
                     display: 'flex', alignItems: 'center', gap: 12,
                     padding: '13px 16px',
-                    borderBottom: idx < orgsAprovadas.length - 1 || true ? '1px solid rgba(255,255,255,0.06)' : 'none',
+                    borderBottom: '1px solid rgba(255,255,255,0.06)',
                     cursor: isAtual ? 'default' : 'pointer',
                   }}
                   onClick={() => {
@@ -80,10 +79,10 @@ export default function ListaScreen() {
                   }}
                 >
                   <div style={{
-                    width: 34, height: 34, borderRadius: 9,
+                    width: 32, height: 32, borderRadius: 9,
                     background: isAtual ? 'rgba(240,240,245,0.18)' : 'rgba(255,255,255,0.07)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontWeight: 700, fontSize: 15, color: '#f0f0f5', flexShrink: 0,
+                    fontWeight: 700, fontSize: 14, color: '#f0f0f5', flexShrink: 0,
                   }}>{m.organizacoes.nome[0].toUpperCase()}</div>
                   <span style={{ flex: 1, fontSize: 14, fontWeight: isAtual ? 600 : 400, color: '#f0f0f5' }}>
                     {m.organizacoes.nome}
@@ -94,53 +93,46 @@ export default function ListaScreen() {
                 </div>
               )
             })}
-
-            {/* Nova organização */}
             <div
-              style={{
-                display: 'flex', alignItems: 'center', gap: 12,
-                padding: '12px 16px',
-                cursor: 'pointer',
-              }}
+              style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', cursor: 'pointer' }}
               onClick={() => { navigate('org-escolha'); setMostrarDropdown(false) }}
             >
               <div style={{
-                width: 34, height: 34, borderRadius: 9,
+                width: 32, height: 32, borderRadius: 9,
                 background: 'rgba(255,255,255,0.06)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
               }}>
-                <Icon name="plus" size={16} color="rgba(240,240,245,0.45)" />
+                <Icon name="plus" size={15} color="rgba(240,240,245,0.4)" />
               </div>
-              <span style={{ fontSize: 14, color: 'rgba(240,240,245,0.45)' }}>Nova organização</span>
+              <span style={{ fontSize: 14, color: 'rgba(240,240,245,0.4)' }}>Nova organização</span>
             </div>
           </div>
         </div>
       )}
 
       {/* Header */}
-      <div className="header" style={{ position: 'relative', zIndex: 1, background: 'transparent', justifyContent: 'space-between' }}>
-        {/* Trigger do dropdown — centro */}
+      <div className="header" style={{ position: 'relative', zIndex: 1, background: 'transparent' }}>
+        {/* Trigger compacto */}
         <button
           onClick={() => setMostrarDropdown(v => !v)}
           style={{
             flex: 1,
             display: 'flex', alignItems: 'center', gap: 10,
-            background: 'rgba(255,255,255,0.07)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            borderRadius: 12,
-            padding: '7px 12px',
+            background: 'transparent',
+            border: 'none',
+            padding: '4px 0',
             cursor: 'pointer',
             minWidth: 0,
           }}
         >
           <div style={{
-            width: 28, height: 28, borderRadius: 8,
-            background: 'rgba(240,240,245,0.18)',
+            width: 30, height: 30, borderRadius: 8,
+            background: 'rgba(240,240,245,0.12)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontWeight: 700, fontSize: 13, color: '#f0f0f5', flexShrink: 0,
           }}>{inicial}</div>
           <span style={{
-            flex: 1, fontWeight: 600, fontSize: 15, color: '#f0f0f5',
+            fontWeight: 600, fontSize: 15, color: '#f0f0f5',
             overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
             textAlign: 'left',
           }}>
@@ -149,16 +141,15 @@ export default function ListaScreen() {
           <Icon
             name={mostrarDropdown ? 'chevron-up' : 'chevron-down'}
             size={16}
-            color="rgba(240,240,245,0.5)"
+            color="rgba(240,240,245,0.45)"
           />
         </button>
 
-        {/* Engrenagem */}
         <button
           className="btn-icon"
           onClick={() => navigate('configuracoes')}
           title="Configurações"
-          style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(240,240,245,0.7)', marginLeft: 8, flexShrink: 0 }}
+          style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(240,240,245,0.7)', flexShrink: 0 }}
         >
           <Icon name="gear" size={18} />
         </button>
