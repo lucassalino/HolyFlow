@@ -2,7 +2,7 @@ import { useApp } from '../context/AppContext'
 import Icon from '../components/Icon'
 
 export default function OrgEscolhaScreen() {
-  const { navigate, logout, minhasOrgs, selecionarOrg, sairDaOrg } = useApp()
+  const { navigate, logout, minhasOrgs, selecionarOrg } = useApp()
 
   const aprovadas = minhasOrgs.filter(m => m.status === 'aprovado')
   const pendentes = minhasOrgs.filter(m => m.status === 'pendente')
@@ -14,14 +14,13 @@ export default function OrgEscolhaScreen() {
     const { sb } = await import('../supabase')
     const { error } = await sb.from('membros').delete().eq('id', membro.id)
     if (error) { alert('Erro: ' + error.message); return }
-    // atualizar lista localmente
     window.location.reload()
   }
 
   return (
     <div className="screen">
       <div className="header">
-        <span className="header-title">As tuas igrejas</span>
+        <span className="header-title">Organizações</span>
         <button className="btn-icon" onClick={logout} title="Sair da conta">
           <Icon name="logout" size={18} />
         </button>

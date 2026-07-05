@@ -8,7 +8,7 @@ export default function ListaScreen() {
   const {
     membroAtual, organizacaoAtual,
     roteiros, setRoteiros,
-    navigate, logout, trocarOrg, sairDaOrg,
+    navigate, logout, trocarOrg,
     carregarRoteirosDaNuvem, abrirNovoRoteiro, abrirRoteiro,
   } = useApp()
 
@@ -43,10 +43,10 @@ export default function ListaScreen() {
         <button
           className="btn-icon"
           onClick={trocarOrg}
-          title="Trocar organização"
+          title="Organizações"
           style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(240,240,245,0.7)' }}
         >
-          <Icon name="grip" size={18} />
+          <Icon name="users" size={18} />
         </button>
         <span className="header-title" style={{ color: '#f0f0f5' }}>
           {organizacaoAtual?.nome || 'HolyFlow'}
@@ -54,7 +54,7 @@ export default function ListaScreen() {
         {ehAdmin && (
           <button className="btn-icon" onClick={() => navigate('membros')}
             style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(240,240,245,0.7)' }}>
-            <Icon name="users" size={18} />
+            <Icon name="key" size={18} />
           </button>
         )}
         <button className="btn-icon" onClick={logout}
@@ -102,22 +102,6 @@ export default function ListaScreen() {
             ))}
           </>
         )}
-
-        <div style={{ position: 'relative', zIndex: 1, marginTop: 24, paddingBottom: 8 }}>
-          <button
-            onClick={sairDaOrg}
-            style={{
-              width: '100%', padding: '10px', borderRadius: 'var(--radius-sm)',
-              background: 'rgba(211,47,47,0.12)', color: 'rgba(255,100,100,0.75)',
-              border: '1px solid rgba(211,47,47,0.18)',
-              fontSize: '13px', fontWeight: 500, cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
-            }}
-          >
-            <Icon name="x" size={15} />
-            Sair desta organização
-          </button>
-        </div>
       </div>
       {ehAdmin && (
         <div className="fab" style={{ position: 'relative', zIndex: 1, background: 'transparent', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
