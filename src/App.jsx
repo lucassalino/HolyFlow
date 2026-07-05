@@ -12,6 +12,7 @@ import EditorScreen from './screens/EditorScreen'
 import MomentoScreen from './screens/MomentoScreen'
 import PreviewScreen from './screens/PreviewScreen'
 import MembrosScreen from './screens/MembrosScreen'
+import ConfigScreen from './screens/ConfigScreen'
 
 const AUTH_SCREENS = {
   auth: AuthScreen,
@@ -27,6 +28,7 @@ const APP_SCREENS = {
   momento: MomentoScreen,
   preview: PreviewScreen,
   membros: MembrosScreen,
+  configuracoes: ConfigScreen,
 }
 
 function AppInner() {

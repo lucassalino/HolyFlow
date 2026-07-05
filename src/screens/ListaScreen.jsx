@@ -8,7 +8,7 @@ export default function ListaScreen() {
   const {
     membroAtual, organizacaoAtual,
     roteiros, setRoteiros,
-    navigate, logout, trocarOrg,
+    navigate, trocarOrg,
     carregarRoteirosDaNuvem, abrirNovoRoteiro, abrirRoteiro,
   } = useApp()
 
@@ -51,15 +51,13 @@ export default function ListaScreen() {
         <span className="header-title" style={{ color: '#f0f0f5' }}>
           {organizacaoAtual?.nome || 'HolyFlow'}
         </span>
-        {ehAdmin && (
-          <button className="btn-icon" onClick={() => navigate('membros')}
-            style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(240,240,245,0.7)' }}>
-            <Icon name="key" size={18} />
-          </button>
-        )}
-        <button className="btn-icon" onClick={logout}
-          style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(240,240,245,0.7)' }}>
-          <Icon name="logout" size={18} />
+        <button
+          className="btn-icon"
+          onClick={() => navigate('configuracoes')}
+          title="Configurações"
+          style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(240,240,245,0.7)' }}
+        >
+          <Icon name="plus-square" size={18} />
         </button>
       </div>
       <div className="content" style={{ position: 'relative', zIndex: 1 }}>
