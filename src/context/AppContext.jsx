@@ -24,16 +24,20 @@ export function AppProvider({ children }) {
 
   const navigate = useCallback((s) => setScreen(s), [])
 
-  const logout = useCallback(async () => {
-    await sb.auth.signOut()
-    localStorage.removeItem(LAST_ORG_KEY)
-    setSessaoAtual(null)
+  const _limparEstadoOrg = useCallback(() => {
     setMembroAtual(null)
     setOrganizacaoAtual(null)
-    setMinhasOrgs([])
     setRoteiros([])
+    localStorage.removeItem(LAST_ORG_KEY)
+  }, [])
+
+  const logout = useCallback(async () => {
+    await sb.auth.signOut()
+    _limparEstadoOrg()
+    setSessaoAtual(null)
+    setMinhasOrgs([])
     navigate('auth')
-  }, [navigate])
+  }, [navigate, _limparEstadoOrg])
 
   const carregarRoteirosDaNuvem = useCallback(async (orgId) => {
     const { data, error } = await sb.from('roteiros')
@@ -64,25 +68,57 @@ export function AppProvider({ children }) {
   }, [entrarNaApp, navigate])
 
   const trocarOrg = useCallback(() => {
-    setMembroAtual(null)
-    setOrganizacaoAtual(null)
-    setRoteiros([])
+    _limparEstadoOrg()
     navigate('org-escolha')
-  }, [navigate])
+  }, [navigate, _limparEstadoOrg])
 
   const sairDaOrg = useCallback(async () => {
-    if (!membroAtual?.id) return
-    if (!confirm('Tens a certeza que queres sair desta organização?')) return
-    const { error } = await sb.from('membros').delete().eq('id', membroAtual.id)
-    if (error) { alert('Erro ao sair: ' + error.message); return }
+    if (!membroAtual?.id || !organizacaoAtual?.id) return
+
+    // Verificar quantos membros aprovados existem na org
+    const { count, error: countError } = await sb
+      .from('membros')
+      .select('id', { count: 'exact', head: true })
+      .eq('organizacao_id', organizacaoAtual.id)
+      .eq('status', 'aprovado')
+
+    if (countError) { alert('Erro ao verificar membros.'); return }
+
+    const ultimoMembro = count === 1
+
+    const mensagem = ultimoMembro
+      ? `És o último membro de "${organizacaoAtual.nome}".\n\nAo saíres, a organização e todos os seus dados (roteiros, membros) serão apagados permanentemente.\n\nTens a certeza?`
+      : `Tens a certeza que queres sair de "${organizacaoAtual.nome}"?`
+
+    if (!confirm(mensagem)) return
+
+    if (ultimoMembro) {
+      // Apagar a org inteira (cascade elimina membros + roteiros)
+      const { error } = await sb.from('organizacoes').delete().eq('id', organizacaoAtual.id)
+      if (error) { alert('Erro ao apagar organização: ' + error.message); return }
+    } else {
+      const { error } = await sb.from('membros').delete().eq('id', membroAtual.id)
+      if (error) { alert('Erro ao sair: ' + error.message); return }
+    }
+
     const novasOrgs = minhasOrgs.filter(m => m.id !== membroAtual.id)
     setMinhasOrgs(novasOrgs)
-    setMembroAtual(null)
-    setOrganizacaoAtual(null)
-    setRoteiros([])
-    localStorage.removeItem(LAST_ORG_KEY)
+    _limparEstadoOrg()
     navigate('org-escolha')
-  }, [membroAtual, minhasOrgs, navigate])
+  }, [membroAtual, organizacaoAtual, minhasOrgs, navigate, _limparEstadoOrg])
+
+  const excluirOrg = useCallback(async () => {
+    if (!organizacaoAtual?.id) return
+    if (!confirm(`Tens a certeza que queres apagar "${organizacaoAtual.nome}"?\n\nEsta ação é irreversível. Todos os membros e roteiros serão apagados permanentemente.`)) return
+
+    const { error } = await sb.from('organizacoes').delete().eq('id', organizacaoAtual.id)
+    if (error) { alert('Erro ao apagar organização: ' + error.message); return }
+
+    const novasOrgs = minhasOrgs.filter(m => m.organizacoes?.id !== organizacaoAtual.id)
+    setMinhasOrgs(novasOrgs)
+    _limparEstadoOrg()
+    navigate('org-escolha')
+  }, [organizacaoAtual, minhasOrgs, navigate, _limparEstadoOrg])
 
   const depoisDoLogin = useCallback(async () => {
     const { data: { user } } = await sb.auth.getUser()
@@ -119,7 +155,6 @@ export function AppProvider({ children }) {
       return
     }
 
-    // Tentar entrar na última org usada
     const lastOrgId = localStorage.getItem(LAST_ORG_KEY)
     const ultimaMembro = lastOrgId
       ? aprovados.find(m => m.organizacoes?.id === lastOrgId)
@@ -168,7 +203,7 @@ export function AppProvider({ children }) {
       editorData, setEditorData,
       editorTema, setEditorTema,
       editorVersiculo, setEditorVersiculo,
-      logout, depoisDoLogin, entrarNaApp, selecionarOrg, trocarOrg, sairDaOrg,
+      logout, depoisDoLogin, entrarNaApp, selecionarOrg, trocarOrg, sairDaOrg, excluirOrg,
       carregarRoteirosDaNuvem,
       abrirNovoRoteiro, abrirRoteiro,
     }}>

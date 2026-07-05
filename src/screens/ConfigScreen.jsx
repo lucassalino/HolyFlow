@@ -5,7 +5,7 @@ import Icon from '../components/Icon'
 
 export default function ConfigScreen() {
   const {
-    navigate, logout, sairDaOrg,
+    navigate, logout, sairDaOrg, excluirOrg,
     membroAtual, organizacaoAtual, setOrganizacaoAtual,
   } = useApp()
 
@@ -83,7 +83,7 @@ export default function ConfigScreen() {
         <div className="group-label">Organização</div>
         <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
 
-          {/* Nome */}
+          {/* Nome — só admins */}
           {ehAdmin && (
             <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border)' }}>
               <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
@@ -182,12 +182,25 @@ export default function ConfigScreen() {
           )}
 
           {/* Sair da org */}
-          <div style={rowLast} onClick={sairDaOrg}>
+          <div style={ehAdmin ? rowStyle : rowLast} onClick={sairDaOrg}>
             <div style={{ ...iconBox, background: 'rgba(211,47,47,0.1)' }}>
-              <Icon name="x" size={18} color="var(--danger)" />
+              <Icon name="logout" size={18} color="var(--danger)" />
             </div>
             <span style={{ flex: 1, fontWeight: 500, color: 'var(--danger)' }}>Sair desta organização</span>
           </div>
+
+          {/* Excluir org — só admins */}
+          {ehAdmin && (
+            <div style={rowLast} onClick={excluirOrg}>
+              <div style={{ ...iconBox, background: 'rgba(211,47,47,0.1)' }}>
+                <Icon name="trash" size={18} color="var(--danger)" />
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: 500, color: 'var(--danger)' }}>Excluir organização</div>
+                <div style={{ fontSize: 12, color: 'var(--text3)', marginTop: 2 }}>Apaga todos os dados permanentemente</div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* CONTA */}
