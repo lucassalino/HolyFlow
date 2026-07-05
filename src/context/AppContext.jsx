@@ -8,11 +8,10 @@ export function AppProvider({ children }) {
   const [sessaoAtual, setSessaoAtual] = useState(null)
   const [membroAtual, setMembroAtual] = useState(null)
   const [organizacaoAtual, setOrganizacaoAtual] = useState(null)
+  const [minhasOrgs, setMinhasOrgs] = useState([])
 
-  // Roteiros
   const [roteiros, setRoteiros] = useState([])
 
-  // Estado do editor (partilhado entre EditorScreen e MomentoScreen)
   const [editandoIdx, setEditandoIdx] = useState(null)
   const [momentos, setMomentos] = useState([])
   const [momentoEditandoIdx, setMomentoEditandoIdx] = useState(null)
@@ -28,6 +27,7 @@ export function AppProvider({ children }) {
     setSessaoAtual(null)
     setMembroAtual(null)
     setOrganizacaoAtual(null)
+    setMinhasOrgs([])
     setRoteiros([])
     navigate('auth')
   }, [navigate])
@@ -49,6 +49,36 @@ export function AppProvider({ children }) {
     navigate('lista')
   }, [carregarRoteirosDaNuvem, navigate])
 
+  const selecionarOrg = useCallback(async (membro, org) => {
+    setMembroAtual(membro)
+    setOrganizacaoAtual(org)
+    if (membro.status === 'pendente') {
+      navigate('pendente')
+    } else {
+      await entrarNaApp(membro, org)
+    }
+  }, [entrarNaApp, navigate])
+
+  const trocarOrg = useCallback(() => {
+    setMembroAtual(null)
+    setOrganizacaoAtual(null)
+    setRoteiros([])
+    navigate('org-escolha')
+  }, [navigate])
+
+  const sairDaOrg = useCallback(async () => {
+    if (!membroAtual?.id) return
+    if (!confirm('Tens a certeza que queres sair desta organização?')) return
+    const { error } = await sb.from('membros').delete().eq('id', membroAtual.id)
+    if (error) { alert('Erro ao sair: ' + error.message); return }
+    const novasOrgs = minhasOrgs.filter(m => m.id !== membroAtual.id)
+    setMinhasOrgs(novasOrgs)
+    setMembroAtual(null)
+    setOrganizacaoAtual(null)
+    setRoteiros([])
+    navigate('org-escolha')
+  }, [membroAtual, minhasOrgs, navigate])
+
   const depoisDoLogin = useCallback(async () => {
     const { data: { user } } = await sb.auth.getUser()
     if (!user) { navigate('auth'); return }
@@ -58,20 +88,36 @@ export function AppProvider({ children }) {
       .select('*, organizacoes(id, nome, codigo)')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false })
-      .limit(1)
 
     if (error) { console.error(error); navigate('org-escolha'); return }
 
-    if (!membros || !membros.length) { navigate('org-escolha'); return }
+    if (!membros || !membros.length) {
+      setMinhasOrgs([])
+      navigate('org-escolha')
+      return
+    }
 
-    const membro = membros[0]
-    const org = membros[0].organizacoes
-    setMembroAtual(membro)
-    setOrganizacaoAtual(org)
+    setMinhasOrgs(membros)
 
-    if (membro.status === 'pendente') navigate('pendente')
-    else if (membro.status === 'rejeitado') navigate('org-escolha')
-    else await entrarNaApp(membro, org)
+    const aprovados = membros.filter(m => m.status === 'aprovado')
+    const pendentes = membros.filter(m => m.status === 'pendente')
+
+    if (aprovados.length === 1 && pendentes.length === 0) {
+      // único org aprovada — entrar direto
+      const membro = aprovados[0]
+      const org = membro.organizacoes
+      setMembroAtual(membro)
+      setOrganizacaoAtual(org)
+      await entrarNaApp(membro, org)
+    } else if (aprovados.length === 0 && pendentes.length === 1) {
+      // único pedido pendente
+      setMembroAtual(pendentes[0])
+      setOrganizacaoAtual(pendentes[0].organizacoes)
+      navigate('pendente')
+    } else {
+      // múltiplas orgs ou mix → user escolhe
+      navigate('org-escolha')
+    }
   }, [navigate, entrarNaApp])
 
   const abrirNovoRoteiro = useCallback(() => {
@@ -101,6 +147,7 @@ export function AppProvider({ children }) {
       sessaoAtual, setSessaoAtual,
       membroAtual, setMembroAtual,
       organizacaoAtual, setOrganizacaoAtual,
+      minhasOrgs, setMinhasOrgs,
       roteiros, setRoteiros,
       editandoIdx, setEditandoIdx,
       momentos, setMomentos,
@@ -109,7 +156,7 @@ export function AppProvider({ children }) {
       editorData, setEditorData,
       editorTema, setEditorTema,
       editorVersiculo, setEditorVersiculo,
-      logout, depoisDoLogin, entrarNaApp,
+      logout, depoisDoLogin, entrarNaApp, selecionarOrg, trocarOrg, sairDaOrg,
       carregarRoteirosDaNuvem,
       abrirNovoRoteiro, abrirRoteiro,
     }}>

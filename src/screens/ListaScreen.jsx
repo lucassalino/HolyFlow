@@ -4,13 +4,11 @@ import { formatarData } from '../utils/formatarData'
 import Icon from '../components/Icon'
 import { GrainBackground } from './AuthScreen'
 
-const DARK = 'rgba(8,8,8,0)'
-
 export default function ListaScreen() {
   const {
     membroAtual, organizacaoAtual,
     roteiros, setRoteiros,
-    navigate, logout,
+    navigate, logout, trocarOrg, sairDaOrg,
     carregarRoteirosDaNuvem, abrirNovoRoteiro, abrirRoteiro,
   } = useApp()
 
@@ -41,10 +39,18 @@ export default function ListaScreen() {
         background: 'linear-gradient(to bottom, rgba(8,8,8,0.45) 0%, rgba(8,8,8,0.25) 40%, rgba(8,8,8,0.55) 100%)',
         pointerEvents: 'none',
       }} />
-
       <div className="header" style={{ position: 'relative', zIndex: 1, background: 'transparent' }}>
-        <Icon name="clipboard" size={22} color="rgba(240,240,245,0.8)" />
-        <span className="header-title" style={{ color: '#f0f0f5' }}>HolyFlow</span>
+        <button
+          className="btn-icon"
+          onClick={trocarOrg}
+          title="Trocar organização"
+          style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(240,240,245,0.7)' }}
+        >
+          <Icon name="grip" size={18} />
+        </button>
+        <span className="header-title" style={{ color: '#f0f0f5' }}>
+          {organizacaoAtual?.nome || 'HolyFlow'}
+        </span>
         {ehAdmin && (
           <button className="btn-icon" onClick={() => navigate('membros')}
             style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(240,240,245,0.7)' }}>
@@ -56,7 +62,6 @@ export default function ListaScreen() {
           <Icon name="logout" size={18} />
         </button>
       </div>
-
       <div className="content" style={{ position: 'relative', zIndex: 1 }}>
         {roteiros.length === 0 ? (
           <div className="empty-state">
@@ -97,8 +102,23 @@ export default function ListaScreen() {
             ))}
           </>
         )}
-      </div>
 
+        <div style={{ position: 'relative', zIndex: 1, marginTop: 24, paddingBottom: 8 }}>
+          <button
+            onClick={sairDaOrg}
+            style={{
+              width: '100%', padding: '10px', borderRadius: 'var(--radius-sm)',
+              background: 'rgba(211,47,47,0.12)', color: 'rgba(255,100,100,0.75)',
+              border: '1px solid rgba(211,47,47,0.18)',
+              fontSize: '13px', fontWeight: 500, cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+            }}
+          >
+            <Icon name="x" size={15} />
+            Sair desta organização
+          </button>
+        </div>
+      </div>
       {ehAdmin && (
         <div className="fab" style={{ position: 'relative', zIndex: 1, background: 'transparent', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <button className="btn-primary btn-accent" onClick={abrirNovoRoteiro}
