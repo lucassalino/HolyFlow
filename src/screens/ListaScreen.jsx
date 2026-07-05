@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { sb } from '../supabase'
 import { useApp } from '../context/AppContext'
 import { formatarData } from '../utils/formatarData'
@@ -6,13 +7,16 @@ import { GrainBackground } from './AuthScreen'
 
 export default function ListaScreen() {
   const {
-    membroAtual, organizacaoAtual,
+    membroAtual, organizacaoAtual, minhasOrgs,
     roteiros, setRoteiros,
-    navigate, trocarOrg,
+    navigate, selecionarOrg,
     carregarRoteirosDaNuvem, abrirNovoRoteiro, abrirRoteiro,
   } = useApp()
 
+  const [mostrarDropdown, setMostrarDropdown] = useState(false)
   const ehAdmin = membroAtual?.role === 'admin'
+
+  const orgsAprovadas = minhasOrgs.filter(m => m.status === 'aprovado')
 
   const apagarRoteiro = async (e, i) => {
     e.stopPropagation()
@@ -31,6 +35,8 @@ export default function ListaScreen() {
     boxShadow: 'none',
   }
 
+  const inicial = organizacaoAtual?.nome?.[0]?.toUpperCase() || 'O'
+
   return (
     <div className="screen" style={{ position: 'relative', overflow: 'hidden', background: '#080808' }}>
       <GrainBackground />
@@ -39,10 +45,103 @@ export default function ListaScreen() {
         background: 'linear-gradient(to bottom, rgba(8,8,8,0.45) 0%, rgba(8,8,8,0.25) 40%, rgba(8,8,8,0.55) 100%)',
         pointerEvents: 'none',
       }} />
+
+      {/* Overlay do dropdown */}
+      {mostrarDropdown && (
+        <div
+          style={{ position: 'absolute', inset: 0, zIndex: 50 }}
+          onClick={() => setMostrarDropdown(false)}
+        >
+          <div
+            style={{
+              position: 'absolute', top: 60, left: 12, right: 12,
+              background: 'rgba(22,22,30,0.97)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
+              borderRadius: 16,
+              border: '1px solid rgba(255,255,255,0.1)',
+              overflow: 'hidden',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.6)',
+            }}
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Header — org atual */}
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 12,
+              padding: '14px 16px',
+              borderBottom: '1px solid rgba(255,255,255,0.07)',
+            }}>
+              <div style={{
+                width: 36, height: 36, borderRadius: 10,
+                background: 'rgba(240,240,245,0.15)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontWeight: 700, fontSize: 16, color: '#f0f0f5', flexShrink: 0,
+              }}>{inicial}</div>
+              <span style={{ flex: 1, fontWeight: 600, color: '#f0f0f5', fontSize: 15 }}>
+                {organizacaoAtual?.nome}
+              </span>
+              <Icon name="chevron-up" size={18} color="rgba(240,240,245,0.4)" />
+            </div>
+
+            {/* Lista de orgs */}
+            {orgsAprovadas.map(m => {
+              const isAtual = m.organizacao_id === organizacaoAtual?.id
+              return (
+                <div
+                  key={m.id}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 12,
+                    padding: '12px 16px',
+                    borderBottom: '1px solid rgba(255,255,255,0.05)',
+                    cursor: isAtual ? 'default' : 'pointer',
+                    opacity: isAtual ? 1 : 0.75,
+                  }}
+                  onClick={() => {
+                    if (!isAtual) { selecionarOrg(m, m.organizacoes); setMostrarDropdown(false) }
+                  }}
+                >
+                  <div style={{
+                    width: 32, height: 32, borderRadius: 9,
+                    background: isAtual ? 'rgba(240,240,245,0.15)' : 'rgba(255,255,255,0.06)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontWeight: 700, fontSize: 14, color: '#f0f0f5', flexShrink: 0,
+                  }}>{m.organizacoes.nome[0].toUpperCase()}</div>
+                  <span style={{ flex: 1, fontSize: 14, color: '#f0f0f5', fontWeight: isAtual ? 600 : 400 }}>
+                    {m.organizacoes.nome}
+                  </span>
+                  {isAtual && (
+                    <div style={{ width: 7, height: 7, borderRadius: 99, background: '#4ade80', flexShrink: 0 }} />
+                  )}
+                </div>
+              )
+            })}
+
+            {/* Nova organização */}
+            <div
+              style={{
+                display: 'flex', alignItems: 'center', gap: 10,
+                padding: '12px 16px',
+                cursor: 'pointer',
+              }}
+              onClick={() => { navigate('org-escolha'); setMostrarDropdown(false) }}
+            >
+              <div style={{
+                width: 32, height: 32, borderRadius: 9,
+                background: 'rgba(255,255,255,0.06)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+              }}>
+                <Icon name="plus" size={16} color="rgba(240,240,245,0.5)" />
+              </div>
+              <span style={{ fontSize: 14, color: 'rgba(240,240,245,0.5)' }}>Nova organização</span>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="header" style={{ position: 'relative', zIndex: 1, background: 'transparent' }}>
         <button
           className="btn-icon"
-          onClick={trocarOrg}
+          onClick={() => setMostrarDropdown(v => !v)}
           title="Organizações"
           style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(240,240,245,0.7)' }}
         >
@@ -57,13 +156,14 @@ export default function ListaScreen() {
           title="Configurações"
           style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(240,240,245,0.7)' }}
         >
-          <Icon name="plus-square" size={18} />
+          <Icon name="gear" size={18} />
         </button>
       </div>
+
       <div className="content" style={{ position: 'relative', zIndex: 1 }}>
         {roteiros.length === 0 ? (
           <div className="empty-state">
-            <div className="icon" style={{ fontSize: 48 }}>
+            <div className="icon">
               <Icon name="clipboard" size={52} color="rgba(240,240,245,0.25)" />
             </div>
             <p style={{ color: 'rgba(240,240,245,0.4)' }}>
@@ -79,8 +179,7 @@ export default function ListaScreen() {
                   <div style={{
                     width: 44, height: 44, borderRadius: 12,
                     background: 'rgba(255,255,255,0.07)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                   }}>
                     <Icon name="document" size={22} color="rgba(240,240,245,0.5)" />
                   </div>
@@ -101,6 +200,7 @@ export default function ListaScreen() {
           </>
         )}
       </div>
+
       {ehAdmin && (
         <div className="fab" style={{ position: 'relative', zIndex: 1, background: 'transparent', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <button className="btn-primary btn-accent" onClick={abrirNovoRoteiro}

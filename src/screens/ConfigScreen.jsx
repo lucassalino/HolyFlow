@@ -21,13 +21,16 @@ export default function ConfigScreen() {
     if (!nome) { setErroNome('O nome não pode estar vazio.'); return }
     setSalvando(true)
     setErroNome('')
-    const { error } = await sb
-      .from('organizacoes')
-      .update({ nome })
-      .eq('id', organizacaoAtual.id)
+    const { error } = await sb.from('organizacoes').update({ nome }).eq('id', organizacaoAtual.id)
     setSalvando(false)
     if (error) { setErroNome('Erro ao guardar: ' + error.message); return }
     setOrganizacaoAtual({ ...organizacaoAtual, nome })
+    setEditandoNome(false)
+  }
+
+  const cancelarEdicao = () => {
+    setNomeOrg(organizacaoAtual?.nome || '')
+    setErroNome('')
     setEditandoNome(false)
   }
 
@@ -76,65 +79,91 @@ export default function ConfigScreen() {
 
       <div className="content">
 
-        {/* --- ORGANIZAÇÃO --- */}
+        {/* ORGANIZAÇÃO */}
         <div className="group-label">Organização</div>
         <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
 
-          {/* Nome da org */}
-          {ehAdmin ? (
-            <div style={{ padding: '13px 16px', borderBottom: '1px solid var(--border)' }}>
-              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>
+          {/* Nome */}
+          {ehAdmin && (
+            <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border)' }}>
+              <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
                 Nome da organização
               </div>
               {editandoNome ? (
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <input
-                    type="text"
-                    value={nomeOrg}
-                    onChange={e => setNomeOrg(e.target.value)}
-                    onKeyDown={e => e.key === 'Enter' && salvarNomeOrg()}
-                    style={{ flex: 1, fontSize: 15, fontWeight: 600 }}
-                    autoFocus
-                  />
-                  <button className="btn-small" onClick={salvarNomeOrg} disabled={salvando}
-                    style={{ background: 'var(--accent)', color: 'var(--accent-text)', border: 'none' }}>
-                    {salvando ? '...' : 'Guardar'}
-                  </button>
-                  <button className="btn-small" onClick={() => { setEditandoNome(false); setNomeOrg(organizacaoAtual?.nome || ''); setErroNome('') }}>
-                    Cancelar
-                  </button>
-                </div>
+                <>
+                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                    <input
+                      type="text"
+                      value={nomeOrg}
+                      onChange={e => setNomeOrg(e.target.value)}
+                      onKeyDown={e => { if (e.key === 'Enter') salvarNomeOrg(); if (e.key === 'Escape') cancelarEdicao() }}
+                      style={{ flex: 1, fontSize: 15, fontWeight: 600, padding: '8px 12px' }}
+                      autoFocus
+                    />
+                    <button
+                      onClick={salvarNomeOrg}
+                      disabled={salvando}
+                      style={{
+                        width: 36, height: 36, borderRadius: 10, flexShrink: 0,
+                        background: 'var(--accent)', color: 'var(--accent-text)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        border: 'none', cursor: 'pointer',
+                      }}
+                    >
+                      {salvando ? '...' : <Icon name="check" size={16} />}
+                    </button>
+                    <button
+                      onClick={cancelarEdicao}
+                      style={{
+                        width: 36, height: 36, borderRadius: 10, flexShrink: 0,
+                        background: 'var(--bg3)', color: 'var(--text2)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        border: 'none', cursor: 'pointer',
+                      }}
+                    >
+                      <Icon name="x" size={16} />
+                    </button>
+                  </div>
+                  {erroNome && <div style={{ color: 'var(--danger)', fontSize: 12, marginTop: 6 }}>{erroNome}</div>}
+                </>
               ) : (
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <span style={{ flex: 1, fontSize: 15, fontWeight: 600 }}>{organizacaoAtual?.nome}</span>
-                  <button className="btn-small" onClick={() => setEditandoNome(true)}>
-                    <Icon name="save" size={14} /> Editar
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ flex: 1, fontSize: 16, fontWeight: 600, color: 'var(--text)' }}>
+                    {organizacaoAtual?.nome}
+                  </span>
+                  <button
+                    onClick={() => setEditandoNome(true)}
+                    style={{
+                      width: 32, height: 32, borderRadius: 9, flexShrink: 0,
+                      background: 'var(--bg3)', color: 'var(--text2)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      border: 'none', cursor: 'pointer',
+                    }}
+                    title="Editar nome"
+                  >
+                    <Icon name="pencil" size={14} />
                   </button>
                 </div>
               )}
-              {erroNome && <div style={{ color: 'var(--danger)', fontSize: 12, marginTop: 6 }}>{erroNome}</div>}
-            </div>
-          ) : (
-            <div style={{ padding: '13px 16px', borderBottom: '1px solid var(--border)' }}>
-              <div style={{ fontSize: 12, color: 'var(--text2)', marginBottom: 2 }}>Organização</div>
-              <div style={{ fontSize: 15, fontWeight: 600 }}>{organizacaoAtual?.nome}</div>
             </div>
           )}
 
           {/* Código de convite — só admins */}
           {ehAdmin && (
-            <div style={{ padding: '13px 16px', borderBottom: '1px solid var(--border)' }}>
-              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text2)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>
+            <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border)' }}>
+              <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
                 Código de convite
               </div>
-              <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: 3, marginBottom: 10 }}>
+              <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: 3, marginBottom: 12, color: 'var(--text)' }}>
                 {organizacaoAtual?.codigo || '—'}
               </div>
               <div style={{ display: 'flex', gap: 8 }}>
-                <button className="btn-primary" onClick={copiarCodigo} style={{ flex: 1, padding: '9px', fontSize: 13 }}>
+                <button className="btn-primary" onClick={copiarCodigo}
+                  style={{ flex: 1, padding: '9px', fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
                   <Icon name="copy" size={14} /> Copiar
                 </button>
-                <button className="btn-primary" onClick={partilharCodigo} style={{ flex: 1, padding: '9px', fontSize: 13 }}>
+                <button className="btn-primary" onClick={partilharCodigo}
+                  style={{ flex: 1, padding: '9px', fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
                   <Icon name="share" size={14} /> Partilhar
                 </button>
               </div>
@@ -152,17 +181,8 @@ export default function ConfigScreen() {
             </div>
           )}
 
-          {/* Trocar org */}
-          <div style={rowStyle} onClick={() => navigate('org-escolha')}>
-            <div style={{ ...iconBox, background: 'var(--bg3)' }}>
-              <Icon name="refresh" size={18} color="var(--text2)" />
-            </div>
-            <span style={{ flex: 1, fontWeight: 500 }}>Trocar organização</span>
-            <Icon name="arrow-right" size={16} color="var(--text3)" />
-          </div>
-
           {/* Sair da org */}
-          <div style={{ ...rowLast, cursor: 'pointer' }} onClick={sairDaOrg}>
+          <div style={rowLast} onClick={sairDaOrg}>
             <div style={{ ...iconBox, background: 'rgba(211,47,47,0.1)' }}>
               <Icon name="x" size={18} color="var(--danger)" />
             </div>
@@ -170,10 +190,10 @@ export default function ConfigScreen() {
           </div>
         </div>
 
-        {/* --- CONTA --- */}
+        {/* CONTA */}
         <div className="group-label" style={{ marginTop: 8 }}>Conta</div>
         <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-          <div style={{ ...rowLast, cursor: 'pointer' }} onClick={logout}>
+          <div style={rowLast} onClick={logout}>
             <div style={{ ...iconBox, background: 'var(--bg3)' }}>
               <Icon name="logout" size={18} color="var(--text2)" />
             </div>
