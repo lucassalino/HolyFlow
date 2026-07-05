@@ -1,7 +1,55 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { sb } from '../supabase'
 import { traduzirErroAuth } from '../utils/auth'
 import { useApp } from '../context/AppContext'
+
+export function GrainBackground() {
+  const canvasRef = useRef(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+
+    const draw = () => {
+      const w = canvas.width = canvas.offsetWidth
+      const h = canvas.height = canvas.offsetHeight
+
+      ctx.fillStyle = '#080808'
+      ctx.fillRect(0, 0, w, h)
+
+      const g1 = ctx.createRadialGradient(w * 0.72, h * 0.22, 0, w * 0.72, h * 0.22, w * 0.55)
+      g1.addColorStop(0, 'rgba(80,80,80,0.28)')
+      g1.addColorStop(1, 'rgba(0,0,0,0)')
+      ctx.fillStyle = g1
+      ctx.fillRect(0, 0, w, h)
+
+      const g2 = ctx.createRadialGradient(w * 0.6, h * 0.72, 0, w * 0.6, h * 0.72, w * 0.5)
+      g2.addColorStop(0, 'rgba(65,65,65,0.22)')
+      g2.addColorStop(1, 'rgba(0,0,0,0)')
+      ctx.fillStyle = g2
+      ctx.fillRect(0, 0, w, h)
+
+      const imageData = ctx.getImageData(0, 0, w, h)
+      const data = imageData.data
+      for (let i = 0; i < data.length; i += 4) {
+        const n = (Math.random() - 0.5) * 38
+        data[i] = Math.max(0, Math.min(255, data[i] + n))
+        data[i + 1] = Math.max(0, Math.min(255, data[i + 1] + n))
+        data[i + 2] = Math.max(0, Math.min(255, data[i + 2] + n))
+      }
+      ctx.putImageData(imageData, 0, 0)
+    }
+
+    draw()
+    window.addEventListener('resize', draw)
+    return () => window.removeEventListener('resize', draw)
+  }, [])
+
+  return (
+    <canvas ref={canvasRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
+  )
+}
 
 export default function AuthScreen() {
   const { setSessaoAtual, depoisDoLogin } = useApp()
@@ -40,42 +88,61 @@ export default function AuthScreen() {
   const onKey = (e) => { if (e.key === 'Enter') submeter() }
 
   return (
-    <div className="screen">
-      <div className="auth-wrap">
-        <div className="auth-logo">
-          <div className="emoji">📋</div>
-          <h1>Roteiro do Culto</h1>
-          <p>Cria e partilha roteiros com a tua equipa</p>
-        </div>
-        <div className="auth-tabs">
-          <button className={`auth-tab${modo === 'login' ? ' active' : ''}`} onClick={() => mudarModo('login')}>Entrar</button>
-          <button className={`auth-tab${modo === 'registo' ? ' active' : ''}`} onClick={() => mudarModo('registo')}>Criar Conta</button>
-        </div>
-        {erro && <div className="auth-error">{erro}</div>}
-        {modo === 'registo' && (
-          <div className="campo">
-            <label>O teu nome</label>
-            <input type="text" value={nome} onChange={e => setNome(e.target.value)} onKeyDown={onKey} autoComplete="name" />
+    <div className="screen" style={{ position: 'relative', overflow: 'hidden', background: '#080808' }}>
+      <GrainBackground />
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(to bottom, rgba(8,8,8,0.1) 0%, rgba(8,8,8,0.5) 50%, rgba(8,8,8,0.85) 100%)',
+        pointerEvents: 'none',
+      }} />
+      <div style={{
+        position: 'relative', zIndex: 1,
+        flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '24px',
+        height: '100%',
+      }}>
+        <div style={{ width: '100%', maxWidth: 380 }}>
+          <div className="auth-logo" style={{ marginBottom: 28 }}>
+            <div style={{ fontSize: 48 }}>📋</div>
+            <h1 style={{ color: '#f0f0f5', fontSize: 26, fontWeight: 800, marginTop: 12, letterSpacing: '-0.5px' }}>HolyFlow</h1>
+            <p style={{ color: 'rgba(240,240,245,0.55)', fontSize: 14, marginTop: 6 }}>Cria e partilha roteiros com a tua equipa</p>
           </div>
-        )}
-        <div className="campo">
-          <label>Email</label>
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} onKeyDown={onKey} autoComplete="email" />
-        </div>
-        <div className="campo">
-          <label>Password</label>
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={onKey} autoComplete="current-password" />
-        </div>
-        <button className="btn-primary btn-accent" onClick={submeter} disabled={loading}>
-          {loading ? 'A processar...' : modo === 'registo' ? 'Criar Conta' : 'Entrar'}
-        </button>
-        <div className="auth-link">
-          {modo === 'login'
-            ? <></>
-            : null}
-          {modo === 'login'
-            ? <>Ainda não tens conta? <span onClick={() => mudarModo('registo')}>Criar conta</span></>
-            : <>Já tens conta? <span onClick={() => mudarModo('login')}>Entrar</span></>}
+          <div style={{
+            background: 'rgba(28,28,36,0.85)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderRadius: 'var(--radius)',
+            padding: '22px',
+            border: '1px solid rgba(255,255,255,0.08)',
+          }}>
+            {erro && <div className="auth-error">{erro}</div>}
+            {modo === 'registo' && (
+              <div className="campo">
+                <label style={{ color: 'rgba(255,255,255,0.4)' }}>O teu nome</label>
+                <input type="text" value={nome} onChange={e => setNome(e.target.value)} onKeyDown={onKey} autoComplete="name" placeholder="João Silva"
+                  style={{ background: 'rgba(255,255,255,0.07)', color: '#f0f0f5', border: '1px solid rgba(255,255,255,0.1)' }} />
+              </div>
+            )}
+            <div className="campo">
+              <label style={{ color: 'rgba(255,255,255,0.4)' }}>Email</label>
+              <input type="email" value={email} onChange={e => setEmail(e.target.value)} onKeyDown={onKey} autoComplete="email" placeholder="email@exemplo.com"
+                style={{ background: 'rgba(255,255,255,0.07)', color: '#f0f0f5', border: '1px solid rgba(255,255,255,0.1)' }} />
+            </div>
+            <div className="campo" style={{ marginBottom: '20px' }}>
+              <label style={{ color: 'rgba(255,255,255,0.4)' }}>Password</label>
+              <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={onKey} autoComplete="current-password" placeholder="••••••••"
+                style={{ background: 'rgba(255,255,255,0.07)', color: '#f0f0f5', border: '1px solid rgba(255,255,255,0.1)' }} />
+            </div>
+            <button className="btn-primary btn-accent" onClick={submeter} disabled={loading}
+              style={{ background: '#f0f0f5', color: '#0d0d0d', border: 'none' }}>
+              {loading ? 'A processar...' : modo === 'registo' ? 'Criar Conta' : 'Entrar'}
+            </button>
+          </div>
+          <div className="auth-link" style={{ color: 'rgba(240,240,245,0.45)', marginTop: 18 }}>
+            {modo === 'login'
+              ? <>Ainda não tens conta? <span style={{ color: '#f0f0f5', fontWeight: 700 }} onClick={() => mudarModo('registo')}>Criar conta</span></>
+              : <>Já tens conta? <span style={{ color: '#f0f0f5', fontWeight: 700 }} onClick={() => mudarModo('login')}>Entrar</span></>}
+          </div>
         </div>
       </div>
     </div>
