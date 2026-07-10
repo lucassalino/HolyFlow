@@ -276,6 +276,13 @@ export function AppProvider({ children }) {
     setMomentos(JSON.parse(JSON.stringify(r.momentos))); navigate('editor')
   }, [navigate])
 
+  const abrirRoteiroPreview = useCallback((i, lista) => {
+    const r = lista[i]
+    setEditandoIdx(i); setEditorNome(r.nome); setEditorData(r.data || '')
+    setEditorTema(r.tema || ''); setEditorVersiculo(r.versiculo || '')
+    setMomentos(JSON.parse(JSON.stringify(r.momentos))); navigate('preview')
+  }, [navigate])
+
   return (
     <AppContext.Provider value={{
       screen, navigate,
@@ -292,7 +299,7 @@ export function AppProvider({ children }) {
       editorTema, setEditorTema,
       editorVersiculo, setEditorVersiculo,
       logout, depoisDoLogin, entrarNaApp, selecionarOrg, trocarOrg, sairDaOrg, excluirOrg,
-      carregarRoteirosDaNuvem, abrirNovoRoteiro, abrirRoteiro,
+      carregarRoteirosDaNuvem, abrirNovoRoteiro, abrirRoteiro, abrirRoteiroPreview,
       showAlert, showConfirm, showToast,
     }}>
       {children}
