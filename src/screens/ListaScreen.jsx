@@ -10,7 +10,7 @@ export default function ListaScreen() {
     membroAtual, organizacaoAtual, minhasOrgs,
     roteiros, setRoteiros,
     navigate, selecionarOrg,
-    carregarRoteirosDaNuvem, abrirNovoRoteiro, abrirRoteiro,
+    carregarRoteirosDaNuvem, abrirNovoRoteiro, abrirRoteiro, abrirRoteiroPreview,
     showConfirm, showAlert,
   } = useApp()
 
@@ -145,7 +145,12 @@ export default function ListaScreen() {
           <>
             <div className="group-label" style={{ color: 'rgba(240,240,245,0.35)' }}>Roteiros</div>
             {roteiros.map((r, i) => (
-              <div key={r.id} className="card" onClick={() => abrirRoteiro(i, roteiros)} style={cardStyle}>
+              <div
+                key={r.id}
+                className="card"
+                onClick={() => ehAdmin ? abrirRoteiro(i, roteiros) : abrirRoteiroPreview(i, roteiros)}
+                style={cardStyle}
+              >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <div style={{
                     width: 44, height: 44, borderRadius: 12,
