@@ -45,13 +45,6 @@ function AppInner() {
         navigate('auth')
       }
     })
-
-    const { data: { subscription } } = sb.auth.onAuthStateChange((event) => {
-      if (event === 'PASSWORD_RECOVERY') {
-        navigate('nova-senha')
-      }
-    })
-    return () => subscription.unsubscribe()
   }, [])
 
   if (screen === 'loading') {

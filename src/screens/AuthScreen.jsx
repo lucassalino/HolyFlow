@@ -52,36 +52,69 @@ export function GrainBackground() {
 }
 
 export default function AuthScreen() {
-  const { setSessaoAtual, depoisDoLogin } = useApp()
+  const { setSessaoAtual, depoisDoLogin, navigate } = useApp()
   const [modo, setModo] = useState('login')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [nome, setNome] = useState('')
   const [erro, setErro] = useState('')
   const [loading, setLoading] = useState(false)
-  const [emailEnviado, setEmailEnviado] = useState(false)
 
-  const mudarModo = (m) => { setModo(m); setErro(''); setEmailEnviado(false) }
+  // recuperar senha
+  const [passo, setPasso] = useState(1)
+  const [codigo, setCodigo] = useState('')
+  const [reenviarEm, setReenviarEm] = useState(0)
+
+  useEffect(() => {
+    if (reenviarEm <= 0) return
+    const t = setInterval(() => setReenviarEm(v => v <= 1 ? 0 : v - 1), 1000)
+    return () => clearInterval(t)
+  }, [reenviarEm])
+
+  const mudarModo = (m) => { setModo(m); setErro(''); setPasso(1); setCodigo(''); setReenviarEm(0) }
+
+  const enviarCodigo = async () => {
+    if (!email) { setErro('Introduz o teu email.'); return }
+    setErro('')
+    setLoading(true)
+    try {
+      const { error } = await sb.auth.signInWithOtp({
+        email,
+        options: { shouldCreateUser: false },
+      })
+      if (error) throw error
+      setPasso(2)
+      setReenviarEm(60)
+    } catch (err) {
+      setErro(traduzirErroAuth(err.message))
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const verificarCodigo = async () => {
+    if (!codigo || codigo.length < 6) { setErro('Introduz o código de 6 dígitos.'); return }
+    setErro('')
+    setLoading(true)
+    try {
+      const { data, error } = await sb.auth.verifyOtp({ email, token: codigo, type: 'email' })
+      if (error) throw error
+      setSessaoAtual(data.session)
+      navigate('nova-senha')
+    } catch (err) {
+      setErro('Código inválido ou expirado. Tenta novamente.')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const submeter = async () => {
     setErro('')
     if (modo === 'recuperar') {
-      if (!email) { setErro('Introduz o teu email.'); return }
-      setLoading(true)
-      try {
-        const { error } = await sb.auth.resetPasswordForEmail(email, {
-          redirectTo: window.location.origin + window.location.pathname,
-        })
-        if (error) throw error
-        setEmailEnviado(true)
-      } catch (err) {
-        setErro(traduzirErroAuth(err.message))
-      } finally {
-        setLoading(false)
-      }
+      if (passo === 1) { await enviarCodigo(); return }
+      await verificarCodigo()
       return
     }
-
     if (!email || !password) { setErro('Preenche email e password.'); return }
     if (modo === 'registo' && !nome) { setErro('Diz-nos o teu nome.'); return }
     setLoading(true)
@@ -117,8 +150,7 @@ export default function AuthScreen() {
       <div style={{
         position: 'relative', zIndex: 1,
         flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: '24px',
-        height: '100%',
+        padding: '24px', height: '100%',
       }}>
         <div style={{ width: '100%', maxWidth: 380 }}>
           <div className="auth-logo" style={{ marginBottom: 28 }}>
@@ -136,19 +168,11 @@ export default function AuthScreen() {
             border: '1px solid rgba(255,255,255,0.08)',
           }}>
             {modo === 'recuperar' ? (
-              emailEnviado ? (
-                <div style={{ textAlign: 'center', padding: '8px 0' }}>
-                  <div style={{ fontSize: 36, marginBottom: 12 }}>📬</div>
-                  <div style={{ color: '#f0f0f5', fontWeight: 700, fontSize: 17, marginBottom: 8 }}>Email enviado!</div>
-                  <div style={{ color: 'rgba(240,240,245,0.55)', fontSize: 14, lineHeight: 1.6 }}>
-                    Verifica a tua caixa de entrada e clica no link para definires uma nova senha.
-                  </div>
-                </div>
-              ) : (
+              passo === 1 ? (
                 <>
                   {erro && <div className="auth-error">{erro}</div>}
                   <div style={{ color: '#f0f0f5', fontWeight: 700, fontSize: 16, marginBottom: 4 }}>Recuperar senha</div>
-                  <div style={{ color: 'rgba(240,240,245,0.45)', fontSize: 13, marginBottom: 16 }}>Envia-mos um link para o teu email.</div>
+                  <div style={{ color: 'rgba(240,240,245,0.45)', fontSize: 13, marginBottom: 16 }}>Enviamos um código de 6 dígitos para o teu email.</div>
                   <div className="campo" style={{ marginBottom: '20px' }}>
                     <label style={{ color: 'rgba(255,255,255,0.4)' }}>Email</label>
                     <input type="email" value={email} onChange={e => setEmail(e.target.value)} onKeyDown={onKey}
@@ -157,8 +181,49 @@ export default function AuthScreen() {
                   </div>
                   <button className="btn-primary btn-accent" onClick={submeter} disabled={loading}
                     style={{ background: '#f0f0f5', color: '#0d0d0d', border: 'none' }}>
-                    {loading ? 'A enviar...' : 'Enviar link'}
+                    {loading ? 'A enviar...' : 'Enviar código'}
                   </button>
+                </>
+              ) : (
+                <>
+                  {erro && <div className="auth-error">{erro}</div>}
+                  <div style={{ color: '#f0f0f5', fontWeight: 700, fontSize: 16, marginBottom: 4 }}>Verifica o teu email</div>
+                  <div style={{ color: 'rgba(240,240,245,0.45)', fontSize: 13, marginBottom: 16 }}>
+                    Enviámos um código para <span style={{ color: 'rgba(240,240,245,0.75)', fontWeight: 600 }}>{email}</span>.
+                  </div>
+                  <div className="campo" style={{ marginBottom: '20px' }}>
+                    <label style={{ color: 'rgba(255,255,255,0.4)' }}>Código de 6 dígitos</label>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                      maxLength={6}
+                      value={codigo}
+                      onChange={e => setCodigo(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                      onKeyDown={onKey}
+                      autoComplete="one-time-code"
+                      placeholder="000000"
+                      style={{
+                        background: 'rgba(255,255,255,0.07)', color: '#f0f0f5',
+                        border: '1px solid rgba(255,255,255,0.1)',
+                        fontSize: 22, fontWeight: 700, letterSpacing: 6, textAlign: 'center',
+                      }}
+                    />
+                  </div>
+                  <button className="btn-primary btn-accent" onClick={submeter} disabled={loading}
+                    style={{ background: '#f0f0f5', color: '#0d0d0d', border: 'none', marginBottom: 12 }}>
+                    {loading ? 'A verificar...' : 'Verificar código'}
+                  </button>
+                  <div style={{ textAlign: 'center' }}>
+                    {reenviarEm > 0 ? (
+                      <span style={{ fontSize: 13, color: 'rgba(240,240,245,0.3)' }}>Reenviar código em {reenviarEm}s</span>
+                    ) : (
+                      <span
+                        onClick={enviarCodigo}
+                        style={{ fontSize: 13, color: 'rgba(240,240,245,0.45)', cursor: 'pointer', textDecoration: 'underline' }}
+                      >Reenviar código</span>
+                    )}
+                  </div>
                 </>
               )
             ) : (
