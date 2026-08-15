@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { sb } from './supabase'
 import { AppProvider, useApp } from './context/AppContext'
 import AuthScreen from './screens/AuthScreen'
+import NovaSenhaScreen from './screens/NovaSenhaScreen'
 import OrgEscolhaScreen from './screens/OrgEscolhaScreen'
 import OrgCriarScreen from './screens/OrgCriarScreen'
 import OrgEntrarScreen from './screens/OrgEntrarScreen'
@@ -16,6 +17,7 @@ import ConfigScreen from './screens/ConfigScreen'
 
 const AUTH_SCREENS = {
   auth: AuthScreen,
+  'nova-senha': NovaSenhaScreen,
   'org-escolha': OrgEscolhaScreen,
   'org-criar': OrgCriarScreen,
   'org-entrar': OrgEntrarScreen,
@@ -43,6 +45,13 @@ function AppInner() {
         navigate('auth')
       }
     })
+
+    const { data: { subscription } } = sb.auth.onAuthStateChange((event) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        navigate('nova-senha')
+      }
+    })
+    return () => subscription.unsubscribe()
   }, [])
 
   if (screen === 'loading') {

@@ -59,11 +59,29 @@ export default function AuthScreen() {
   const [nome, setNome] = useState('')
   const [erro, setErro] = useState('')
   const [loading, setLoading] = useState(false)
+  const [emailEnviado, setEmailEnviado] = useState(false)
 
-  const mudarModo = (m) => { setModo(m); setErro('') }
+  const mudarModo = (m) => { setModo(m); setErro(''); setEmailEnviado(false) }
 
   const submeter = async () => {
     setErro('')
+    if (modo === 'recuperar') {
+      if (!email) { setErro('Introduz o teu email.'); return }
+      setLoading(true)
+      try {
+        const { error } = await sb.auth.resetPasswordForEmail(email, {
+          redirectTo: window.location.origin + window.location.pathname,
+        })
+        if (error) throw error
+        setEmailEnviado(true)
+      } catch (err) {
+        setErro(traduzirErroAuth(err.message))
+      } finally {
+        setLoading(false)
+      }
+      return
+    }
+
     if (!email || !password) { setErro('Preenche email e password.'); return }
     if (modo === 'registo' && !nome) { setErro('Diz-nos o teu nome.'); return }
     setLoading(true)
@@ -96,7 +114,6 @@ export default function AuthScreen() {
         pointerEvents: 'none',
       }} />
 
-      {/* Centered container */}
       <div style={{
         position: 'relative', zIndex: 1,
         flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -118,34 +135,76 @@ export default function AuthScreen() {
             padding: '22px',
             border: '1px solid rgba(255,255,255,0.08)',
           }}>
-            {erro && <div className="auth-error">{erro}</div>}
-            {modo === 'registo' && (
-              <div className="campo">
-                <label style={{ color: 'rgba(255,255,255,0.4)' }}>O teu nome</label>
-                <input type="text" value={nome} onChange={e => setNome(e.target.value)} onKeyDown={onKey} autoComplete="name" placeholder="João Silva"
-                  style={{ background: 'rgba(255,255,255,0.07)', color: '#f0f0f5', border: '1px solid rgba(255,255,255,0.1)' }} />
-              </div>
+            {modo === 'recuperar' ? (
+              emailEnviado ? (
+                <div style={{ textAlign: 'center', padding: '8px 0' }}>
+                  <div style={{ fontSize: 36, marginBottom: 12 }}>📬</div>
+                  <div style={{ color: '#f0f0f5', fontWeight: 700, fontSize: 17, marginBottom: 8 }}>Email enviado!</div>
+                  <div style={{ color: 'rgba(240,240,245,0.55)', fontSize: 14, lineHeight: 1.6 }}>
+                    Verifica a tua caixa de entrada e clica no link para definires uma nova senha.
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {erro && <div className="auth-error">{erro}</div>}
+                  <div style={{ color: '#f0f0f5', fontWeight: 700, fontSize: 16, marginBottom: 4 }}>Recuperar senha</div>
+                  <div style={{ color: 'rgba(240,240,245,0.45)', fontSize: 13, marginBottom: 16 }}>Envia-mos um link para o teu email.</div>
+                  <div className="campo" style={{ marginBottom: '20px' }}>
+                    <label style={{ color: 'rgba(255,255,255,0.4)' }}>Email</label>
+                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} onKeyDown={onKey}
+                      autoComplete="email" placeholder="email@exemplo.com"
+                      style={{ background: 'rgba(255,255,255,0.07)', color: '#f0f0f5', border: '1px solid rgba(255,255,255,0.1)' }} />
+                  </div>
+                  <button className="btn-primary btn-accent" onClick={submeter} disabled={loading}
+                    style={{ background: '#f0f0f5', color: '#0d0d0d', border: 'none' }}>
+                    {loading ? 'A enviar...' : 'Enviar link'}
+                  </button>
+                </>
+              )
+            ) : (
+              <>
+                {erro && <div className="auth-error">{erro}</div>}
+                {modo === 'registo' && (
+                  <div className="campo">
+                    <label style={{ color: 'rgba(255,255,255,0.4)' }}>O teu nome</label>
+                    <input type="text" value={nome} onChange={e => setNome(e.target.value)} onKeyDown={onKey} autoComplete="name" placeholder="João Silva"
+                      style={{ background: 'rgba(255,255,255,0.07)', color: '#f0f0f5', border: '1px solid rgba(255,255,255,0.1)' }} />
+                  </div>
+                )}
+                <div className="campo">
+                  <label style={{ color: 'rgba(255,255,255,0.4)' }}>Email</label>
+                  <input type="email" value={email} onChange={e => setEmail(e.target.value)} onKeyDown={onKey} autoComplete="email" placeholder="email@exemplo.com"
+                    style={{ background: 'rgba(255,255,255,0.07)', color: '#f0f0f5', border: '1px solid rgba(255,255,255,0.1)' }} />
+                </div>
+                <div className="campo" style={{ marginBottom: modo === 'login' ? '6px' : '20px' }}>
+                  <label style={{ color: 'rgba(255,255,255,0.4)' }}>Password</label>
+                  <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={onKey} autoComplete="current-password" placeholder="••••••••"
+                    style={{ background: 'rgba(255,255,255,0.07)', color: '#f0f0f5', border: '1px solid rgba(255,255,255,0.1)' }} />
+                </div>
+                {modo === 'login' && (
+                  <div style={{ textAlign: 'right', marginBottom: 16 }}>
+                    <span
+                      onClick={() => mudarModo('recuperar')}
+                      style={{ fontSize: 13, color: 'rgba(240,240,245,0.45)', cursor: 'pointer' }}
+                    >
+                      Esqueci a senha
+                    </span>
+                  </div>
+                )}
+                <button className="btn-primary btn-accent" onClick={submeter} disabled={loading}
+                  style={{ background: '#f0f0f5', color: '#0d0d0d', border: 'none' }}>
+                  {loading ? 'A processar...' : modo === 'registo' ? 'Criar Conta' : 'Entrar'}
+                </button>
+              </>
             )}
-            <div className="campo">
-              <label style={{ color: 'rgba(255,255,255,0.4)' }}>Email</label>
-              <input type="email" value={email} onChange={e => setEmail(e.target.value)} onKeyDown={onKey} autoComplete="email" placeholder="email@exemplo.com"
-                style={{ background: 'rgba(255,255,255,0.07)', color: '#f0f0f5', border: '1px solid rgba(255,255,255,0.1)' }} />
-            </div>
-            <div className="campo" style={{ marginBottom: '20px' }}>
-              <label style={{ color: 'rgba(255,255,255,0.4)' }}>Password</label>
-              <input type="password" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={onKey} autoComplete="current-password" placeholder="••••••••"
-                style={{ background: 'rgba(255,255,255,0.07)', color: '#f0f0f5', border: '1px solid rgba(255,255,255,0.1)' }} />
-            </div>
-            <button className="btn-primary btn-accent" onClick={submeter} disabled={loading}
-              style={{ background: '#f0f0f5', color: '#0d0d0d', border: 'none' }}>
-              {loading ? 'A processar...' : modo === 'registo' ? 'Criar Conta' : 'Entrar'}
-            </button>
           </div>
 
           <div className="auth-link" style={{ color: 'rgba(240,240,245,0.45)', marginTop: 18 }}>
-            {modo === 'login'
-              ? <>Ainda não tens conta? <span style={{ color: '#f0f0f5', fontWeight: 700 }} onClick={() => mudarModo('registo')}>Criar conta</span></>
-              : <>Já tens conta? <span style={{ color: '#f0f0f5', fontWeight: 700 }} onClick={() => mudarModo('login')}>Entrar</span></>}
+            {modo === 'recuperar'
+              ? <span style={{ color: '#f0f0f5', fontWeight: 700, cursor: 'pointer' }} onClick={() => mudarModo('login')}>Voltar ao login</span>
+              : modo === 'login'
+                ? <>Ainda não tens conta? <span style={{ color: '#f0f0f5', fontWeight: 700, cursor: 'pointer' }} onClick={() => mudarModo('registo')}>Criar conta</span></>
+                : <>Já tens conta? <span style={{ color: '#f0f0f5', fontWeight: 700, cursor: 'pointer' }} onClick={() => mudarModo('login')}>Entrar</span></>}
           </div>
         </div>
       </div>
