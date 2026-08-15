@@ -61,8 +61,7 @@ export default function AuthScreen() {
   const [loading, setLoading] = useState(false)
 
   // recuperar senha
-  const [passo, setPasso] = useState(1) // 1 = email, 2 = código
-  const [codigo, setCodigo] = useState('')
+  const [passo, setPasso] = useState(1) // 1 = email, 2 = aguardar link
   const [reenviarEm, setReenviarEm] = useState(0)
 
   useEffect(() => {
@@ -71,9 +70,9 @@ export default function AuthScreen() {
     return () => clearInterval(t)
   }, [reenviarEm])
 
-  const mudarModo = (m) => { setModo(m); setErro(''); setPasso(1); setCodigo(''); setReenviarEm(0) }
+  const mudarModo = (m) => { setModo(m); setErro(''); setPasso(1); setReenviarEm(0) }
 
-  const enviarCodigo = async () => {
+  const enviarLink = async () => {
     if (!email) { setErro('Introduz o teu email.'); return }
     setErro('')
     setLoading(true)
@@ -83,6 +82,7 @@ export default function AuthScreen() {
         options: { shouldCreateUser: false },
       })
       if (error) throw error
+      localStorage.setItem('recuperando_senha', '1')
       setPasso(2)
       setReenviarEm(60)
     } catch (err) {
@@ -92,27 +92,10 @@ export default function AuthScreen() {
     }
   }
 
-  const verificarCodigo = async () => {
-    if (!codigo || codigo.length < 6) { setErro('Introduz o código de 6 dígitos.'); return }
-    setErro('')
-    setLoading(true)
-    try {
-      const { data, error } = await sb.auth.verifyOtp({ email, token: codigo, type: 'email' })
-      if (error) throw error
-      setSessaoAtual(data.session)
-      navigate('nova-senha')
-    } catch (err) {
-      setErro('Código inválido ou expirado. Tenta novamente.')
-    } finally {
-      setLoading(false)
-    }
-  }
-
   const submeter = async () => {
     setErro('')
     if (modo === 'recuperar') {
-      if (passo === 1) { await enviarCodigo(); return }
-      await verificarCodigo()
+      await enviarLink()
       return
     }
     if (!email || !password) { setErro('Preenche email e password.'); return }
@@ -172,7 +155,7 @@ export default function AuthScreen() {
                 <>
                   {erro && <div className="auth-error">{erro}</div>}
                   <div style={{ color: '#f0f0f5', fontWeight: 700, fontSize: 16, marginBottom: 4 }}>Recuperar senha</div>
-                  <div style={{ color: 'rgba(240,240,245,0.45)', fontSize: 13, marginBottom: 16 }}>Enviamos um código de 6 dígitos para o teu email.</div>
+                  <div style={{ color: 'rgba(240,240,245,0.45)', fontSize: 13, marginBottom: 16 }}>Enviamos um link de acesso para o teu email.</div>
                   <div className="campo" style={{ marginBottom: '20px' }}>
                     <label style={{ color: 'rgba(255,255,255,0.4)' }}>Email</label>
                     <input type="email" value={email} onChange={e => setEmail(e.target.value)} onKeyDown={onKey}
@@ -181,47 +164,28 @@ export default function AuthScreen() {
                   </div>
                   <button className="btn-primary btn-accent" onClick={submeter} disabled={loading}
                     style={{ background: '#f0f0f5', color: '#0d0d0d', border: 'none' }}>
-                    {loading ? 'A enviar...' : 'Enviar código'}
+                    {loading ? 'A enviar...' : 'Enviar link'}
                   </button>
                 </>
               ) : (
                 <>
-                  {erro && <div className="auth-error">{erro}</div>}
-                  <div style={{ color: '#f0f0f5', fontWeight: 700, fontSize: 16, marginBottom: 4 }}>Verifica o teu email</div>
-                  <div style={{ color: 'rgba(240,240,245,0.45)', fontSize: 13, marginBottom: 16 }}>
-                    Enviámos um código para <span style={{ color: 'rgba(240,240,245,0.75)', fontWeight: 600 }}>{email}</span>.
+                  <div style={{ textAlign: 'center', padding: '8px 0 16px' }}>
+                    <div style={{ fontSize: 40, marginBottom: 12 }}>📬</div>
+                    <div style={{ color: '#f0f0f5', fontWeight: 700, fontSize: 16, marginBottom: 8 }}>Verifica o teu email</div>
+                    <div style={{ color: 'rgba(240,240,245,0.45)', fontSize: 13, lineHeight: 1.5 }}>
+                      Enviámos um link para{' '}
+                      <span style={{ color: 'rgba(240,240,245,0.75)', fontWeight: 600 }}>{email}</span>.<br />
+                      Clica no link para definir uma nova senha.
+                    </div>
                   </div>
-                  <div className="campo" style={{ marginBottom: '20px' }}>
-                    <label style={{ color: 'rgba(255,255,255,0.4)' }}>Código de 6 dígitos</label>
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      pattern="[0-9]*"
-                      maxLength={6}
-                      value={codigo}
-                      onChange={e => setCodigo(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                      onKeyDown={onKey}
-                      autoComplete="one-time-code"
-                      placeholder="000000"
-                      style={{
-                        background: 'rgba(255,255,255,0.07)', color: '#f0f0f5',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        fontSize: 22, fontWeight: 700, letterSpacing: 6, textAlign: 'center',
-                      }}
-                    />
-                  </div>
-                  <button className="btn-primary btn-accent" onClick={submeter} disabled={loading}
-                    style={{ background: '#f0f0f5', color: '#0d0d0d', border: 'none', marginBottom: 12 }}>
-                    {loading ? 'A verificar...' : 'Verificar código'}
-                  </button>
-                  <div style={{ textAlign: 'center' }}>
+                  <div style={{ textAlign: 'center', marginTop: 8 }}>
                     {reenviarEm > 0 ? (
-                      <span style={{ fontSize: 13, color: 'rgba(240,240,245,0.3)' }}>Reenviar código em {reenviarEm}s</span>
+                      <span style={{ fontSize: 13, color: 'rgba(240,240,245,0.3)' }}>Reenviar em {reenviarEm}s</span>
                     ) : (
                       <span
-                        onClick={enviarCodigo}
+                        onClick={enviarLink}
                         style={{ fontSize: 13, color: 'rgba(240,240,245,0.45)', cursor: 'pointer', textDecoration: 'underline' }}
-                      >Reenviar código</span>
+                      >Reenviar link</span>
                     )}
                   </div>
                 </>

@@ -37,14 +37,36 @@ function AppInner() {
   const { screen, navigate, setSessaoAtual, depoisDoLogin } = useApp()
 
   useEffect(() => {
+    // Handle initial session (normal app load or magic link token in URL hash)
     sb.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        setSessaoAtual(session)
-        depoisDoLogin()
+        const recuperando = localStorage.getItem('recuperando_senha')
+        if (recuperando) {
+          localStorage.removeItem('recuperando_senha')
+          setSessaoAtual(session)
+          navigate('nova-senha')
+        } else {
+          setSessaoAtual(session)
+          depoisDoLogin()
+        }
       } else {
         navigate('auth')
       }
     })
+
+    // Catch magic link sign-in if session is established after initial getSession call
+    const { data: { subscription } } = sb.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session) {
+        const recuperando = localStorage.getItem('recuperando_senha')
+        if (recuperando) {
+          localStorage.removeItem('recuperando_senha')
+          setSessaoAtual(session)
+          navigate('nova-senha')
+        }
+      }
+    })
+
+    return () => subscription.unsubscribe()
   }, [])
 
   if (screen === 'loading') {
